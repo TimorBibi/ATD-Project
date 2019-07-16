@@ -1,59 +1,19 @@
-import { ReviewFormActionsConstants } from './constants';
+import { TopBarActionsConstants } from './constants';
 
-function updateNameAction(name) {
+function setActiveAction(name) {
     return {
-        type: ReviewFormActionsConstants.UPDATE_NAME,
+        type: TopBarActionsConstants.SET_ACTIVE,
         payload: {
             name
         }
     }
 }
-
-
-function addReviewSuccessAction(name){
-    return {
-        type: ReviewFormActionsConstants.ADD_REVIEW_ACTION_SUCCESS,
-        payload: {
-            name
-        }
-    }
-}
-
-function addReviewFailureAction(message){
-    return {
-        type: ReviewFormActionsConstants.ADD_REVIEW_ACTION_FAILURE,
-        message
-    }
-}
-
-
-function loadReviewsAction() {
-    return {
-        type: ReviewFormActionsConstants.LOAD_REVIEWS,
-        uri: '/api/load/names',
-    }
-}
-
-function addReviewAction(name) {
-    return {
-        type: ReviewFormActionsConstants.ADD_REVIEW,
-        uri: '/api/add/review',
-        payload: {
-            name
-        }
-    }
-}
-
 
 
 let ReviewFormActions = {
-    // updateFormWidth,
+    setActiveAction,
     // loadRestsAction,
-    loadReviewsAction,
-    updateNameAction,
-    addReviewAction,
-    addReviewSuccessAction,
-    addReviewFailureAction
+
 };
 
 export default ReviewFormActions

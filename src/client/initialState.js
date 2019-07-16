@@ -9,11 +9,15 @@ export default {
         galleryWidth: 0
     }),
     app: Map({
-      size: 200,
-      tag: 'art',
-      tags: List()
+        size: 200,
+        isConnected: false,
+        tag: 'art',
+        tags: List(),
     }),
     reviewform: Map({
         name: 'rest',
+    }),
+    topbar: Map({
+        activeItem: 'home',
     })
 };

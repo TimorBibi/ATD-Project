@@ -1,5 +1,5 @@
-const ReviewFormActionsConstants = {
-    ADD_REVIEW: 'ADD_REVIEW',
+const TopBarActionsConstants = {
+    SET_ACTIVE: 'SET_ACTIVE',
     UPDATE_FORM_WIDTH: 'UPDATE_FORM_WIDTH',
     UPDATE_NAME: 'UPDATE_NAME',
     LOAD_REVIEWS:'LOAD_REVIEWS',
@@ -8,4 +8,4 @@ const ReviewFormActionsConstants = {
 
 };
 
-export { ReviewFormActionsConstants };
+export { TopBarActionsConstants };

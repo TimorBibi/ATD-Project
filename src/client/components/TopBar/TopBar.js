@@ -1,55 +1,60 @@
 import React from 'react';
 import './TopBar.scss';
 import {connect} from 'react-redux';
-import { Button } from 'primereact/button';
-import ReviewFormActions from '../ReviewForm/actions';
-import {InputText} from 'primereact/inputtext';
+import TopBarActions from '../TopBar/actions';
+import { Menu } from 'semantic-ui-react';
 
 
 class TopBar extends React.Component {
 
-    componentDidMount() {
-        // this.props.loadReviewsEventHandler();
-    }
-
     render() {
-        console.log('name=', this.props.name);
+        const isConnected = this.props.isConnected;
+        const active = this.props.activeItem;
+
+        const rightMenu = () => {
+            if(!isConnected)
+                return (
+                    <Menu.Menu position='right'>
+                        <Menu.Item name='login' active={active === 'login'} onClick={this.props.setActiveEventHandler}>
+                            LogIn
+                        </Menu.Item>
+                        <Menu.Item name='register' active={active === 'register'} onClick={this.props.setActiveEventHandler}>
+                            Register
+                        </Menu.Item>
+                    </Menu.Menu>
+                );
+            else
+                return (
+                    <Menu.Menu position='right'>
+                        <Menu.Item name='logout' active={active === 'logout'} onClick={this.props.setActiveEventHandler}>
+                            LogOut
+                        </Menu.Item>
+                    </Menu.Menu>
+                );
+        }
         return (
-        <div className="reviewform-root">
-            <InputText
-                value={this.props.name}
-                onChange={this.props.updateNameEventHandler}
-            />
-            <div className= "reviewform-button">
-                <Button
-                    label="Send"
-                    className="p-button-raised p-button-rounded "
-                    onClick={() => this.props.addReviewEventHandler(this.props.name)
-                    }
-                />
-            </div>
-        </div>
-        );
+            <Menu>
+                <Menu.Item name='home' active={active === 'home'} onClick={this.props.setActiveEventHandler}>
+                    Home
+                </Menu.Item>
+                {rightMenu()}
+            </Menu>
+        )
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        name: state['reviewform'].get('name'),
-        // names: state['reviewform'].get('names').toArray()
+        isConnected: state['app'].get('isConnected'),
+        activeItem: state['topbar'].get('activeItem'),
 }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addReviewEventHandler: (name) => {
-            dispatch(ReviewFormActions.addReviewAction(name));
+        setActiveEventHandler: (e) => {
+            dispatch(TopBarActions.setActiveAction(e.target.name));
         },
-        updateNameEventHandler: (e) => {
-            dispatch(ReviewFormActions.updateNameAction(e.target.value));
-        },
-        loadReviewsEventHandler:(name)=> {
-        dispatch(ReviewFormActions.loadReviewsAction(name))}
     }
 };
 
