@@ -1,6 +1,5 @@
 import { TopBarActionsConstants } from './constants'
 import initialState from '../../initialState'
-import {ReviewFormActionsConstants} from "../ReviewForm/constants";
 
 const TopBarReducer = (state = initialState.topbar, action) => {
     console.log('TopBarState=', state);

@@ -1,18 +1,474 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="38eee9c1-e08d-47d5-9b60-dee31a50d5e8" name="Default Changelist" comment="">
+    <list default="true" id="38eee9c1-e08d-47d5-9b60-dee31a50d5e8" name="Default Changelist" comment="fixing initCities">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/gulpfile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/behaviors/api.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/behaviors/form.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/behaviors/visibility.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/collections/breadcrumb.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/collections/form.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/collections/grid.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/collections/menu.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/collections/message.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/collections/table.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/elements/button.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/elements/container.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/elements/divider.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/elements/flag.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/elements/header.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/elements/icon.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/elements/image.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/elements/input.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/elements/label.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/elements/list.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/elements/loader.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/elements/placeholder.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/elements/rail.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/elements/reveal.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/elements/segment.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/elements/step.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/globals/reset.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/globals/site.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/globals/site.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/accordion.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/accordion.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/checkbox.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/checkbox.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/dimmer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/dimmer.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/dropdown.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/dropdown.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/embed.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/embed.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/modal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/modal.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/nag.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/nag.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/popup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/popup.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/progress.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/progress.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/rating.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/rating.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/search.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/shape.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/shape.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/sidebar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/sidebar.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/sticky.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/sticky.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/tab.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/tab.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/transition.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/modules/transition.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/views/ad.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/views/card.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/views/comment.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/views/feed.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/views/item.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/definitions/views/statistic.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/semantic.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/collections/breadcrumb.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/collections/breadcrumb.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/collections/form.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/collections/form.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/collections/grid.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/collections/grid.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/collections/menu.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/collections/menu.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/collections/message.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/collections/message.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/collections/table.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/collections/table.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/button.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/button.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/container.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/container.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/divider.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/divider.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/flag.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/flag.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/header.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/header.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/icon.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/icon.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/image.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/image.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/input.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/input.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/label.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/label.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/list.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/list.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/loader.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/loader.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/rail.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/rail.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/reveal.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/reveal.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/segment.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/segment.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/step.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/elements/step.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/globals/reset.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/globals/reset.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/globals/site.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/globals/site.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/accordion.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/accordion.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/chatroom.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/chatroom.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/checkbox.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/checkbox.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/dimmer.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/dimmer.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/dropdown.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/dropdown.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/embed.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/embed.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/modal.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/modal.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/nag.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/nag.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/popup.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/popup.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/progress.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/progress.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/rating.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/rating.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/search.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/search.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/shape.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/shape.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/sidebar.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/sidebar.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/sticky.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/sticky.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/tab.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/tab.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/transition.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/modules/transition.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/views/ad.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/views/ad.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/views/card.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/views/card.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/views/comment.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/views/comment.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/views/feed.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/views/feed.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/views/item.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/views/item.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/views/statistic.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/site/views/statistic.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/theme.config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/theme.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/amazon/elements/button.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/amazon/elements/button.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/amazon/globals/site.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/assets/fonts/icons.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/assets/fonts/icons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/assets/fonts/icons.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/assets/fonts/icons.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/collections/table.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/collections/table.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/elements/button.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/elements/button.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/elements/icon.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/elements/icon.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/elements/step.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/elements/step.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/globals/reset.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/globals/reset.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/modules/progress.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/modules/progress.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/views/card.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/basic/views/card.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/bookish/elements/header.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/bookish/elements/header.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/bootstrap3/elements/button.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/bootstrap3/elements/button.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/chubby/collections/form.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/chubby/collections/form.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/chubby/collections/menu.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/chubby/collections/menu.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/chubby/elements/button.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/chubby/elements/button.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/chubby/elements/header.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/chubby/elements/header.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/chubby/modules/accordion.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/chubby/modules/accordion.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/chubby/views/comment.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/chubby/views/comment.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/classic/collections/table.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/classic/collections/table.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/classic/elements/button.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/classic/elements/button.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/classic/elements/header.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/classic/elements/header.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/classic/modules/progress.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/classic/modules/progress.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/classic/views/card.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/classic/views/card.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/colored/modules/checkbox.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/colored/modules/checkbox.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/assets/fonts/brand-icons.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/assets/fonts/brand-icons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/assets/fonts/brand-icons.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/assets/fonts/brand-icons.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/assets/fonts/brand-icons.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/assets/fonts/icons.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/assets/fonts/icons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/assets/fonts/icons.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/assets/fonts/icons.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/assets/fonts/icons.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/assets/fonts/outline-icons.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/assets/fonts/outline-icons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/assets/fonts/outline-icons.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/assets/fonts/outline-icons.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/assets/fonts/outline-icons.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/assets/images/flags.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/collections/breadcrumb.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/collections/breadcrumb.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/collections/form.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/collections/form.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/collections/grid.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/collections/grid.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/collections/menu.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/collections/menu.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/collections/message.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/collections/message.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/collections/table.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/collections/table.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/button.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/button.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/container.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/container.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/divider.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/divider.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/flag.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/flag.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/header.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/header.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/icon.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/icon.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/image.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/image.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/input.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/input.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/label.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/label.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/list.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/list.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/loader.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/loader.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/placeholder.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/placeholder.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/rail.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/rail.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/reveal.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/reveal.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/segment.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/segment.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/step.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/elements/step.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/globals/reset.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/globals/reset.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/globals/site.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/globals/site.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/accordion.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/accordion.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/chatroom.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/chatroom.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/checkbox.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/checkbox.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/dimmer.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/dimmer.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/dropdown.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/dropdown.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/embed.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/embed.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/modal.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/modal.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/nag.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/nag.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/popup.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/popup.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/progress.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/progress.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/rating.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/rating.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/search.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/search.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/shape.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/shape.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/sidebar.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/sidebar.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/sticky.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/sticky.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/tab.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/tab.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/transition.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/modules/transition.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/views/ad.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/views/ad.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/views/card.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/views/card.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/views/comment.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/views/comment.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/views/feed.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/views/feed.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/views/item.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/views/item.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/views/statistic.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/default/views/statistic.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/duo/elements/loader.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/duo/elements/loader.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/fixed-width/collections/grid.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/fixed-width/collections/grid.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/fixed-width/modules/modal.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/fixed-width/modules/modal.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/flat/collections/form.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/flat/collections/form.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/flat/globals/site.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/flat/globals/site.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/assets/fonts/octicons-local.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/assets/fonts/octicons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/assets/fonts/octicons.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/assets/fonts/octicons.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/collections/breadcrumb.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/collections/form.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/collections/form.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/collections/grid.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/collections/menu.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/collections/menu.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/collections/message.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/collections/message.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/collections/table.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/elements/button.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/elements/button.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/elements/header.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/elements/icon.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/elements/icon.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/elements/image.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/elements/input.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/elements/input.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/elements/label.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/elements/label.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/elements/segment.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/elements/segment.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/elements/step.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/elements/step.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/globals/site.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/modules/dropdown.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/modules/dropdown.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/github/modules/popup.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/gmail/collections/message.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/gmail/collections/message.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/instagram/views/card.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/instagram/views/card.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/assets/fonts/icons.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/assets/fonts/icons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/assets/fonts/icons.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/assets/fonts/icons.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/assets/fonts/icons.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/collections/menu.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/collections/menu.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/elements/button.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/elements/button.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/elements/header.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/elements/header.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/elements/icon.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/elements/icon.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/globals/site.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/globals/site.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/modules/dropdown.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/modules/dropdown.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/modules/modal.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/material/modules/modal.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/pulsar/elements/loader.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/pulsar/elements/loader.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/raised/elements/button.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/raised/elements/button.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/resetcss/globals/reset.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/resetcss/globals/reset.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/round/elements/button.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/round/elements/button.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/rtl/globals/site.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/rtl/globals/site.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/striped/modules/progress.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/striped/modules/progress.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/timeline/views/feed.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/timeline/views/feed.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/twitter/elements/button.overrides" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/src/themes/twitter/elements/button.variables" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/admin/components/create.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/admin/components/init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/admin/components/update.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/admin/distributions/create.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/admin/distributions/init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/admin/distributions/update.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/admin/publish.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/admin/register.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/admin/release.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/build.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/build/assets.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/build/css.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/build/javascript.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/check-install.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/clean.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/collections/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/collections/admin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/collections/build.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/collections/internal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/collections/rtl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/admin/github.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/admin/oauth.example.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/admin/release.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/admin/templates/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/admin/templates/bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/admin/templates/component-package.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/admin/templates/composer.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/admin/templates/css-package.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/admin/templates/less-package.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/admin/templates/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/defaults.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/docs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/npm/gulpfile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/project/config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/project/install.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/project/release.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/tasks.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/config/user.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/docs/build.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/docs/metadata.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/docs/serve.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/install.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/rtl/build.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/rtl/watch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/version.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/semantic/tasks/watch.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/components/App/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/App/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/App/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/App/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/App/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/App/reducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/components/TopBar/TopBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/TopBar/TopBar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/components/TopBar/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/TopBar/actions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/components/TopBar/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/TopBar/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/TopBar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/TopBar/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/components/TopBar/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/TopBar/reducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/initialState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/initialState.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/reducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/sagas.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/sagas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn-error.log" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,75 +482,40 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/components/App/App.js">
+        <entry file="file://$PROJECT_DIR$/src/client/components/RegisterPage/actions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="41" lean-forward="true" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+            <state relative-caret-position="75">
+              <caret line="5" column="42" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/server/api/restaurantReview.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="675">
+              <caret line="45" column="2" lean-forward="true" selection-start-line="45" selection-start-column="2" selection-end-line="45" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/components/RegisterPage/saga.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="720">
+              <caret line="48" column="31" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="31" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
-                <element signature="e#117#156#0" expanded="true" />
-                <element signature="e#328#375#0" expanded="true" />
+                <element signature="e#0#56#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/TopBar.js">
+        <entry file="file://$PROJECT_DIR$/src/server/api/RegisterPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="39" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/actions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="47" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/constants.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" selection-start-line="3" selection-end-line="6" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/reducer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#52#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/components/ReviewForm/saga.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="54" selection-start-line="17" selection-start-column="54" selection-end-line="17" selection-end-column="54" />
-              <folding>
-                <element signature="e#0#54#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/initialState.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="19" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="19" />
+            <state relative-caret-position="510">
+              <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -102,24 +523,70 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="945">
-              <caret line="63" column="25" lean-forward="true" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dist/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+            <state relative-caret-position="875">
+              <caret line="103" column="28" selection-start-line="103" selection-start-column="28" selection-end-line="103" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/indx/index.js">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/src/client/components/RegisterPage/reducer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="61" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
+              <folding>
+                <element signature="e#0#58#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/components/App/reducer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+              <folding>
+                <element signature="e#0#46#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/components/RegisterPage/RegisterPage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1039">
+              <caret line="70" column="72" selection-start-line="70" selection-start-column="60" selection-end-line="70" selection-end-column="72" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/reducers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="14" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/client/sagas.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -134,15 +601,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>value</find>
-      <find>UPDATE_TAG</find>
-      <find>size</find>
-      <find>LOAD_TAGS</find>
-      <find>LOAD_nam</find>
-      <find>ddreview</find>
-      <find>e.value</find>
-      <find>/api/load/names</find>
-      <find>/api/load/tags</find>
       <find>schema</find>
       <find>/api/load/images</find>
       <find>GalleryActionsConstants.LOAD_IMAGES_ACTION,</find>
@@ -164,6 +622,15 @@
       <find>connect</find>
       <find>sem</find>
       <find>seman</find>
+      <find>GalleryModel</find>
+      <find>react-transitio</find>
+      <find>updateStateField</find>
+      <find>app.get/api/load/tags</find>
+      <find>RegisterPageSaga</find>
+      <find>loadImagesEventHandler</find>
+      <find>RegisterPageActionsConstants.LOAD_CITIES_SUCCESS</find>
+      <find>loadCitiesSuccessAction</find>
+      <find>registerPage</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -172,35 +639,52 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/client/components/List/actions.js" />
         <option value="$PROJECT_DIR$/src/client/components/List/constants.js" />
         <option value="$PROJECT_DIR$/src/client/reviewForm.js" />
         <option value="$PROJECT_DIR$/src/client/components/ReviewForm/index.js" />
         <option value="$PROJECT_DIR$/src/client/components/ReviewForm/ReviewForm.scss" />
         <option value="$PROJECT_DIR$/src/client/components/Gallery/index.js" />
-        <option value="$PROJECT_DIR$/src/client/components/App/reducer.js" />
-        <option value="$PROJECT_DIR$/src/client/sagas.js" />
         <option value="$PROJECT_DIR$/src/client/components/List/List.js" />
         <option value="$PROJECT_DIR$/src/client/components/ReviewForm/constants.js" />
         <option value="$PROJECT_DIR$/src/server/api/app.js" />
         <option value="$PROJECT_DIR$/src/client/components/ReviewForm/actions.js" />
         <option value="$PROJECT_DIR$/src/client/components/ReviewForm/ReviewForm.js" />
         <option value="$PROJECT_DIR$/src/client/components/ReviewForm/saga.js" />
-        <option value="$PROJECT_DIR$/src/server/server.js" />
         <option value="$PROJECT_DIR$/src/server/model/restaurantReview.js" />
         <option value="$PROJECT_DIR$/src/client/components/ReviewForm/reducer.js" />
         <option value="$PROJECT_DIR$/src/server/api/restaurantReview.js" />
-        <option value="$PROJECT_DIR$/src/client/reducers.js" />
-        <option value="$PROJECT_DIR$/src/client/components/TopBar/actions.js" />
         <option value="$PROJECT_DIR$/src/client/components/TopBar/constants.js" />
-        <option value="$PROJECT_DIR$/src/client/components/TopBar/reducer.js" />
-        <option value="$PROJECT_DIR$/src/client/initialState.js" />
-        <option value="$PROJECT_DIR$/src/client/components/TopBar/TopBar.js" />
         <option value="$PROJECT_DIR$/node_modules/indx/index.js" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/client/components/App/App.js" />
         <option value="$PROJECT_DIR$/dist/index.html" />
+        <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/src/server/model/review.js" />
+        <option value="$PROJECT_DIR$/src/client/components/TopBar/reducer.js" />
+        <option value="$PROJECT_DIR$/src/client/components/TopBar/actions.js" />
+        <option value="$PROJECT_DIR$/src/client/components/TopBar/TopBar.js" />
+        <option value="$PROJECT_DIR$/src/client/components/RegisterPage/index.js" />
+        <option value="$PROJECT_DIR$/src/client/components/TopBar/index.js" />
+        <option value="$PROJECT_DIR$/src/client/reducers.js" />
+        <option value="$PROJECT_DIR$/src/client/components/App/App.scss" />
+        <option value="$PROJECT_DIR$/src/server/model/user.js" />
+        <option value="$PROJECT_DIR$/src/server/server.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/client/components/RegisterPage/RegisterPage.scss" />
+        <option value="$PROJECT_DIR$/src/server/model/cities.js" />
+        <option value="$PROJECT_DIR$/src/server/initCitiesDB.json" />
+        <option value="$PROJECT_DIR$/src/server/initCitiesDB.js" />
+        <option value="$PROJECT_DIR$/src/server/api/initCitiesDB.js" />
+        <option value="$PROJECT_DIR$/src/client/initialState.js" />
+        <option value="$PROJECT_DIR$/src/client/components/RegisterPage/RegisterPage.js" />
+        <option value="$PROJECT_DIR$/src/client/components/App/saga.js" />
+        <option value="$PROJECT_DIR$/src/client/components/RegisterPage/constants.js" />
+        <option value="$PROJECT_DIR$/src/client/components/App/App.js" />
+        <option value="$PROJECT_DIR$/src/server/api/RegisterPage.js" />
+        <option value="$PROJECT_DIR$/src/client/components/RegisterPage/saga.js" />
+        <option value="$PROJECT_DIR$/src/client/components/RegisterPage/reducer.js" />
+        <option value="$PROJECT_DIR$/src/client/components/RegisterPage/actions.js" />
+        <option value="$PROJECT_DIR$/src/client/components/App/reducer.js" />
+        <option value="$PROJECT_DIR$/src/client/sagas.js" />
       </list>
     </option>
   </component>
@@ -227,7 +711,7 @@
             <path>
               <item name="Project" type="b2602c69:ProjectViewProjectNode" />
               <item name="Project" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Project" type="b2602c69:ProjectViewProjectNode" />
@@ -261,21 +745,20 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="ReviewForm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="TopBar" type="462c0819:PsiDirectoryNode" />
+              <item name="RegisterPage" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Project" type="b2602c69:ProjectViewProjectNode" />
               <item name="Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Project" type="b2602c69:ProjectViewProjectNode" />
@@ -294,7 +777,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/client/components/TopBar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/client/components" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -305,9 +788,13 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/client/components" />
       <recent name="$PROJECT_DIR$/src/client/components/TopBar" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/server" />
+      <recent name="$PROJECT_DIR$/src/server/api" />
+      <recent name="$PROJECT_DIR$/src/server/model" />
       <recent name="C:\Users\hagar\Desktop\atd\ass3\simple-react-redux-reducers-saga-webkit-express-mongoose-boilerplate-master\src\client\components\ReviewForm" />
     </key>
   </component>
@@ -341,20 +828,21 @@
       <workItem from="1561884556227" duration="2790000" />
       <workItem from="1562413849311" duration="1503000" />
       <workItem from="1563188731275" duration="12605000" />
-      <workItem from="1563280185340" duration="8984000" />
+      <workItem from="1563280185340" duration="39082000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73157000" />
+    <option name="totallyTimeSpent" value="103255000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22362868" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22362868" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Messages" visible="true" weight="0.32959184" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32922733" />
@@ -365,7 +853,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.12857144" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.12857144" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -375,145 +863,13 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fixing initCities" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing initCities" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/client/components/List/constants.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/Gallery/Gallery.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/App/App.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="27" column="11" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/Gallery/constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="47" lean-forward="true" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/Gallery/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/List/actions.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2376" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/Image/Image.spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-74">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="18" />
-          <folding>
-            <element signature="e#35#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/App/App.spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/Image/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/babel.config.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/Image/Image.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="7" column="25" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/List/List.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/Gallery/Gallery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1276">
-          <caret line="70" column="40" lean-forward="true" selection-start-line="70" selection-start-column="40" selection-end-line="70" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/react-redux/es/connect/connect.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="603">
-          <caret line="97" column="15" selection-start-line="97" selection-start-column="15" selection-end-line="97" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/App/constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="6" selection-start-column="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/components/App/index.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/App/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/App/saga.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-231">
-          <caret line="4" column="25" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/Gallery/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="28" column="60" lean-forward="true" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/Gallery/reducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -541,72 +897,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/ReviewForm/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/sagas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/components/ReviewForm/constants.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
           <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="20" column="19" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/Gallery/saga.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-44">
-          <caret line="7" column="42" lean-forward="true" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/model/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="28" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/api/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="26" column="30" lean-forward="true" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/model/gallery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/api/gallery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="17" column="38" lean-forward="true" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -624,24 +918,312 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/api/restaurantReview.js">
+    <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/constants.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="38" lean-forward="true" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="6" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/indx/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="97" selection-start-line="7" selection-start-column="97" selection-end-line="7" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/Gallery/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="28" column="60" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/Gallery/reducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/model/gallery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="45" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/Image/Image.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="25" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/TopBar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="699">
+          <caret line="56" column="63" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/RegisterPage/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/ReviewForm/reducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="19" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/ReviewForm/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/components/ReviewForm/actions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="66" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="66" />
+        <state relative-caret-position="180">
+          <caret line="12" selection-start-line="12" selection-end-line="26" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/components/ReviewForm/ReviewForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
+        <state relative-caret-position="750">
           <caret line="55" column="70" selection-start-line="55" selection-start-column="60" selection-end-line="55" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/ReviewForm/saga.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="24" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/App/App.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/model/review.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="44" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/RegisterPage/RegisterPage.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/model/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="14" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="57" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/model/cities.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="10" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/model/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="28" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/initCitiesDB.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/initialState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/reducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/Gallery/saga.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="42" lean-forward="true" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/App/saga.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="50" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/App/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" selection-start-line="28" selection-end-line="33" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/RegisterPage/constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/App/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="781">
+          <caret line="54" column="26" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/api/gallery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/api/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/api/restaurantReview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="2" lean-forward="true" selection-start-line="45" selection-start-column="2" selection-end-line="45" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/api/RegisterPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/RegisterPage/reducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="61" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="875">
+          <caret line="103" column="28" selection-start-line="103" selection-start-column="28" selection-end-line="103" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/RegisterPage/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="42" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/App/reducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/RegisterPage/RegisterPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1039">
+          <caret line="70" column="72" selection-start-line="70" selection-start-column="60" selection-end-line="70" selection-end-column="72" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -650,108 +1232,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/reducers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="56" selection-start-line="4" selection-start-column="56" selection-end-line="4" selection-end-column="56" />
+        <state relative-caret-position="180">
+          <caret line="12" column="14" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="14" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/constants.js">
+    <entry file="file://$PROJECT_DIR$/src/client/components/RegisterPage/saga.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="6" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/App/reducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="43" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/ReviewForm/reducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="58" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="8" selection-end-column="58" />
+        <state relative-caret-position="720">
+          <caret line="48" column="31" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="31" />
           <folding>
             <element signature="e#0#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="47" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/reducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/ReviewForm/saga.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="54" selection-start-line="17" selection-start-column="54" selection-end-line="17" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/initialState.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="19" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/indx/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="63" column="25" lean-forward="true" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/TopBar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="39" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/App/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="41" lean-forward="true" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#117#156#0" expanded="true" />
-            <element signature="e#328#375#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/index.html">
+    <entry file="file://$PROJECT_DIR$/src/client/sagas.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

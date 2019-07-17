@@ -1,3 +1,3 @@
-import ReviewForm from "./TopBar";
+import TopBar from "./TopBar";
 
-export default ReviewForm;
+export default TopBar;

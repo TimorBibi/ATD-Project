@@ -18,6 +18,11 @@ export default {
         name: 'rest',
     }),
     topbar: Map({
-        activeItem: 'home',
+        activeItem: 'home'
+    }),
+    registerPage: Map({
+        username: '',
+        isValidUsername: true,
+        locations: [],
     })
 };

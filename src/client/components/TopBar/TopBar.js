@@ -8,6 +8,7 @@ import { Menu } from 'semantic-ui-react';
 class TopBar extends React.Component {
 
     render() {
+
         const isConnected = this.props.isConnected;
         const active = this.props.activeItem;
 
@@ -33,13 +34,13 @@ class TopBar extends React.Component {
                 );
         }
         return (
-            <Menu>
+            <Menu className="ui top fixed menu">
                 <Menu.Item name='home' active={active === 'home'} onClick={this.props.setActiveEventHandler}>
                     Home
                 </Menu.Item>
                 {rightMenu()}
             </Menu>
-        )
+        );
     }
 }
 
@@ -47,13 +48,13 @@ const mapStateToProps = (state) => {
     return {
         isConnected: state['app'].get('isConnected'),
         activeItem: state['topbar'].get('activeItem'),
-}
+    }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setActiveEventHandler: (e) => {
-            dispatch(TopBarActions.setActiveAction(e.target.name));
+        setActiveEventHandler: (e, data) => {
+            dispatch(TopBarActions.setActiveAction(data.name));
         },
     }
 };

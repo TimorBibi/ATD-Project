@@ -1,56 +1,46 @@
 import React from 'react';
 import './App.scss';
 import TopBar from '../TopBar';
-// import Gallery from '../Gallery';
 import ReviewForm from '../ReviewForm';
 import { connect } from 'react-redux';
 import AppActions from './actions';
 import GalleryActions from '../Gallery/actions';
-// import { Button } from 'primereact/button';
-import { Dropdown } from 'primereact/dropdown';
-import {Button} from 'semantic-ui-react';
-// import Button from 'semantic-ui-react/dist/es/elements/Button/Button.js';
+import RegisterPage from "../RegisterPage/RegisterPage";
 
 
 
 class App extends React.Component {
     componentDidMount() {
-        this.props.loadTagsEventHandler();
+        // this.props.loadTagsEventHandler();
     }
 
   render() {
-        console.log('tags=', this.props.tags);
-    return (
-      <div className="app-root">
-        <div className="app-header">
-            <TopBar/>
-          <h2>Restaurateur</h2>
-          <Dropdown
-              value={this.props.tag}
-              onChange={this.props.updateTagEventHandler}
-              options={this.props.tags}
-              placeholder="insert a tag"
-              editable={true}
-            />
-          {/*<Button*/}
-          {/*    color='red'*/}
-          {/*    label="Search"*/}
-          {/*    className="p-button-raised p-button-rounded"*/}
-          {/*    onClick={() => this.props.loadImagesEventHandler(this.props.tag)}*/}
-          {/*/>*/}
-            <Button color='red'>Red</Button>
-        </div>
-        <ReviewForm/>
-      </div>
-    );
-  }
+        const activePage = () => {
+            switch (this.props.activePage) {
+                case 'register': return <RegisterPage/>;
+                default: return <RegisterPage/>;
+            }
+        }
+        return (
+            <div className="app-root">
+                <div className="app-header">
+                    <TopBar/>
+                    <h2>Restaurateur</h2>
+                </div>
+                <div className="app-body">
+                    {activePage()}
+                </div>
+            </div>
+        );
+    }
 }
 
 
 const mapStateToProps = (state) => {
   return {
       tag: state['app'].get('tag'),
-      tags: state['app'].get('tags').toArray()
+      tags: state['app'].get('tags').toArray(),
+      activePage: state['topbar'].get('activeItem'),
   }
 };
 

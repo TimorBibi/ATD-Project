@@ -12,8 +12,6 @@ function setActiveAction(name) {
 
 let ReviewFormActions = {
     setActiveAction,
-    // loadRestsAction,
-
 };
 
 export default ReviewFormActions
