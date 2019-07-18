@@ -13,6 +13,18 @@ export default {
         isConnected: false,
         tag: 'art',
         tags: List(),
+        user: {
+            username: '',
+            location: {
+                city: '',
+                x: 0,
+                y: 0
+            },
+            picture: {
+                pictureType: '',
+                pictureData: [],
+            },
+        }
     }),
     reviewform: Map({
         name: 'rest',
@@ -23,6 +35,13 @@ export default {
     registerPage: Map({
         username: '',
         isValidUsername: true,
+        location: '',
         locations: [],
+        suggestions: [],
+        picture: {
+            pictureType: '',
+            pictureData: [],
+        },
+        done: false,
     })
 };

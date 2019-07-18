@@ -8,7 +8,7 @@ const path = require('path');
 
 
 const config = {
-  mongoURL: process.env.MONGO_URL || 'mongodb://localhost:27017/restaurant,',
+  mongoURL: process.env.MONGO_URL || 'mongodb://localhost:27017/restaurant',
   port: 8000
 };
 
@@ -29,8 +29,8 @@ if (process.env.NODE_ENV !== 'test') {
 const app = express();
 
 //body parser for json. must be done before API routes
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false})); //handle body requests
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended:true})); //handle body requests
 console.log(__dirname);
 app.use(express.static(path.join(__dirname, 'public')));
 
