@@ -1,9 +1,10 @@
-import {RegisterPageActionsConstants} from './constants'
+import {LogInPageActionsConstants} from './constants'
 import { call, put, takeEvery } from 'redux-saga/effects'
-import RegisterPageActions from './actions'
+import LogInPageActions from './actions'
+import AppActions from '../App/actions'
 
-function* validateUsername(action){
-    console.log('RegisterPageSaga=', action);
+function* validateUser(action){
+    console.log('LogInPageSaga=', action);
     try {
         const res = yield call(fetch, action.uri,
             {
@@ -15,54 +16,17 @@ function* validateUsername(action){
             });
 
         const json = yield call([res, 'json']); //retrieve body of response
-        yield put(RegisterPageActions.validateActionSuccess(json.isValid));
+
+        yield put(LogInPageActions.validateUserSuccessAction(json));
+        yield put(AppActions.connectUserAction(json));
     } catch (e) {
-        yield put(RegisterPageActions.RegisterPageFailureAction(e.message));
+        yield put(LogInPageActions.LogInPageFailureAction(e.message));
     }
 }
 
-function* loadCities(action){
-    console.log('RegisterPageSaga=', action);
-    try {
-        const res = yield call(fetch, action.uri,
-            {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            });
-
-        const json = yield call([res, 'json']); //retrieve body of response
-        yield put(RegisterPageActions.loadCitiesSuccessAction(json));
-    } catch (e) {
-        yield put(RegisterPageActions.RegisterPageFailureAction(e.message));
-    }
-}
-
-function* submitUser(action){
-    console.log('RegisterPageSaga=', action);
-    try {
-        const res = yield call(fetch, action.uri,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(action.payload)
-            });
-
-        const json = yield call([res, 'json']);
-        yield put(RegisterPageActions.submitUserSuccessAction(json.succeed));
-    } catch (e) {
-        yield put(RegisterPageActions.RegisterPageFailureAction(e.message));
-    }
-}
-
-function* RegisterPageSaga() {
+function* LogInPageSaga() {
     //using takeEvery, you take the action away from reducer to saga
-    yield takeEvery(RegisterPageActionsConstants.LOAD_CITIES, loadCities);
-    yield takeEvery(RegisterPageActionsConstants.VALIDATE_USERNAME, validateUsername);
-    yield takeEvery(RegisterPageActionsConstants.SUBMIT_USER, submitUser);
+    yield takeEvery(LogInPageActionsConstants.VALIDATE_USER, validateUser);
 }
 
-export default RegisterPageSaga;
+export default LogInPageSaga;

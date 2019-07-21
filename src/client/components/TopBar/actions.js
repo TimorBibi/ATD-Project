@@ -1,12 +1,16 @@
 import { TopBarActionsConstants } from './constants';
 
-function setActiveAction(name) {
-    return {
-        type: TopBarActionsConstants.SET_ACTIVE,
-        payload: {
-            name
-        }
+function setActiveAction(curr, name) {
+    if (curr !== name) {
+        return {
+            type: TopBarActionsConstants.SET_ACTIVE,
+            payload: {
+                name
+            }
+        };
     }
+    else
+        return {type: TopBarActionsConstants.NONE}
 }
 
 

@@ -11,20 +11,19 @@ export default {
     app: Map({
         size: 200,
         isConnected: false,
-        tag: 'art',
-        tags: List(),
-        user: {
-            username: '',
-            location: {
-                city: '',
-                x: 0,
-                y: 0
-            },
-            picture: {
-                pictureType: '',
-                pictureData: [],
-            },
-        }
+        username: '',
+        // user: {
+        //     username: '',
+        //     location: {
+        //         city: '',
+        //         x: 0,
+        //         y: 0
+        //     },
+        //     picture: {
+        //         pictureType: '',
+        //         pictureData: [],
+        //     },
+        // }
     }),
     reviewform: Map({
         name: 'rest',
@@ -34,6 +33,7 @@ export default {
     }),
     registerPage: Map({
         username: '',
+        password: '',
         isValidUsername: true,
         location: '',
         locations: [],
@@ -42,6 +42,11 @@ export default {
             pictureType: '',
             pictureData: [],
         },
-        done: false,
+    }),
+    loginPage: Map({
+        username: '',
+        password: '',
+        usernameError: '',
+        passwordError: '',
     })
 };

@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const { resolve } = require('path');
 const fs = require('fs');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 
 
@@ -24,8 +25,6 @@ if (process.env.NODE_ENV !== 'test') {
   });
 }
 
-
-
 const app = express();
 
 //body parser for json. must be done before API routes
@@ -33,6 +32,7 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended:true})); //handle body requests
 console.log(__dirname);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
 
 
 
@@ -44,3 +44,5 @@ fs.readdirSync(__dirname + '/api').forEach((file) => {
 
 app.listen(config.port || 8000,
     () => console.log(`Listening on port ${process.env.PORT || 8000}!`));
+
+

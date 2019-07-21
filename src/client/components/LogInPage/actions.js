@@ -1,106 +1,65 @@
-import { RegisterPageActionsConstants } from './constants';
-
-function loadCitiesAction(){
-    return {
-        type: RegisterPageActionsConstants.LOAD_CITIES,
-        uri: '/api/load/cities'
-    }
-}
+import { LogInPageActionsConstants } from './constants';
 
 function updateStateFieldAction(field, value) {
     return {
-        type: RegisterPageActionsConstants.UPDATE_STATE_FIELD,
+        type: LogInPageActionsConstants.UPDATE_STATE_FIELD,
         payload: {
             field,
             value,
         }
-    }
+    };
 }
 
-function validateUsernameAction(name){
+function LogInPageFailureAction(error){
     return {
-        type: RegisterPageActionsConstants.VALIDATE_USERNAME,
-        uri: '/api/validate/username',
-        payload: {
-            name
-        }
-    }
-}
-
-function loadCitiesSuccessAction(cities){
-    return {
-        type: RegisterPageActionsConstants.LOAD_CITIES_SUCCESS,
-        payload: {
-            cities: cities
-        }
-    }
-}
-
-function RegisterPageFailureAction(error){
-    return {
-        type: RegisterPageActionsConstants.REGISTER_FAILURE,
+        type: LogInPageActionsConstants.LOGIN_FAILURE,
         payload: {
             error: error
         }
-    }
+    };
 }
 
-function suggestLocationsAction(fullList, subString){
-    return {
-        type: RegisterPageActionsConstants.SUGGEST_LOCATION,
-        payload: {
-            fullList: fullList,
-            subString: subString,
-        }
-    }
-}
-
-function validateActionSuccess(isValid){
-    return {
-        type: RegisterPageActionsConstants.VALIDATE_ACTION_SUCCESS,
-        payload: {
-            isValid: isValid,
-        }
-    }
-}
-
-function submitUserAction(username, password, location, picture, isValid){
-    if(isValid && username.length > 0 && location && picture && password)
+function validateUserAction(username, password){
+    if(username && password) {
         return {
-            type: RegisterPageActionsConstants.SUBMIT_USER,
-            uri: '/api/submit/user',
+            type: LogInPageActionsConstants.VALIDATE_USER,
+            uri: '/api/validate/user',
             payload: {
                 username: username,
                 password: password,
-                location: location,
-                picture: picture,
             }
-        }
-    else
-        return {type: RegisterPageActionsConstants.REGISTER_FAILURE};
-}
-
-function submitUserSuccessAction(succeed){
-    return {
-        type: RegisterPageActionsConstants.SUBMIT_USER_SUCCESS,
-        payload: {
-            succeed: succeed
-        }
+        };
     }
+    else if (username)
+        return {
+            type: LogInPageActionsConstants.MISSING_PASSWORD,
+            message: "Please enter password.",
+        };
+    else
+        return {
+            type: LogInPageActionsConstants.MISSING_USERNAME,
+            message: "Please enter username.",
+        };
+}
+
+function validateUserSuccessAction(payload){
+    if (!payload.succeed){
+        return {
+            type: LogInPageActionsConstants.FALSE_VALIDATE_USER,
+            payload: payload,
+        }
+    } else
+        return {
+            type: LogInPageActionsConstants.SUCCESS_VALIDATE_USER,
+        }
 }
 
 
-
-let RegisterPageActions = {
+let LogInPageActions = {
     updateStateFieldAction,
-    validateUsernameAction,
-    loadCitiesAction,
-    loadCitiesSuccessAction,
-    RegisterPageFailureAction,
-    suggestLocationsAction,
-    validateActionSuccess,
-    submitUserAction,
-    submitUserSuccessAction,
+    LogInPageFailureAction,
+    validateUserAction,
+    validateUserSuccessAction,
 };
 
-export default RegisterPageActions
+export default LogInPageActions

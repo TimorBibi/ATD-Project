@@ -1,43 +1,41 @@
 import { AppActionsConstants} from './constants.js';
 
-
-function updateTagAction(tag) {
-  return {
-    type: AppActionsConstants.UPDATE_TAG,
-    payload: {
-      tag
-    }
-  }
-}
-
-function loadTagsAction(){
+function connectUserAction({succeed, username}){
     return {
-        type: AppActionsConstants.LOAD_TAGS,
-        uri: '/api/load/tags'
-    }
-}
-
-function loadTagsSuccessAction(tags){
-    return {
-        type: AppActionsConstants.LOAD_TAGS_SUCCESS,
+        type: AppActionsConstants.CONNECT_USER,
         payload: {
-            tags: tags
+            succeed: succeed,
+            username: username
         }
     }
 }
 
-function loadTagsFailureAction(error){
+function checkTokenAction(){
     return {
-        type: AppActionsConstants.LOAD_TAGS_FAILURE,
-        error: error
+        type: AppActionsConstants.CHECK_TOKEN,
+        uri: 'api/checkToken'
+    }
+}
+
+function appFailureAction(error){
+    return {
+        type: AppActionsConstants.APP_FAILURE,
+        error: error,
+    }
+}
+
+function disconnectUserAction(){
+    return {
+        type: AppActionsConstants.DISCONNECT_USER,
+        uri: 'api/disconnect/user'
     }
 }
 
 let AppActions  = {
-    updateTagAction,
-    loadTagsAction,
-    loadTagsSuccessAction,
-    loadTagsFailureAction
+    connectUserAction,
+    checkTokenAction,
+    appFailureAction,
+    disconnectUserAction,
 };
 
 export default AppActions

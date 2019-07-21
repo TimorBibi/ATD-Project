@@ -1,34 +1,17 @@
-let AppModel = require('../model/app');
+const withAuth = require('../middleware').withAuth;
 
 let _handleError = function(err){
     if (err) return console.log(err);
 };
 
 module.exports = (app) => {
-    app.get('/api/load/tags', function(req, res) {
-        console.log('app.get/api/load/tags');
-        AppModel
-            .findOne()
-            .then(doc => {
-                res.json(doc.tags);
-                res.end();
-            });
-
+    app.get('/api/checkToken', withAuth, function(req, res) {
+        console.log('app.get/api/checkToken');
+        res.json({succeed: true, username: req.username});
     });
-    app.post('/api/load/images', function(req, res, next) {
-        console.log('updating tag array');
-        AppModel
-            .findOne()
-            .then(doc => {
-                if (doc === null) {
-                    let newDoc = new AppModel();
-                    newDoc.tags.push(req.body.tag);
-                    newDoc.save(_handleError);
-                }else if (!doc.tags.includes(req.body.tag)) {
-                        doc.tags.push(req.body.tag);
-                        doc.save(_handleError);
-                    }
-            });
-        next();
+    app.get('/api/disconnect/user', function(req, res) {
+        console.log('app.get/api/disconnect/user');
+        res.clearCookie('token');
+        res.json({succeed: true});
     });
 };

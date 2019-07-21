@@ -36,7 +36,6 @@ module.exports = (app) => {
                                     .save(gallery)
                                     .then(() => {
                                         res.json(gallery);
-                                        res.end();
                                     })
                             }
                         });

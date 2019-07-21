@@ -32,14 +32,9 @@ module.exports = (app) => {
                         .then(()=>{
                             console.log('newDoc: ' + newDoc);
                             res.json(newDoc);
-                            res.end();
                         })
                 }else {//the value already exists
                     res.json({name: "else"});
-                    res.end();
-                    // console.log(doc.name);
-                    // doc.name = req.body.name;
-                    // doc.save(_handleError);
                 }
             });
     });
