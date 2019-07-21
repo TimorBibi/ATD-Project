@@ -1,4 +1,5 @@
 import { AppActionsConstants} from './constants.js';
+import {RegisterPageActionsConstants} from "../RegisterPage/constants";
 
 function connectUserAction({succeed, username}){
     return {
@@ -31,11 +32,34 @@ function disconnectUserAction(){
     }
 }
 
+function loadCitiesAction(){
+    return {
+        type: AppActionsConstants.LOAD_CITIES,
+        uri: '/api/load/cities'
+    }
+}
+
+function loadCitiesSuccessAction(cities){
+    const locations = cities.map((elm) => {
+        console.log(elm);
+        return elm.city;
+    });
+    console.log("LOC!! ", cities);
+    return {
+        type: AppActionsConstants.LOAD_CITIES_SUCCESS,
+        payload: {
+            locations: locations
+        }
+    }
+}
+
 let AppActions  = {
     connectUserAction,
     checkTokenAction,
     appFailureAction,
     disconnectUserAction,
+    loadCitiesAction,
+    loadCitiesSuccessAction,
 };
 
 export default AppActions

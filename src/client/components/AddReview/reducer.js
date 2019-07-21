@@ -1,13 +1,13 @@
-import { ReviewFormActionsConstants } from './constants'
+import { AddReviewActionsConstants } from './constants'
 import initialState from '../../initialState'
 
-const ReviewFormReducer = (state = initialState.reviewform, action) => {
-    console.log('ReviewFormReducerState=', state);
+const AddReviewReducer = (state = initialState.addReview, action) => {
+    console.log('AddReviewReducerState=', state);
     console.log('RECEIVED ACTION:', action);
     switch (action.type){
-        case ReviewFormActionsConstants.UPDATE_NAME:
+        case AddReviewActionsConstants.UPDATE_NAME:
             return state.set('name', action.payload.name);
-        case ReviewFormActionsConstants.ADD_REVIEW_ACTION_SUCCESS:
+        case AddReviewActionsConstants.ADD_REVIEW_ACTION_SUCCESS:
             let res = action.payload.name;
             console.log("Reducer here");
             return state.set('name', "answer: " + res.name);
@@ -15,4 +15,4 @@ const ReviewFormReducer = (state = initialState.reviewform, action) => {
             return state;
     }
 };
-export default ReviewFormReducer
+export default AddReviewReducer

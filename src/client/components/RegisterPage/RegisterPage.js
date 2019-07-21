@@ -17,10 +17,6 @@ class RegisterPage extends React.Component {
         this.downloadFile = this.downloadFile.bind(this);
     }
 
-    componentDidMount() {
-        this.props.loadCitiesEventHandler();
-    }
-
     componentDidUpdate() {
         if (this.props.isConnected)
             this.props.history.push('/'); //reload the root page
@@ -45,7 +41,6 @@ class RegisterPage extends React.Component {
             (<Message negative>
                 <p>The username is already been registered.</p>
             </Message>);
-
         return (
           <Form className="register-form" onSubmit={() => {
               this.props.submitEventHandler(
@@ -90,20 +85,16 @@ const mapStateToProps = (state) => {
         password: state['registerPage'].get('password'),
         isValid: state['registerPage'].get('isValidUsername'),
         location: state['registerPage'].get('location'),
-        locations: state['registerPage'].get('locations'),
+        locations: state['app'].get('locations'),
         suggestions: state['registerPage'].get('suggestions'),
         picture: state['registerPage'].get('picture'),
         isConnected: state['app'].get('isConnected'),
     }
-
 };
 
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadCitiesEventHandler: () => {
-          dispatch(RegisterPageActions.loadCitiesAction());
-        },
         updateStateFieldEventHandler: (e, data) => {
             if (data) {
                 dispatch(RegisterPageActions.updateStateFieldAction(data.id, data.value));
@@ -114,7 +105,7 @@ const mapDispatchToProps = (dispatch) => {
         validateUsernameEventHandler: (e) => {
             dispatch(RegisterPageActions.validateUsernameAction(e.target.value));
         },
-        suggestLocationsEventHandler: (locations,e) => {
+        suggestLocationsEventHandler: (locations, e) => {
             dispatch(RegisterPageActions.suggestLocationsAction(locations ,e.query));
         },
         submitEventHandler: (username, password, location, picture, isValid) => {

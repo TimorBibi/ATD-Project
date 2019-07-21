@@ -7,7 +7,7 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('1.0');
+  api.versionsFrom('ProfilePage.js.0');
   api.addFiles([
     {files}
   ], 'client');

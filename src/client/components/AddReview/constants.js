@@ -1,4 +1,4 @@
-const ReviewFormActionsConstants = {
+const AddReviewActionsConstants = {
     ADD_REVIEW: 'ADD_REVIEW',
     UPDATE_FORM_WIDTH: 'UPDATE_FORM_WIDTH',
     UPDATE_NAME: 'UPDATE_NAME',
@@ -8,4 +8,4 @@ const ReviewFormActionsConstants = {
 
 };
 
-export { ReviewFormActionsConstants };
+export { AddReviewActionsConstants };

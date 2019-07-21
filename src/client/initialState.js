@@ -1,32 +1,11 @@
 const { List, Map } = require('immutable');
 
 export default {
-    gallery: Map({
-        images: List(),
-        openLightBox: false,
-        activeImage: 0,
-        activeFilter: List(),
-        galleryWidth: 0
-    }),
     app: Map({
         size: 200,
         isConnected: false,
         username: '',
-        // user: {
-        //     username: '',
-        //     location: {
-        //         city: '',
-        //         x: 0,
-        //         y: 0
-        //     },
-        //     picture: {
-        //         pictureType: '',
-        //         pictureData: [],
-        //     },
-        // }
-    }),
-    reviewform: Map({
-        name: 'rest',
+        locations: [],
     }),
     topbar: Map({
         activeItem: 'home'
@@ -36,7 +15,7 @@ export default {
         password: '',
         isValidUsername: true,
         location: '',
-        locations: [],
+        // locations: [],
         suggestions: [],
         picture: {
             pictureType: '',
@@ -48,5 +27,18 @@ export default {
         password: '',
         usernameError: '',
         passwordError: '',
-    })
+    }),
+    restaurants: Map({
+        showRestaurantForm: false,
+        restaurantName: '',
+        restaurantLocation: '',
+        isValid: false,
+        suggestions: [],
+    }),
+    // viewProfilePage: Map({
+    //
+    // }),
+    // addReview: Map({
+    //
+    // }),
 };

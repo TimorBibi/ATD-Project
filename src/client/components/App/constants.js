@@ -3,6 +3,8 @@ const AppActionsConstants = {
     CHECK_TOKEN: 'CHECK_TOKEN',
     APP_FAILURE: 'APP_FAILURE',
     DISCONNECT_USER: 'DISCONNECT_USER',
+    LOAD_CITIES: 'LOAD_CITIES',
+    LOAD_CITIES_SUCCESS: 'LOAD_CITIES_SUCCESS',
 };
 
 export { AppActionsConstants}

@@ -9,6 +9,9 @@ const AppReducer = (state = initialState.app, action) => {
         case AppActionsConstants.CONNECT_USER:
             return state.set('isConnected', action.payload.succeed).set('username', action.payload.username);
 
+        case AppActionsConstants.LOAD_CITIES_SUCCESS:
+            return state.set('locations', action.payload.locations);
+
         default: //otherwise state is lost!
             return state;
     }

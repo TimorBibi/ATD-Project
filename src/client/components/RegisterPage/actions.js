@@ -1,12 +1,5 @@
 import { RegisterPageActionsConstants } from './constants';
 
-function loadCitiesAction(){
-    return {
-        type: RegisterPageActionsConstants.LOAD_CITIES,
-        uri: '/api/load/cities'
-    }
-}
-
 function updateStateFieldAction(field, value) {
     return {
         type: RegisterPageActionsConstants.UPDATE_STATE_FIELD,
@@ -27,14 +20,6 @@ function validateUsernameAction(name){
     }
 }
 
-function loadCitiesSuccessAction(cities){
-    return {
-        type: RegisterPageActionsConstants.LOAD_CITIES_SUCCESS,
-        payload: {
-            cities: cities
-        }
-    }
-}
 
 function RegisterPageFailureAction(error){
     return {
@@ -46,11 +31,14 @@ function RegisterPageFailureAction(error){
 }
 
 function suggestLocationsAction(fullList, subString){
+    const suggestedLocations =
+        fullList.filter(elm => {
+            return elm.toLowerCase().startsWith(subString.toLowerCase());
+        });
     return {
         type: RegisterPageActionsConstants.SUGGEST_LOCATION,
         payload: {
-            fullList: fullList,
-            subString: subString,
+            suggestedLocations: suggestedLocations
         }
     }
 }
@@ -86,8 +74,6 @@ function submitUserAction(username, password, location, picture, isValid){
 let RegisterPageActions = {
     updateStateFieldAction,
     validateUsernameAction,
-    loadCitiesAction,
-    loadCitiesSuccessAction,
     RegisterPageFailureAction,
     suggestLocationsAction,
     validateActionSuccess,

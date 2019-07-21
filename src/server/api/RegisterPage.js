@@ -1,6 +1,5 @@
 let UserModel = require('../model/user');
-let CitiesModel = require('../model/cities')
-let cities = require('../initCitiesDB');
+let CitiesModel = require('../model/cities');
 const secret =  require('../middleware').secret;
 const jwt = require('jsonwebtoken');
 
@@ -18,24 +17,6 @@ module.exports = (app) => {
                     res.json({isValid: false});
                 } else {
                     res.json({isValid: true});
-                }
-            })
-            .catch(_handleError);
-    });
-    app.get('/api/load/cities', function(req, res) {
-        console.log('registerPage.get/api/load/cities');
-        CitiesModel
-            .findOne()
-            .then(doc => {
-                if (doc === null) { //init cities model
-                    let newDoc = new CitiesModel({cities: cities.cities});
-                    newDoc
-                        .save(_handleError)
-                        .then(() => {
-                            res.json(newDoc);
-                        })
-                } else {
-                    res.json(doc.cities);
                 }
             })
             .catch(_handleError);

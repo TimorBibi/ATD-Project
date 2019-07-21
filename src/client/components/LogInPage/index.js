@@ -1,3 +1,3 @@
-import RegisterPage from "./LogInPage";
+import LogInPage from "./LogInPage";
 
-export default RegisterPage;
+export default LogInPage;

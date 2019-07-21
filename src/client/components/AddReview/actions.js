@@ -1,4 +1,4 @@
-import { ReviewFormActionsConstants } from './constants';
+import { AddReviewActionsConstants } from './constants';
 
 function updateNameAction(name) {
     return {
@@ -47,8 +47,6 @@ function addReviewAction(name) {
 
 
 let ReviewFormActions = {
-    // updateFormWidth,
-    // loadRestsAction,
     loadReviewsAction,
     updateNameAction,
     addReviewAction,

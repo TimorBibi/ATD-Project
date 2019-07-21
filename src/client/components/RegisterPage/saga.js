@@ -22,24 +22,6 @@ function* validateUsername(action){
     }
 }
 
-function* loadCities(action){
-    console.log('RegisterPageSaga=', action);
-    try {
-        const res = yield call(fetch, action.uri,
-            {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            });
-
-        const json = yield call([res, 'json']); //retrieve body of response
-        yield put(RegisterPageActions.loadCitiesSuccessAction(json));
-    } catch (e) {
-        yield put(RegisterPageActions.RegisterPageFailureAction(e.message));
-    }
-}
-
 function* submitUser(action){
     console.log('RegisterPageSaga=', action);
     try {
@@ -61,7 +43,6 @@ function* submitUser(action){
 
 function* RegisterPageSaga() {
     //using takeEvery, you take the action away from reducer to saga
-    yield takeEvery(RegisterPageActionsConstants.LOAD_CITIES, loadCities);
     yield takeEvery(RegisterPageActionsConstants.VALIDATE_USERNAME, validateUsername);
     yield takeEvery(RegisterPageActionsConstants.SUBMIT_USER, submitUser);
 }
