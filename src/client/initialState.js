@@ -40,6 +40,22 @@ export default {
             message: '',
         },
     }),
+    addReview :Map({
+        restaurantName: '',
+        restaurantLocation: '',
+        reviewText: '',
+        suggestions: [],
+        submitMessage: {
+            succeed: false,
+            message: '',
+        },
+        bathroomRate: 1,
+        staffRate: 1,
+        cleanRate: 1,
+        foodRate: 1,
+        driveInRate: 0,
+        deliveryRate: 0,
+    })
     // viewProfilePage: Map({
     //
     // }),

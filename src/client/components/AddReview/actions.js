@@ -1,57 +1,78 @@
 import { AddReviewActionsConstants } from './constants';
 
-function updateNameAction(name) {
+function updateStateFieldAction(field, value) {
     return {
-        type: ReviewFormActionsConstants.UPDATE_NAME,
+        type: AddReviewActionsConstants.UPDATE_STATE_FIELD,
         payload: {
-            name
+            field,
+            value,
         }
     }
 }
 
-
-function addReviewSuccessAction(name){
+function suggestLocationsAction(fullList, subString){
+    const suggestedLocations =
+        fullList.filter(elm => {
+            return elm.toLowerCase().startsWith(subString.toLowerCase());
+        });
     return {
-        type: ReviewFormActionsConstants.ADD_REVIEW_ACTION_SUCCESS,
+        type: AddReviewActionsConstants.SUGGEST_LOCATION,
         payload: {
-            name
+            suggestedLocations: suggestedLocations
         }
     }
 }
 
-function addReviewFailureAction(message){
-    return {
-        type: ReviewFormActionsConstants.ADD_REVIEW_ACTION_FAILURE,
-        message
-    }
+function submitReviewAction(name, location){
+    if(name && location)
+        return {
+            type: AddReviewActionsConstants.SUBMIT_REVIEW,
+            uri: '/api/submit/review',
+            payload: {
+                name: name,
+                location: location,
+            }
+        };
+    else
+        return {
+            type: AddReviewActionsConstants.MISSING_FIELD,
+            payload: {
+                name: name,
+                location: location,
+            }
+        };
 }
 
 
-function loadReviewsAction() {
-    return {
-        type: ReviewFormActionsConstants.LOAD_REVIEWS,
-        uri: '/api/load/names',
-    }
-}
-
-function addReviewAction(name) {
-    return {
-        type: ReviewFormActionsConstants.ADD_REVIEW,
-        uri: '/api/add/review',
-        payload: {
-            name
+function submitReviewSucceedAction({succeed, message}){
+    if (!succeed)
+        return {
+            type: AddReviewActionsConstants.SUBMIT_REVIEW_FAILURE,
+            payload: {
+                message: message,
+            }
         }
-    }
+    else
+        return {type: AddReviewActionsConstants.SUBMIT_REVIEW_SUCCEED,};
+}
+
+function reviewFailureAction(error){
+    return {
+        type: AddReviewActionsConstants.ADD_REVIEW_FAILURE,
+        payload: {
+            error: error
+        }
+    };
 }
 
 
 
-let ReviewFormActions = {
-    loadReviewsAction,
-    updateNameAction,
-    addReviewAction,
-    addReviewSuccessAction,
-    addReviewFailureAction
+let AddReviewActions = {
+    updateStateFieldAction,
+    suggestLocationsAction,
+    submitReviewAction,
+    submitReviewSucceedAction,
+    reviewFailureAction
 };
 
-export default ReviewFormActions
+export default AddReviewActions
