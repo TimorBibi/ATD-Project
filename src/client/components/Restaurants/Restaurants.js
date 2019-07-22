@@ -17,11 +17,14 @@ class Restaurants extends React.Component {
     //TODO validate filled props
     //TODO display all the restaurants
     render() {
+        const allowAddReview = !this.props.isConnected ? null :
+            <Button label="Add Review" icon="plus" onClick={() => this.props.toggleRestaurantFormEventHandler(this.props.showRestForm)}/>
+
         const addReview = this.props.showRestForm? <AddReview/>: null;
         return (
 
             <div className='restaurants'>
-                <Button label="New restaurant" icon="plus" onClick={() => this.props.toggleRestaurantFormEventHandler(this.props.showRestForm)}/>
+                {allowAddReview}
                 {addReview}
             </div>
         );
@@ -32,6 +35,7 @@ class Restaurants extends React.Component {
 const mapStateToProps = (state) => {
     return {
         showRestForm: state['restaurants'].get('showRestaurantForm'),
+        isConnected: state['app'].get('isConnected'),
     }
 
 };
