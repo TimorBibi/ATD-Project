@@ -51,9 +51,7 @@ function* loadCities(action){
             });
 
         const json = yield call([res, 'json']); //retrieve body of response
-        console.log("HEREE111");
         yield put(AppActions.loadCitiesSuccessAction(json));
-        console.log("HEREE222");
 
     } catch (e) {
         yield put(AppActions.appFailureAction(e.message));

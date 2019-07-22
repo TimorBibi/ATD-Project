@@ -41,10 +41,8 @@ function loadCitiesAction(){
 
 function loadCitiesSuccessAction(cities){
     const locations = cities.map((elm) => {
-        console.log(elm);
         return elm.city;
     });
-    console.log("LOC!! ", cities);
     return {
         type: AppActionsConstants.LOAD_CITIES_SUCCESS,
         payload: {

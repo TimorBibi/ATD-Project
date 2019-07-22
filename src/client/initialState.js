@@ -32,8 +32,13 @@ export default {
         showRestaurantForm: false,
         restaurantName: '',
         restaurantLocation: '',
+        review: '',
         isValid: false,
         suggestions: [],
+        submitMessage: {
+            succeed: false,
+            message: '',
+        },
     }),
     // viewProfilePage: Map({
     //
