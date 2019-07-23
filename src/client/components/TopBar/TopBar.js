@@ -25,7 +25,7 @@ class TopBar extends React.Component {
                     <Dropdown.Menu>
                         <Dropdown.Item name='viewProfile' text='View Profile' active={active === 'viewProfile'} href="/viewProfile" />
                         <Dropdown.Divider/>
-                        <Dropdown.Item name='logout' text='LogOut' onClick={this.props.logOutEventHandler} />
+                        <Dropdown.Item name='logout' text='LogOut' href="/" onClick={this.props.logOutEventHandler} />
                     </Dropdown.Menu>
                 );
         };
