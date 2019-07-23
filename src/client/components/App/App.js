@@ -39,7 +39,7 @@ class App extends React.Component {
     }
 
   render() {
-      // console.log("!!!!users:", JSON.stringify(this.props.users.get(0)));
+      // console.log("!!!!users:", JSON.stringify(typeof (this.props.users)));
       return (
             <Router>
                 <div className="app-root">
@@ -52,6 +52,7 @@ class App extends React.Component {
                         <Route path="/register" component={RegisterPage} />
                         <Route path="/login" component={LogInPage} />
                         <Route path="/viewProfile" component={ViewProfilePage} />
+                        {/*<ViewProfilePage example='123'/>*/}
                     </div>
                 </div>
             </Router>
