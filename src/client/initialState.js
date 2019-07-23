@@ -39,15 +39,14 @@ export default {
     }),
     restaurants: Map({
         showRestaurantForm: false,
-        restaurantName: '',
-        restaurantLocation: '',
-        review: '',
-        isValid: false,
-        suggestions: [],
-        submitMessage: {
-            succeed: false,
-            message: '',
-        },
+        showReviews: Map({
+            selectedRest: '',
+            visible: false,
+        }),
+        editReview: Map({
+            selectedReview: '',
+            edit: false,
+        }),
     }),
     addReview :Map({
         restaurantName: '',

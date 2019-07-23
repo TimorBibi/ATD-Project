@@ -49,7 +49,6 @@ class App extends React.Component {
                         <Route path="/register" component={RegisterPage} />
                         <Route path="/login" component={LogInPage} />
                         <Route path="/viewProfile" component={ViewProfilePage} />
-                        {/*<ViewProfilePage example='123'/>*/}
                     </div>
                 </div>
             </Router>
