@@ -5,6 +5,8 @@ export default {
         size: 200,
         isConnected: false,
         username: '',
+        users: List(),
+        restaurants: List(),
         locations: [],
         addedUser: false,
         addedReview: false,
