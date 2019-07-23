@@ -33,8 +33,8 @@ class App extends React.Component {
         {
             this.props.loadRestaurantsEventHandler();
             this.props.loadUsersEventHandler();
-            // console.log("!!USERS:", JSON.stringify(this.props.users.length));
-            // console.log("!!RESTAURANTS:", JSON.stringify(this.props.restaurants.length));
+            console.log("!!USERS:", JSON.stringify(this.props.users.length));
+            console.log("!!RESTAURANTS:", JSON.stringify(this.props.restaurants.length));
         }
     }
 

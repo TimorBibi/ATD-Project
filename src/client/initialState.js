@@ -17,12 +17,14 @@ export default {
         password: '',
         isValidUsername: true,
         location: '',
-        // locations: [],
         suggestions: [],
         picture: {
             pictureType: '',
             pictureData: [],
         },
+        isValidLocation: true,
+        locationMessage: '',
+
     }),
     loginPage: Map({
         username: '',
@@ -57,6 +59,12 @@ export default {
         foodRate: 1,
         driveInRate: 0,
         deliveryRate: 0,
+        freeText: '',
+        picture: {
+            pictureType: '',
+            pictureData: [],
+        },
+        isValid: false,
     })
     // viewProfilePage: Map({
     //

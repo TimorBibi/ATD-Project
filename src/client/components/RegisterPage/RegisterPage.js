@@ -8,6 +8,7 @@ import {Message} from 'semantic-ui-react';
 import { Input } from 'semantic-ui-react'
 import {AutoComplete} from 'primereact/autocomplete';
 import {Password} from 'primereact/password';
+import AddReviewActions from "../AddReview/actions";
 
 
 class RegisterPage extends React.Component {
@@ -41,6 +42,12 @@ class RegisterPage extends React.Component {
             (<Message negative>
                 <p>The username is already been registered.</p>
             </Message>);
+
+        const locationError = this.props.isValidLocation ? null:
+            (<Message negative>
+                <p>{this.props.locationMessage}</p>
+            </Message>);
+
         return (
           <Form className="register-form" onSubmit={() => {
               this.props.submitEventHandler(
@@ -68,9 +75,13 @@ class RegisterPage extends React.Component {
                   <Input type="file" id="picture"  accept="image/*" onChange={this.downloadFile}/>
               </Form.Field>
               <Form.Field width='9'>
-                  <AutoComplete id='location' value={this.props.location} onChange={this.props.updateStateFieldEventHandler}
+                  <label htmlFor="location" className="form-text">Location:</label>
+                  <AutoComplete id='location' value={this.props.location}
+                                onBlur={(e) => this.props.validateLocationEventHandler(e, this.props.locations)}
+                                onChange={this.props.updateStateFieldEventHandler}
                                 suggestions={this.props.suggestions}
                                 completeMethod={(e) => this.props.suggestLocationsEventHandler(this.props.locations, e)} />
+                  {locationError}
               </Form.Field>
               <Form.Button content='Register' type="submit"/>
           </Form>
@@ -89,6 +100,8 @@ const mapStateToProps = (state) => {
         suggestions: state['registerPage'].get('suggestions'),
         picture: state['registerPage'].get('picture'),
         isConnected: state['app'].get('isConnected'),
+        isValidLocation: state['registerPage'].get('isValidLocation'),
+        locationMessage: state['registerPage'].get('locationMessage'),
     }
 };
 
@@ -111,6 +124,9 @@ const mapDispatchToProps = (dispatch) => {
         submitEventHandler: (username, password, location, picture, isValid) => {
             dispatch(RegisterPageActions.submitUserAction(username, password, location, picture, isValid));
         },
+        validateLocationEventHandler: (e, locations) => {
+            dispatch(RegisterPageActions.validateLocationAction(e.target.value , locations));
+        }
     }
 };
 

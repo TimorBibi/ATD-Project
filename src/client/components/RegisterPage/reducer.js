@@ -17,6 +17,10 @@ const RegisterPageReducer = (state = initialState.registerPage, action) => {
         case RegisterPageActionsConstants.REGISTER_FAILURE:
             return state;
 
+        case RegisterPageActionsConstants.VALIDATE_LOCATION:
+            return state.set('isValidLocation', action.payload.succeed)
+                .set('locationMessage', action.payload.message);
+
         default: //otherwise state is lost!
             return state;
     }

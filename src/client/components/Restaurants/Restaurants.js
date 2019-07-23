@@ -3,10 +3,7 @@ import './Restaurants.scss';
 import {connect} from 'react-redux';
 import RestaurantsActions from '../Restaurants/actions';
 import { Button } from 'semantic-ui-react'
-import {InputText} from "primereact/components/inputtext/InputText";
-import {AutoComplete} from "primereact/components/autocomplete/AutoComplete";
-import {Form} from 'semantic-ui-react';
-import {Growl} from 'primereact/growl';
+
 import AddReview from "../AddReview/AddReview";
 
 

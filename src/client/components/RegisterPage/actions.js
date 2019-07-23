@@ -1,4 +1,5 @@
 import { RegisterPageActionsConstants } from './constants';
+import {AddReviewActionsConstants} from "../AddReview/constants";
 
 function updateStateFieldAction(field, value) {
     return {
@@ -68,6 +69,25 @@ function submitUserAction(username, password, location, picture, isValid){
         return {type: RegisterPageActionsConstants.REGISTER_FAILURE};
 }
 
+function validateLocationAction(location, locationsArray) {
+    if (locationsArray.find((elm) => elm === location))
+        return {
+            type: AddReviewActionsConstants.VALIDATE_LOCATION,
+            payload: {
+                succeed: true,
+                message: ''
+            }
+        };
+    else
+        return {
+            type: AddReviewActionsConstants.VALIDATE_LOCATION,
+            payload: {
+                succeed: false,
+                message: "Please choose valid location."
+            }
+        };
+}
+
 
 
 
@@ -78,6 +98,7 @@ let RegisterPageActions = {
     suggestLocationsAction,
     validateActionSuccess,
     submitUserAction,
+    validateLocationAction,
 };
 
 export default RegisterPageActions
