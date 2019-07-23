@@ -22,8 +22,10 @@ export default {
             pictureType: '',
             pictureData: [],
         },
-        isValidLocation: true,
-        locationMessage: '',
+        submitMessage: {
+            succeed: false,
+            message: '',
+        },
 
     }),
     loginPage: Map({
@@ -31,6 +33,7 @@ export default {
         password: '',
         usernameError: '',
         passwordError: '',
+        errorMessage: '',
     }),
     restaurants: Map({
         showRestaurantForm: false,

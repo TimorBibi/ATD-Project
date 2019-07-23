@@ -1,5 +1,4 @@
 import { RegisterPageActionsConstants } from './constants';
-import {AddReviewActionsConstants} from "../AddReview/constants";
 
 function updateStateFieldAction(field, value) {
     return {
@@ -45,51 +44,67 @@ function suggestLocationsAction(fullList, subString){
 }
 
 function validateActionSuccess(isValid){
-    return {
-        type: RegisterPageActionsConstants.VALIDATE_ACTION_SUCCESS,
-        payload: {
-            isValid: isValid,
-        }
-    }
-}
-
-function submitUserAction(username, password, location, picture, isValid){
-    if(isValid && username.length > 0 && location && picture && password)
+    if(isValid)
         return {
-            type: RegisterPageActionsConstants.SUBMIT_USER,
-            uri: '/api/submit/user',
-            payload: {
-                username: username,
-                password: password,
-                location: location,
-                picture: picture,
-            }
-        }
-    else
-        return {type: RegisterPageActionsConstants.REGISTER_FAILURE};
-}
-
-function validateLocationAction(location, locationsArray) {
-    if (locationsArray.find((elm) => elm === location))
-        return {
-            type: AddReviewActionsConstants.VALIDATE_LOCATION,
-            payload: {
-                succeed: true,
-                message: ''
-            }
+            type: RegisterPageActionsConstants.VALIDATE_ACTION_SUCCESS,
         };
     else
         return {
-            type: AddReviewActionsConstants.VALIDATE_LOCATION,
+            type: RegisterPageActionsConstants.VALIDATE_ACTION_FAILURE,
+            payload: {
+                message: "The username is already used, please choose different one."
+            }
+        };
+}
+
+function submitUserAction(username, password, location, picture, locations, isValid) {
+    if(username.length > 0 && location && picture && password) {
+        if(!isValid)
+            return {
+                type: RegisterPageActionsConstants.VALIDATE_ACTION_FAILURE,
+                payload: {
+                    message: `The username is already used,\nplease choose different one.`
+                }
+            };
+        if (locations.find((elm) => elm === location))
+            return {
+                type: RegisterPageActionsConstants.SUBMIT_USER,
+                uri: '/api/submit/user',
+                payload: {
+                    username: username,
+                    password: password,
+                    location: location,
+                    picture: picture,
+                }
+            }
+        else
+            return {
+                type: RegisterPageActionsConstants.MISSING_FIELDS,
+                payload: {
+                    succeed: false,
+                    message: "Please choose valid location."
+                }
+            };
+    }
+    else
+        return {
+            type: RegisterPageActionsConstants.MISSING_FIELDS,
             payload: {
                 succeed: false,
-                message: "Please choose valid location."
+                message: "Please fill in all the fields."
             }
         };
 }
 
+function submitUserSuccessAction(value) {
+    return {
+        type: RegisterPageActionsConstants.SUBMIT_USER_SUCCESS,
+        payload: {
+            message: value.username + ' submitted.'
+        }
+    }
 
-
+}
 
 let RegisterPageActions = {
     updateStateFieldAction,
@@ -98,7 +113,7 @@ let RegisterPageActions = {
     suggestLocationsAction,
     validateActionSuccess,
     submitUserAction,
-    validateLocationAction,
+    submitUserSuccessAction
 };
 
 export default RegisterPageActions

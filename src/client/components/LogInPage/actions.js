@@ -32,13 +32,13 @@ function validateUserAction(username, password){
     }
     else if (username)
         return {
-            type: LogInPageActionsConstants.MISSING_PASSWORD,
-            message: "Please enter password.",
+            type: LogInPageActionsConstants.MISSING_FIELD,
+            payload: {message: "Please enter password."}
         };
     else
         return {
-            type: LogInPageActionsConstants.MISSING_USERNAME,
-            message: "Please enter username.",
+            type: LogInPageActionsConstants.MISSING_FIELD,
+            payload: {message: "Please enter username."}
         };
 }
 
@@ -54,12 +54,17 @@ function validateUserSuccessAction(payload){
         }
 }
 
+function initErrorMessageAction() {
+    return {type: LogInPageActionsConstants.INIT_ERROR_MESSAGE};
+}
+
 
 let LogInPageActions = {
     updateStateFieldAction,
     LogInPageFailureAction,
     validateUserAction,
     validateUserSuccessAction,
+    initErrorMessageAction,
 };
 
 export default LogInPageActions

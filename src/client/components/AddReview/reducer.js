@@ -22,12 +22,7 @@ const AddReviewReducer = (state = initialState.addReview, action) => {
                 .set('submitMessage', {succeed: false, message: action.payload.message});
 
         case AddReviewActionsConstants.MISSING_FIELD:
-            return state.set('submitMessage', {succeed: false, message: "Please fill in Restaurant name and location."})
-
-        case AddReviewActionsConstants.VALIDATE_LOCATION:
-            return state.set('isValid', action.payload.succeed)
-                .set('submitMessage', action.payload.submitMessage);
-
+            return state.set('submitMessage', {succeed: false, message: action.payload.message});
 
         default: //otherwise state is lost!
             return state;

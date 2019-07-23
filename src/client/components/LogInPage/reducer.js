@@ -8,19 +8,14 @@ const LogInPageReducer = (state = initialState.loginPage, action) => {
         case LogInPageActionsConstants.UPDATE_STATE_FIELD:
             return state.set(action.payload.field, action.payload.value);
 
-        case LogInPageActionsConstants.MISSING_USERNAME:
-            return state.set('usernameError', action.message)
-                .set('passwordError', '');
-
-        case LogInPageActionsConstants.MISSING_PASSWORD:
-            return state.set('passwordError', action.message)
-                .set('usernameError', '');
+        case LogInPageActionsConstants.MISSING_FIELD:
+            return state.set('errorMessage', action.payload.message);
 
         case LogInPageActionsConstants.FALSE_VALIDATE_USER:
-            if (action.payload.reason === 'username')
-                return state.set('usernameError', action.payload.message);
-            else
-                return state.set('passwordError', action.payload.message);
+            return state.set('errorMessage', action.payload.message);
+
+        case LogInPageActionsConstants.INIT_ERROR_MESSAGE:
+            return state.set('errorMessage', '');
 
         default: //otherwise state is lost!
             return state;

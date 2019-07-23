@@ -40,24 +40,22 @@ class AddReview extends React.Component {
 
     render() {
         return (
-            <div className= "addReview">
-                <Growl ref={(el) => this.growl = el} position="bottomright"/>
-                <Form className="register-form"
-                  onSubmit={() => {
-                      this.props.submitEventHandler(
-                          this.props.username,
-                          this.props.restaurantName,
-                          this.props.restaurantLocation,
-                          this.props.bathroomRate,
-                          this.props.staffRate,
-                          this.props.cleanRate,
-                          this.props.foodRate,
-                          this.props.driveInRate,
-                          this.props.deliveryRate,
-                          this.props.picture,
-                          this.props.freeText,
-                          this.props.isValid,
-                      );}}>
+            <Form className="register-form"
+              onSubmit={() => {
+                  this.props.submitEventHandler(
+                      this.props.username,
+                      this.props.restaurantName,
+                      this.props.restaurantLocation,
+                      this.props.bathroomRate,
+                      this.props.staffRate,
+                      this.props.cleanRate,
+                      this.props.foodRate,
+                      this.props.driveInRate,
+                      this.props.deliveryRate,
+                      this.props.picture,
+                      this.props.freeText,
+                      this.props.locations,
+                  );}}>
                 <Form.Field width='9'>
                     <label htmlFor="restaurantName" className="form-text">Restaurant name:</label>
                     <InputText id="restaurantName" value={this.props.restaurantName}
@@ -68,7 +66,6 @@ class AddReview extends React.Component {
                     <label htmlFor="restaurantLocation" className="form-text">Location:</label>
                     <AutoComplete id='restaurantLocation' value={this.props.restaurantLocation}
                                   onChange={this.props.updateStateFieldEventHandler}
-                                  onBlur={(e) => this.props.validateLocationEventHandler(e, this.props.locations)}
                                   suggestions={this.props.suggestions}
                                   completeMethod={(e) => this.props.suggestLocationsEventHandler(this.props.locations, e)} />
                 </Form.Field>
@@ -113,8 +110,9 @@ class AddReview extends React.Component {
                                    onChange={this.props.updateStateFieldEventHandler} />
                 </Form.Field>
                 <Form.Button content='Add restaurant' type="submit"/>
+
+                <Growl ref={(el) => this.growl = el} position="bottomright"/>
             </Form>
-            </div>
         );
     }
 }
@@ -152,7 +150,7 @@ const mapDispatchToProps = (dispatch) => {
         suggestLocationsEventHandler: (locations,e) => {
             dispatch(AddReviewActions.suggestLocationsAction(locations ,e.query));
         },
-        submitEventHandler: (username, name, location, bathroom, staff, clean, food, driveIn, delivery, picture, freeText, isValid) => {
+        submitEventHandler: (username, name, location, bathroom, staff, clean, food, driveIn, delivery, picture, freeText, locations) => {
             dispatch(AddReviewActions.submitReviewAction(
                 username,
                 name,
@@ -165,11 +163,8 @@ const mapDispatchToProps = (dispatch) => {
                 delivery,
                 picture,
                 freeText,
-                isValid));
+                locations));
         },
-        validateLocationEventHandler: (e, locations) => {
-            dispatch(AddReviewActions.validateLocationAction(e.target.value , locations));
-        }
     }
 };
 

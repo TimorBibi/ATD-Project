@@ -27,14 +27,11 @@ class App extends React.Component {
         if(this.props.addedUser)
         {
             this.props.loadUsersEventHandler();
-            console.log("!!!!USERS:", JSON.stringify(this.props.users.length));
         }
         if(this.props.addedReview)
         {
             this.props.loadRestaurantsEventHandler();
             this.props.loadUsersEventHandler();
-            console.log("!!USERS:", JSON.stringify(this.props.users.length));
-            console.log("!!RESTAURANTS:", JSON.stringify(this.props.restaurants.length));
         }
     }
 

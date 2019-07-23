@@ -37,6 +37,7 @@ function* submitUser(action){
         const json = yield call([res, 'json']);
         yield put(AppActions.connectUserAction(json));
         yield put(AppActions.updateUserAfterSubmit());
+        yield put(RegisterPageActions.submitUserSuccessAction(json))
     } catch (e) {
         yield put(RegisterPageActions.RegisterPageFailureAction(e.message));
     }

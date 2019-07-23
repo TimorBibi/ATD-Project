@@ -6,7 +6,7 @@ let userSchema = new Schema({
     username: String,
     password: String,
     location: {name: String, x: Number, y: Number},
-    picture: { data: Buffer, contentType: String },
+    picture: { data: String, contentType: String },
     reviews: [],
 });
 
