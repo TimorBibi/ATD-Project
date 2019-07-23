@@ -8,10 +8,10 @@ class ViewProfilePage extends React.Component {
     componentDidMount() {
         // getUserProps
     }
-    // constructor (props)
+    // constructor(props)
     // {
     //     super(props);
-    //     console.log("#####", this.props.example);
+    //     console.log("#####", this.props.userId);
     // }
 
     render() {

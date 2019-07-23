@@ -20,50 +20,28 @@ function updateStateFieldAction(field, value) {
     }
 }
 
-function suggestLocationsAction(fullList, subString){
-    const suggestedLocations =
-        fullList.filter(elm => {
-            return elm.toLowerCase().startsWith(subString.toLowerCase());
-        });
+function showReviewsAction(prevReviewValue, currId){
+    const prev = prevReviewValue.get('selectedRest');
+    const payload = (prev === currId)?
+        {selectedRest: currId, visible: !prevReviewValue.get('visible')}:
+        {selectedRest: currId, visible: true};
     return {
-        type: RestaurantsActionsConstants.SUGGEST_LOCATION,
-        payload: {
-            suggestedLocations: suggestedLocations
-        }
+        type: RestaurantsActionsConstants.VIEW_REVIEWS,
+        payload: payload
     }
 }
 
-function submitRestaurantAction(name, location){
-    if(name && location)
-        return {
-            type: RestaurantsActionsConstants.SUBMIT_RESTAURANT,
-            uri: '/api/submit/restaurant',
-            payload: {
-                name: name,
-                location: location,
-            }
-        };
-    else
-        return {
-            type: RestaurantsActionsConstants.MISSING_FIELD,
-            payload: {
-                name: name,
-                location: location,
-            }
-        };
+function enableEditReviewAction(prevEditReview, currId){
+    const prev = prevEditReview.get('selectedReview');
+    const payload = (prev === currId)?
+        {selectedReview: currId, edit: !prevEditReview.get('edit')}:
+        {selectedReview: currId, edit: true};
+    return {
+        type: RestaurantsActionsConstants.EDIT_REVIEW,
+        payload: payload
+    }
 }
 
-function submitRestaurantSucceedAction({succeed, message}){
-    if (!succeed)
-        return {
-            type: RestaurantsActionsConstants.SUBMIT_RESTAURANT_FAILURE,
-            payload: {
-                message: message,
-            }
-        }
-    else
-        return {type: RestaurantsActionsConstants.SUBMIT_RESTAURANT_SUCCEED,};
-}
 
 function restaurantFailureAction(error){
         return {
@@ -74,13 +52,13 @@ function restaurantFailureAction(error){
         };
 }
 
+
 let RestaurantsActions = {
     toggleRestaurantForm,
     updateStateFieldAction,
-    suggestLocationsAction,
-    submitRestaurantAction,
-    submitRestaurantSucceedAction,
-    restaurantFailureAction,
+    showReviewsAction,
+    enableEditReviewAction,
+    restaurantFailureAction
 };
 
 export default RestaurantsActions
