@@ -1,6 +1,7 @@
 import {AddReviewActionsConstants} from './constants'
 import { call, put, takeEvery } from 'redux-saga/effects'
 import AddReviewActions from './actions'
+import AppActions from '../App/actions'
 
 function* submitReview(action){
     console.log('AddReviewSaga=', action);
@@ -16,6 +17,7 @@ function* submitReview(action){
 
         const json = yield call([res, 'json']); //retrieve body of response
         yield put(AddReviewActions.submitReviewSucceedAction(json));
+        yield put(AppActions.updateReviewAfterSubmit());
     } catch (e) {
         yield put(AddReviewActions.reviewFailureAction(e.message));
     }

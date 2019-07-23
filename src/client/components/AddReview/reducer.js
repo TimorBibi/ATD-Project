@@ -24,6 +24,7 @@ const AddReviewReducer = (state = initialState.addReview, action) => {
         case AddReviewActionsConstants.MISSING_FIELD:
             return state.set('submitMessage', {succeed: false, message: "Please fill in the required fields."})
 
+
         default: //otherwise state is lost!
             return state;
     }

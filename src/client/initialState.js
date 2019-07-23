@@ -6,6 +6,8 @@ export default {
         isConnected: false,
         username: '',
         locations: [],
+        addedUser: false,
+        addedReview: false,
     }),
     topbar: Map({
         activeItem: 'home'

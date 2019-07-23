@@ -11,8 +11,10 @@ class ViewProfilePage extends React.Component {
 
     render() {
         return (
-            <div></div>
-
+            <div>
+            <label htmlFor="usernameLabel" className="form-text">Username:</label>
+            <label htmlFor="usernameValue" className="form-text">{this.props.username}</label>
+            </div>
         )
     }
 }
@@ -20,10 +22,7 @@ class ViewProfilePage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        username: state['loginPage'].get('username'),
-        password: state['loginPage'].get('password'),
-        usernameError: state['loginPage'].get('usernameError'),
-        passwordError: state['loginPage'].get('passwordError'),
+        username: state['app'].get('username'),
         isConnected: state['app'].get('isConnected'),
     }
 

@@ -1,5 +1,4 @@
 import { AppActionsConstants} from './constants.js';
-import {RegisterPageActionsConstants} from "../RegisterPage/constants";
 
 function connectUserAction({succeed, username}){
     return {
@@ -39,6 +38,20 @@ function loadCitiesAction(){
     }
 }
 
+function loadUsersAction(){
+    return {
+        type: AppActionsConstants.LOAD_USERS,
+        uri: '/api/load/users'
+    }
+}
+
+function loadRestaurantsAction(){
+    return {
+        type: AppActionsConstants.LOAD_RESTAURANTS,
+        uri: '/api/load/restaurants'
+    }
+}
+
 function loadCitiesSuccessAction(cities){
     const locations = cities.map((elm) => {
         return elm.city;
@@ -51,6 +64,35 @@ function loadCitiesSuccessAction(cities){
     }
 }
 
+function loadUsersSuccessAction(users){
+    return {
+        type: AppActionsConstants.LOAD_USERS_SUCCESS,
+        payload: {
+            users: users
+        }
+    }
+}
+
+function loadRestaurantsSuccessAction(restaurants){
+    return {
+        type: AppActionsConstants.LOAD_RESTAURANTS_SUCCESS,
+        payload: {
+            restaurants: restaurants
+        }
+    }
+}
+
+function updateReviewAfterSubmit(){
+    return {
+        type: AppActionsConstants.UPDATE_REVIEW_AFTER_SUBMIT,
+    }
+}
+
+function updateUserAfterSubmit(){
+    return {
+        type: AppActionsConstants.UPDATE_USER_AFTER_SUBMIT,
+    }
+}
 let AppActions  = {
     connectUserAction,
     checkTokenAction,
@@ -58,6 +100,12 @@ let AppActions  = {
     disconnectUserAction,
     loadCitiesAction,
     loadCitiesSuccessAction,
+    loadUsersAction,
+    loadUsersSuccessAction,
+    loadRestaurantsAction,
+    loadRestaurantsSuccessAction,
+    updateReviewAfterSubmit,
+    updateUserAfterSubmit,
 };
 
 export default AppActions
