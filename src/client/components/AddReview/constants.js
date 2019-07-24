@@ -7,6 +7,7 @@ const AddReviewActionsConstants = {
     SUBMIT_REVIEW_SUCCEED:'SUBMIT_REVIEW_SUCCEED',
     ADD_REVIEW_FAILURE:'ADD_REVIEW_FAILURE',
     VALIDATE_LOCATION: 'VALIDATE_LOCATION',
+    CLEAR_FIELDS: 'CLEAR_FIELDS',
 };
 
 export { AddReviewActionsConstants };

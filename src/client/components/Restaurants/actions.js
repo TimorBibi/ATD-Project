@@ -10,9 +10,9 @@ function toggleRestaurantForm(currVal) {
     };
 }
 
-function updateStateFieldAction(field, value) {
+function updateStateAction(field, value) {
     return {
-        type: RestaurantsActionsConstants.UPDATE_STATE_FIELD,
+        type: RestaurantsActionsConstants.UPDATE_REST_STATE_FIELD,
         payload: {
             field,
             value,
@@ -31,15 +31,21 @@ function showReviewsAction(prevReviewValue, currId){
     }
 }
 
-function enableEditReviewAction(prevEditReview, currId){
+function enableEditReviewAction(prevEditReview, currId, reviewContent){
     const prev = prevEditReview.get('selectedReview');
-    const payload = (prev === currId)?
+    const toEdit = (prev === currId)?
         {selectedReview: currId, edit: !prevEditReview.get('edit')}:
         {selectedReview: currId, edit: true};
     return {
         type: RestaurantsActionsConstants.EDIT_REVIEW,
-        payload: payload
-    }
+        payload: {
+            editReview: toEdit,
+            username: reviewContent.username, avgRate: reviewContent.avgRate, name: reviewContent.name, location: reviewContent.location,
+            bathroom: reviewContent.bathroom, staff: reviewContent.staff, clean: reviewContent.clean,
+            food: reviewContent.food, driveIn: reviewContent.driveIn, delivery: reviewContent.delivery,
+            picture: reviewContent.picture, freeText: reviewContent.freeText, timeStamp: reviewContent.time,
+        }
+    };
 }
 
 
@@ -52,10 +58,16 @@ function restaurantFailureAction(error){
         };
 }
 
+// function closeToggleAfterSubmit(){
+//     return {
+//         type: RestaurantsActionsConstants.CLOSE_TOGGLE_REVIEW_AFTER_SUBMIT,
+//     }
+// }
+
 
 let RestaurantsActions = {
     toggleRestaurantForm,
-    updateStateFieldAction,
+    updateStateAction,
     showReviewsAction,
     enableEditReviewAction,
     restaurantFailureAction

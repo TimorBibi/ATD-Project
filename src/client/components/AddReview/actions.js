@@ -24,7 +24,7 @@ function suggestLocationsAction(fullList, subString){
 }
 
 function submitReviewAction(username, name, location, bathroom, staff, clean,
-                            food, driveIn, delivery, picture, freeText, locations)
+                            food, driveIn, delivery, picture, freeText, locations, toggle)
 {
     if (username && name && location) {
         if(locations.find((elm) => elm === location)) {
@@ -37,6 +37,7 @@ function submitReviewAction(username, name, location, bathroom, staff, clean,
                     bathroom: bathroom, staff: staff, clean: clean,
                     food: food, driveIn: driveIn, delivery: delivery,
                     picture: picture, freeText: freeText, timeStamp: time,
+                    toggle: toggle,
                 }
             };
         } else
@@ -65,7 +66,7 @@ function submitReviewSucceedAction({succeed, message}){
             payload: {
                 message: message,
             }
-        }
+        };
     else
         return {type: AddReviewActionsConstants.SUBMIT_REVIEW_SUCCEED,};
 }
@@ -79,12 +80,18 @@ function reviewFailureAction(error){
     };
 }
 
+function clearFieldsAction()
+{
+    return{type: AddReviewActionsConstants.CLEAR_FIELDS}
+}
+
 let AddReviewActions = {
     updateStateFieldAction,
     suggestLocationsAction,
     submitReviewAction,
     submitReviewSucceedAction,
     reviewFailureAction,
+    clearFieldsAction,
 };
 
 export default AddReviewActions

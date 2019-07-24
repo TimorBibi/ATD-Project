@@ -49,7 +49,10 @@ module.exports = (app) => {
                         driveIn: req.body.driveIn,
                         delivery: req.body.delivery,
                         freeText: req.body.freeText,
-                        picture: req.body.picture,
+                        picture: {
+                            data: req.body.picture.pictureData,
+                            contentType: req.body.picture.pictureType
+                        },
                         timeStamp: req.body.timeStamp,
                         avgRate: avgValue,
                     });

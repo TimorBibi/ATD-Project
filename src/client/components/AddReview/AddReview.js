@@ -8,6 +8,7 @@ import AddReviewActions from "../AddReview/actions";
 import {Rating} from "primereact/components/rating/Rating";
 import {Growl} from "primereact/components/growl/Growl";
 import {InputTextarea} from 'primereact/inputtextarea';
+import { Button } from 'semantic-ui-react'
 
 
 class AddReview extends React.Component {
@@ -55,7 +56,9 @@ class AddReview extends React.Component {
                       this.props.picture,
                       this.props.freeText,
                       this.props.locations,
-                  );}}>
+                      this.props.showRestForm,
+                  );
+              }}>
                 <Form.Field width='9'>
                     <label htmlFor="restaurantName" className="form-text">Restaurant name:</label>
                     <InputText id="restaurantName" value={this.props.restaurantName}
@@ -109,8 +112,10 @@ class AddReview extends React.Component {
                                    value={this.props.freeText} autoResize={true}
                                    onChange={this.props.updateStateFieldEventHandler} />
                 </Form.Field>
-                <Form.Button content='Add restaurant' type="submit"/>
-
+                <Form.Button content='Submit Review' type="submit"/>
+                <Button id="clearFields"
+                        onClick={() => this.props.clearFieldsEventHandler()}
+                >Clear Fields</Button>
                 <Growl ref={(el) => this.growl = el} position="bottomright"/>
             </Form>
         );
@@ -123,7 +128,6 @@ const mapStateToProps = (state) => {
         restaurantLocation: state['addReview'].get('restaurantLocation'),
         locations: state['app'].get('locations'),
         suggestions: state['addReview'].get('suggestions'),
-        reviewText: state['addReview'].get('reviewText'),
         submitMessage: state['addReview'].get('submitMessage'),
         bathroomRate: state['addReview'].get('bathroomRate'),
         staffRate: state['addReview'].get('staffRate'),
@@ -135,6 +139,7 @@ const mapStateToProps = (state) => {
         picture: state['addReview'].get('picture'),
         username: state['app'].get('username'),
         isValid: state['addReview'].get('isValid'),
+        showRestForm: state['restaurants'].get('showRestaurantForm'),
     }
 };
 
@@ -150,7 +155,11 @@ const mapDispatchToProps = (dispatch) => {
         suggestLocationsEventHandler: (locations,e) => {
             dispatch(AddReviewActions.suggestLocationsAction(locations ,e.query));
         },
-        submitEventHandler: (username, name, location, bathroom, staff, clean, food, driveIn, delivery, picture, freeText, locations) => {
+        clearFieldsEventHandler: () =>
+        {
+            dispatch(AddReviewActions.clearFieldsAction());
+        },
+        submitEventHandler: (username, name, location, bathroom, staff, clean, food, driveIn, delivery, picture, freeText, locations, toggle) => {
             dispatch(AddReviewActions.submitReviewAction(
                 username,
                 name,
@@ -163,7 +172,8 @@ const mapDispatchToProps = (dispatch) => {
                 delivery,
                 picture,
                 freeText,
-                locations));
+                locations,
+                toggle));
         },
     }
 };

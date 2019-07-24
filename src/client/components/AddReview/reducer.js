@@ -15,7 +15,21 @@ const AddReviewReducer = (state = initialState.addReview, action) => {
 
         case AddReviewActionsConstants.SUBMIT_REVIEW_SUCCEED:
             return state.set('showRestaurantForm', false)
-                .set('submitMessage', {succeed: true, message: "Review submitted."});
+                .set('submitMessage', {succeed: false, message: ''});
+
+
+        case AddReviewActionsConstants.CLEAR_FIELDS:
+            return state.set('restaurantName','')
+                .set('restaurantLocation','')
+                .set('bathroomRate',1)
+                .set('staffRate',1)
+                .set('cleanRate',1)
+                .set('foodRate',1)
+                .set('driveInRate',0)
+                .set('deliveryRate',0)
+                .set('freeText','')
+                .set('picture',null)
+                .set('submitMessage', {succeed: false, message: ''});
 
         case AddReviewActionsConstants.ADD_REVIEW_FAILURE:
             return state.set('showRestaurantForm', false)

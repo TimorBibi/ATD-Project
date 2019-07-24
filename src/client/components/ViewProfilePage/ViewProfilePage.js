@@ -1,6 +1,7 @@
 import React from 'react';
 import './ViewProfilePage.scss';
 import {connect} from 'react-redux';
+import LogInPageActions from "../LogInPage/actions";
 const {Map, List} = require('immutable');
 
 class ViewProfilePage extends React.Component {
@@ -19,8 +20,9 @@ class ViewProfilePage extends React.Component {
         const user = Map(this.props.users.find((usr)=> usr['username'] === this.props.username));
         const imgsrc = Map(user.get('picture')).get('data');
 
+
         // console.log("???user ", Map(user).get('location'));
-        // console.log("???usersss ", this.props.users);
+        console.log("???usersss ", Map(user.get('picture')).get('contentType'));
         return (
             <div>
                 <div align="right" className="imgPreview">

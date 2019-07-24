@@ -11,7 +11,7 @@ const RestaurantsReducer = (state = initialState.restaurants, action) => {
             return state.set('showRestaurantForm', action.payload.newVal)
                 .set('submitMessage', {succeed: false, message: ''});
 
-        case RestaurantsActionsConstants.UPDATE_STATE_FIELD:
+        case RestaurantsActionsConstants.UPDATE_REST_STATE_FIELD:
             return state.set(action.payload.field, action.payload.value)
                 .set('submitMessage', {succeed: false, message: ''});
 
@@ -23,9 +23,17 @@ const RestaurantsReducer = (state = initialState.restaurants, action) => {
 
         case RestaurantsActionsConstants.EDIT_REVIEW:
             return state.set('editReview', new Map({
-                selectedReview: action.payload.selectedReview,
-                edit: action.payload.edit,
-            }));
+                selectedReview: action.payload.editReview.selectedReview,
+                edit: action.payload.editReview.edit,
+            })).set('avgRate', action.payload.avgRate)
+                .set('bathroomRate', action.payload.bathroom)
+                .set('staffRate', action.payload.staff)
+                .set('cleanRate', action.payload.clean)
+                .set('foodRate', action.payload.food)
+                .set('driveInRate', action.payload.driveIn)
+                .set('deliveryRate', action.payload.delivery)
+                .set('freeText', action.payload.freeText)
+                .set('picture', action.payload.picture);
 
         default: //otherwise state is lost!
             return state;

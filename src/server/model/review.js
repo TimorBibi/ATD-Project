@@ -12,7 +12,7 @@ let reviewScheme = new Schema({
     driveIn: Number,
     delivery: Number,
     freeText: String,
-    picture: { data: Buffer, contentType: String },
+    picture: {data: String, contentType: String },
     timeStamp: String,
     avgRate: Number,
 });
