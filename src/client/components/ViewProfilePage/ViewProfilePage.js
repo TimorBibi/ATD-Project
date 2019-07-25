@@ -21,7 +21,7 @@ class ViewProfilePage extends React.Component {
         const imgsrc = Map(user.get('picture')).get('data');
 
 
-        // console.log("???user ", Map(user).get('location'));
+        console.log("???user ", user);
         console.log("???usersss ", Map(user.get('picture')).get('contentType'));
         return (
             <div>

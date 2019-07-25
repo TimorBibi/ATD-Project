@@ -8,6 +8,7 @@ export default {
         users: List(),
         restaurants: List(),
         locations: [],
+        editedReview: false,
         addedUser: false,
         addedReview: false,
     }),
@@ -58,6 +59,10 @@ export default {
         picture: {
             pictureType: '',
             pictureData: [],
+        },
+        submitMessage: {
+            succeed: false,
+            message: '',
         },
     }),
     addReview :Map({

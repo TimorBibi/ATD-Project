@@ -19,6 +19,7 @@ class Restaurants extends React.Component {
         this.viewReviewItem = this.viewReviewItem.bind(this);
         this.editReviewItem = this.editReviewItem.bind(this);
         this.downloadFile = this.downloadFile.bind(this);
+        this.submitAndUpdateEdit = this.submitAndUpdateEdit.bind(this);
         // <ViewProfilePage userID={user.username}/>
     }
 
@@ -36,8 +37,25 @@ class Restaurants extends React.Component {
         fs.readAsDataURL(file);
     }
 
+    submitAndUpdateEdit(e, review)
+    {
+        this.props.submitEditEventHandler(e, this.props.editReview, review);
+        this.props.makeEditableEventHandler(e, this.props.editReview, review);
+    }
+
     viewRestaurantItem(restaurant, showReviews)
     {
+        const hasReviews = (!restaurant.avgRate && !restaurant.reviews.length)?
+            (<label htmlFor="avgRate">no reviews</label>):
+            (<div>
+                <label htmlFor="avgRate">Rate: </label>
+                <p id="avgRate">{Math.round(restaurant.avgRate * 100) / 100}</p>
+
+                <Button id={restaurant.name+"_"+restaurant.location.city}
+                        onClick={(e, data) =>
+                            this.props.showReviewsEventHandler(data, this.props.showReviews)}
+                >View {restaurant.name} Reviews</Button>
+            </div>);
         return(
             <div className="p-grid">
                 <h2 id="name">{restaurant.name}</h2>
@@ -45,10 +63,7 @@ class Restaurants extends React.Component {
                 <p id="location">{restaurant.location.city}</p>
                 <label htmlFor="avgRate">Rate: </label>
                 <p id="avgRate">{restaurant.avgRate}</p>
-                <Button id={restaurant.name+"_"+restaurant.location.city}
-                        onClick={(e, data) =>
-                            this.props.showReviewsEventHandler(data, this.props.showReviews)}
-                >View {restaurant.name} Reviews</Button>
+                {hasReviews}
                 <hr/>
                 {showReviews}
             </div>
@@ -61,82 +76,139 @@ class Restaurants extends React.Component {
         const hasFreeText = review.freeText?
             (<label htmlFor="freeText">Description: {review.freeText}</label>)
             : null;
-        const reviewImg = review.picture?
-            <div className="imgPreview">
+        console.log("pipipi", review.picture.data !== null);
+        const reviewImg = review.picture.data !== null?
+            (<div className="imgPreview">
                 <img src={review.picture.data} width="200" height="100"/>
-            </div>:
+            </div>):
             null;
 
         return(
-            <div key={review.username+"_"+review.timeStamp}>
-                <label htmlFor="writer">Writer: </label>
-                <p id="writer">{review.username}</p>
-                {reviewImg}
-                {/*<label htmlFor="avgReviewRate">Review Rate: </label>*/}
-                {/*<p id="avgReviewRate">{review.avgRate}</p>*/}
-                {/*<label htmlFor="timestamp">Created at: </label>*/}
-                {/*<p id="timestamp">{review.timeStamp}</p>*/}
-                <label htmlFor="bathroomRate">Bathroom Quality:</label>
-                <Rating value={review.bathroom} readonly={true} stars={5} cancel={false}/>
-                <label htmlFor="staffRate">Staff Kindness:</label>
-                <Rating value={review.staff} readonly={true} stars={5} cancel={false}/>
-                <label htmlFor="cleanRate">Cleanliness:</label>
-                <Rating value={review.clean} readonly={true} stars={5} cancel={false}/>
-                <label htmlFor="foodRate">Food Quality:</label>
-                <Rating value={review.food} readonly={true} stars={5} cancel={false}/>
-                <label htmlFor="driveInRate">Drive-thru Quality:</label>
-                <Rating value={review.driveIn} readonly={true} stars={5} cancel={true}/>
-                <label htmlFor="deliveryRate">Delivery Speed:</label>
-                <Rating value={review.delivery} readonly={true} stars={5} cancel={true}/>
-                {hasFreeText}
+            <Form className="register-form" key={review.username+"_"+review.timeStamp}>
+                <Form.Field width='9'>
+                    <label htmlFor="writer">Writer: </label>
+                    <p id="writer">{review.username}</p>
+                </Form.Field>
+                <Form.Field width='9'>
+                    {reviewImg}
+                </Form.Field>
+
+                <Form.Field width='9'>
+                    <label htmlFor="bathroomRate" className="form-text">Bathroom Quality:</label>
+                    <Rating id='bathroomRate' value={review.bathroom} cancel={false} readonly={true}/>
+                </Form.Field>
+                <Form.Field width='9'>
+                    <label htmlFor="staffRate">Staff Kindness:</label>
+                    <Rating id='staffRate' value={review.staff}  stars={5} cancel={false} readonly={true}/>
+                </Form.Field>
+                <Form.Field width='9'>
+                    <label htmlFor="cleanRate">Cleanliness:</label>
+                    <Rating id='cleanRate' value={review.clean}  stars={5} cancel={false} readonly={true}/>
+                </Form.Field>
+                <Form.Field width='9'>
+                    <label htmlFor="foodRate">Food Quality:</label>
+                    <Rating id='foodRate' value={review.food} stars={5} cancel={false} readonly={true}/>
+                </Form.Field>
+                <Form.Field width='9'>
+                    <label htmlFor="driveInRate">Drive-thru Quality:</label>
+                    <Rating id='driveInRate' value={review.driveIn}  stars={5} readonly={true}/>
+                </Form.Field>
+                <Form.Field width='9'>
+                    <label htmlFor="deliveryRate">Delivery Speed:</label>
+                    <Rating id='deliveryRate' value={review.delivery} stars={5} readonly={true}/>
+                </Form.Field>
+                <Form.Field width='9'>
+                    {hasFreeText}
+                </Form.Field>
+                <br/>
                 {editable}
                 <hr/>
-            </div>);
+            </Form>)
     }
 
     editReviewItem(review, editable)
     {
-
-        const reviewImg = review.picture?
-            <div className="imgPreview">
+        const reviewImg = review.picture.data !== null?
+            (<div className="imgPreview">
                 <img src={review.picture.data} width="200" height="100"/>
-            </div>:
+            </div>):
             null;
-
-        return(
-            <div key={review.username+"_"+review.timeStamp}>
+        console.log("???",this.props.bathroomRate);
+        return (
+            <Form className="register-form" key={review.username+"_"+review.timeStamp}
+                  onSubmit={(e) => {
+                      this.props.submitEditEventHandler(
+                          review.username,
+                          review.name,
+                          review.location,
+                          review.timeStamp,
+                          this.props.bathroomRate,
+                          this.props.staffRate,
+                          this.props.cleanRate,
+                          this.props.foodRate,
+                          this.props.driveInRate,
+                          this.props.deliveryRate,
+                          this.props.picture,
+                          this.props.freeText
+                      );
+                      this.props.makeEditableEventHandler(e, this.props.editReview, review);
+                  }}>
+            <Form.Field width='9'>
                 <label htmlFor="writer">Writer: </label>
                 <p id="writer">{review.username}</p>
+            </Form.Field>
+            <Form.Field width='9'>
                 <Input type="file" id="picture"  accept="image/*" onChange={this.downloadFile}/>
                 {reviewImg}
-                {/*<label htmlFor="avgRate">Review Rate: </label>*/}
-                {/*<p id="avgRate">{this.props.avgRate}</p>*/}
+            </Form.Field>
+
+            <Form.Field width='9'>
                 <label htmlFor="bathroomRate" className="form-text">Bathroom Quality:</label>
                 <Rating id='bathroomRate' value={this.props.bathroomRate} cancel={false}
                         onChange={this.props.updateStateFieldEventHandler}/>
+            </Form.Field>
+            <Form.Field width='9'>
                 <label htmlFor="staffRate">Staff Kindness:</label>
                 <Rating id='staffRate' value={this.props.staffRate}  stars={5} cancel={false}
                         onChange={this.props.updateStateFieldEventHandler}/>
+            </Form.Field>
+            <Form.Field width='9'>
                 <label htmlFor="cleanRate">Cleanliness:</label>
                 <Rating id='cleanRate' value={this.props.cleanRate}  stars={5} cancel={false}
                         onChange={this.props.updateStateFieldEventHandler}/>
+            </Form.Field>
+            <Form.Field width='9'>
                 <label htmlFor="foodRate">Food Quality:</label>
                 <Rating id='foodRate' value={this.props.foodRate} stars={5} cancel={false}
                         onChange={this.props.updateStateFieldEventHandler}/>
+            </Form.Field>
+            <Form.Field width='9'>
                 <label htmlFor="driveInRate">Drive-thru Quality:</label>
                 <Rating id='driveInRate' value={this.props.driveInRate}  stars={5}
                         onChange={this.props.updateStateFieldEventHandler}/>
+            </Form.Field>
+            <Form.Field width='9'>
                 <label htmlFor="deliveryRate">Delivery Speed:</label>
                 <Rating id='deliveryRate' value={this.props.deliveryRate} stars={5}
                         onChange={this.props.updateStateFieldEventHandler}/>
+            </Form.Field>
+            <Form.Field width='9'>
                 <label htmlFor="freeText">Description: </label>
                 <InputTextarea id="freeText" value={this.props.freeText}
                                onChange={this.props.updateStateFieldEventHandler}/>
-                {editable}
+            </Form.Field>
+                <br/>
+                {/*{editable}*/}
+                <Form.Button id={"edit_" + review.username+"_"+review.timeStamp} content='Submit Review' type="submit"/>
+                {/*<Form.Button id={"edit_" + review.username+"_"+review.timeStamp} className="ui button"*/}
+                {/*        onClick=  {(e) => submitEditEventHandler(e, review)}>Edit</Form.Button>*/}
+                <Form.Button id={"cancel_" + review.username+"_"+review.timeStamp} className="ui button"
+                        onClick={(e) => this.props.makeEditableEventHandler(e, this.props.editReview, review)} >Cancel</Form.Button>
                 <hr/>
-            </div>
+            </Form>
         );
     }
+
 
 
     itemTemplate(restaurant, layout) {
@@ -145,10 +217,12 @@ class Restaurants extends React.Component {
                                 && this.props.showReviews.get('visible')) ?
                 restaurant.reviews.map((review) => {
                     const editable = review.username !== this.props.username ? null:
-                        <Button id={review.username+"_"+review.timeStamp}
-                        onClick={(e) => this.props.makeEditableEventHandler(e, this.props.editReview, review)}>
-                            edit</Button>;
-
+                        (<div>
+                            <Button id={review.username+"_"+review.timeStamp}  className="ui button"
+                                    onClick={(e) => this.props.makeEditableEventHandler(e, this.props.editReview, review)}>Edit</Button>
+                            <Button id={"delete_"+review.username+"_"+review.timeStamp}  className="ui button"
+                                    onClick={() => this.props.deleteReviewEventHandler(review)}>Delete</Button>
+                        </div>);
                     return ((this.props.editReview.get('selectedReview') === review.username+"_"+review.timeStamp)
                                         && this.props.editReview.get('edit')) ?
                         this.editReviewItem(review, editable): this.viewReviewItem(review, editable);
@@ -162,7 +236,7 @@ class Restaurants extends React.Component {
     //TODO display all the restaurants
     render() {
         const allowAddReview = !this.props.isConnected ? null :
-            <Button label="Add Review" icon="plus" onClick={() => this.props.toggleRestaurantFormEventHandler(this.props.showRestForm)}/>
+            <Button label="Add Review" icon="plus" onClick={() => this.props.toggleRestaurantFormEventHandler(this.props.showRestForm)}/>;
 
         const addReview = this.props.showRestForm? <AddReview/>: null;
         return (
@@ -186,6 +260,8 @@ const mapStateToProps = (state) => {
         showReviews: state['restaurants'].get('showReviews'),
         editReview: state['restaurants'].get('editReview'),
         username: state['app'].get('username'),
+        // restaurantName: state['restaurants'].get('restaurantName'),
+        // restaurantLocation: state['restaurants'].get('restaurantLocation'),
         bathroomRate: state['restaurants'].get('bathroomRate'),
         staffRate: state['restaurants'].get('staffRate'),
         cleanRate: state['restaurants'].get('cleanRate'),
@@ -195,6 +271,7 @@ const mapStateToProps = (state) => {
         avgRate: state['restaurants'].get('avgRate'),
         freeText: state['restaurants'].get('freeText'),
         picture: state['restaurants'].get('picture'),
+        submitMessage: state['restaurants'].get('submitMessage'),
     }
 
 };
@@ -204,15 +281,37 @@ const mapDispatchToProps = (dispatch) => {
         toggleRestaurantFormEventHandler: (currVal) => {
              dispatch(RestaurantsActions.toggleRestaurantForm(currVal));
          },
-        updateStateFieldEventHandler: (e) => {
-            dispatch(RestaurantsActions.updateStateAction(e.target.id, e.target.value));
+        updateStateFieldEventHandler: (e, data) => {
+            if (data) {
+                dispatch(RestaurantsActions.updateStateFieldAction(data.id, data.value));
+            }
+            else
+                dispatch(RestaurantsActions.updateStateFieldAction(e.target.id, e.target.value));
         },
         showReviewsEventHandler: (data, prevReviewValue) => {
             dispatch(RestaurantsActions.showReviewsAction(prevReviewValue, data.id));
         },
         makeEditableEventHandler: (e, prevEditReview, reviewContent) => {
             dispatch(RestaurantsActions.enableEditReviewAction(prevEditReview, e.target.id, reviewContent))
-        }
+        },
+        deleteReviewEventHandler: (reviewContent) => {
+            dispatch(RestaurantsActions.deleteReviewAction(reviewContent));
+        },
+        submitEditEventHandler: (username, name, location, timeStamp, bathroom, staff, clean, food, driveIn, delivery, picture, freeText) => {
+            dispatch(RestaurantsActions.submitEditReviewAction(
+                username,
+                name,
+                location,
+                timeStamp,
+                bathroom,
+                staff,
+                clean,
+                food,
+                driveIn,
+                delivery,
+                picture,
+                freeText));
+        },
     }
 };
 

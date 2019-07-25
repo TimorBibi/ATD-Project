@@ -10,7 +10,7 @@ function toggleRestaurantForm(currVal) {
     };
 }
 
-function updateStateAction(field, value) {
+function updateStateFieldAction(field, value) {
     return {
         type: RestaurantsActionsConstants.UPDATE_REST_STATE_FIELD,
         payload: {
@@ -48,8 +48,35 @@ function enableEditReviewAction(prevEditReview, currId, reviewContent){
     };
 }
 
+function submitEditReviewAction(username, name, location, timeStamp, bathroom, staff, clean, food, driveIn, delivery, picture, freeText)
+{
+    console.log("!!!submitEditReviewAction", bathroom);
+    return {
+        type: RestaurantsActionsConstants.SUBMIT_EDIT_REVIEW,
+        uri: '/api/submit/edit/review',
+        payload: {
+            username: username, name: name, location: location,
+            bathroom: bathroom, staff: staff, clean: clean,
+            food: food, driveIn: driveIn, delivery: delivery,
+            picture: picture, freeText: freeText, timeStamp: timeStamp,
+        }
+    };
+}
 
-function restaurantFailureAction(error){
+
+function submitEditReviewSucceedAction({succeed, message}){
+    if (!succeed)
+        return {
+            type: RestaurantsActionsConstants.SUBMIT_EDIT_REVIEW_FAILURE,
+            payload: {
+                message: message,
+            }
+        };
+    else
+        return {type: RestaurantsActionsConstants.SUBMIT_EDIT_REVIEW_SUCCEED,};
+}
+
+function editReviewFailureAction(error){
         return {
             type: RestaurantsActionsConstants.RESTAURANTS_FAILURE,
             payload: {
@@ -58,19 +85,50 @@ function restaurantFailureAction(error){
         };
 }
 
-// function closeToggleAfterSubmit(){
-//     return {
-//         type: RestaurantsActionsConstants.CLOSE_TOGGLE_REVIEW_AFTER_SUBMIT,
-//     }
-// }
+function deleteReviewAction(review)
+{
+    return {
+        type: RestaurantsActionsConstants.DELETE_REVIEW,
+        uri: '/api/delete/review',
+        payload: {
+            review:review
+        }
+    };
+}
 
+
+function deleteReviewSucceedAction({succeed, message}){
+    if (!succeed)
+        return {
+            type: RestaurantsActionsConstants.DELETE_REVIEW_FAILURE,
+            payload: {
+                message: message,
+            }
+        };
+    else
+        return {type: RestaurantsActionsConstants.DELETE_REVIEW_SUCCEED,};
+}
+
+function deleteReviewFailureAction(error){
+    return {
+        type: RestaurantsActionsConstants.RESTAURANTS_FAILURE,
+        payload: {
+            error: error
+        }
+    };
+}
 
 let RestaurantsActions = {
     toggleRestaurantForm,
-    updateStateAction,
+    updateStateFieldAction,
     showReviewsAction,
     enableEditReviewAction,
-    restaurantFailureAction
+    submitEditReviewAction,
+    submitEditReviewSucceedAction,
+    editReviewFailureAction,
+    deleteReviewAction,
+    deleteReviewSucceedAction,
+    deleteReviewFailureAction,
 };
 
 export default RestaurantsActions

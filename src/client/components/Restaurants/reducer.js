@@ -35,6 +35,17 @@ const RestaurantsReducer = (state = initialState.restaurants, action) => {
                 .set('freeText', action.payload.freeText)
                 .set('picture', action.payload.picture);
 
+//TODO: delete both cases of edit
+        case RestaurantsActionsConstants.SUBMIT_EDIT_REVIEW_SUCCEED:
+            console.log("!!!!!!!!!!!!!!!!!SUBMIT_EDIT_REVIEW_SUCCEED");
+            return state.set('submitMessage', {succeed: false, message: ''});
+
+
+        case RestaurantsActionsConstants.SUBMIT_EDIT_REVIEW_FAILURE:
+            console.log("!!!!!!!!!!!!!!!!!!SUBMIT_EDIT_REVIEW_FAILURE");
+            return state.set('submitMessage', {succeed: false, message: ''});
+
+
         default: //otherwise state is lost!
             return state;
     }

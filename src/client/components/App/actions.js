@@ -52,6 +52,7 @@ function loadRestaurantsAction(){
     }
 }
 
+
 function loadCitiesSuccessAction(cities){
     const locations = cities.map((elm) => {
         return elm.city;
@@ -82,6 +83,7 @@ function loadRestaurantsSuccessAction(restaurants){
     }
 }
 
+
 function updateReviewAfterSubmit(){
     return {
         type: AppActionsConstants.UPDATE_REVIEW_AFTER_SUBMIT,
@@ -93,6 +95,8 @@ function updateUserAfterSubmit(){
         type: AppActionsConstants.UPDATE_USER_AFTER_SUBMIT,
     }
 }
+
+
 let AppActions  = {
     connectUserAction,
     checkTokenAction,

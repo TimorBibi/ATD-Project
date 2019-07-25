@@ -96,6 +96,7 @@ function* loadRestaurants(action){
     }
 }
 
+
 function* AppSaga() {
     //using takeEvery, you take the action away from reducer to saga
     yield takeEvery(AppActionsConstants.CHECK_TOKEN, checkToken);

@@ -43,7 +43,7 @@ module.exports = (app) => {
         UsersModel
             .find()
             .then(doc => {
-                if (doc === null) { //init cities model
+                if (doc === null) { //init users model
                     res.json({succeed: false, message:'no users'});
                     throw 'no users error';
                 }
@@ -62,8 +62,23 @@ module.exports = (app) => {
         RestaurantsModel
             .find()
             .then(doc => {
-                if (doc === null) { //init cities model
+                if (doc === null) { //init restaurants model
                    res.json(List([]));
+                }
+                else {
+                    res.json(List(doc));
+                }
+            })
+            .catch(_handleError);
+    });
+
+    app.get('/api/load/update/edit/review/users/restaurants', function(req, res) {
+        console.log('/api/load/update/edit/review/users/restaurants');
+        RestaurantsModel
+            // .find({req.body.})
+            .then(doc => {
+                if (doc === null) { //init cities model
+                    res.json(List([]));
                 }
                 else {
                     res.json(List(doc));
