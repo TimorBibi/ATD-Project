@@ -98,11 +98,28 @@ export default {
             pictureData: [],
         },
         isValid: false,
-    })
-    // viewProfilePage: Map({
-    //
-    // }),
-    // addReview: Map({
-    //
-    // }),
+    }),
+    viewProfilePage: Map({
+        showRestaurantForm: false,
+        editReview: Map({
+            selectedReview: '',
+            edit: false,
+        }),
+        bathroomRate: 1,
+        staffRate: 1,
+        cleanRate: 1,
+        foodRate: 1,
+        driveInRate: 0,
+        deliveryRate: 0,
+        avgRate: 0,
+        freeText: '',
+        picture: {
+            pictureType: '',
+            pictureData: [],
+        },
+        submitMessage: {
+            succeed: false,
+            message: '',
+        },
+    }),
 };

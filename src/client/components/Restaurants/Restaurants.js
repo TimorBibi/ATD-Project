@@ -54,8 +54,6 @@ class Restaurants extends React.Component {
                 <h2 id="name">{restaurant.name}</h2>
                 <label htmlFor="location">Location: </label>
                 <p id="location">{restaurant.location.city}</p>
-                <label htmlFor="avgRate">Rate: </label>
-                <p id="avgRate">{restaurant.avgRate}</p>
                 {hasReviews}
                 <hr/>
                 {showReviews}
@@ -119,7 +117,7 @@ class Restaurants extends React.Component {
             </Form>)
     }
 
-    editReviewItem(review, editable)
+    editReviewItem(review)
     {
         const reviewImg = review.picture.data !== null?
             (<div className="imgPreview">
@@ -218,15 +216,14 @@ class Restaurants extends React.Component {
                         </div>);
                     return ((this.props.editReview.get('selectedReview') === review.username+"_"+review.timeStamp)
                                         && this.props.editReview.get('edit')) ?
-                        this.editReviewItem(review, editable): this.viewReviewItem(review, editable);
+                        this.editReviewItem(review): this.viewReviewItem(review, editable);
                 })
                 : null;
             return (this.viewRestaurantItem(restaurant, showReviews));
         }
     }
 
-    //TODO validate filled props
-    //TODO display all the restaurants
+    //TODO: validate filled props
     render() {
         const allowAddReview = !this.props.isConnected ? null :
             <Button label="Add Review" icon="plus" onClick={() => this.props.toggleRestaurantFormEventHandler(this.props.showRestForm)}/>;

@@ -31,6 +31,7 @@ class App extends React.Component {
         }
         if(this.props.addedReview)
         {
+            console.log("!!!!!!!!!componentDidUpdate");
             this.props.loadRestaurantsEventHandler();
             this.props.loadUsersEventHandler();
         }

@@ -20,6 +20,7 @@ const AppReducer = (state = initialState.app, action) => {
             return state.set('addedReview', false).set('restaurants', action.payload.restaurants);
 
         case AppActionsConstants.UPDATE_REVIEW_AFTER_SUBMIT:
+            console.log("!!!!!!!!!UPDATE_REVIEW_AFTER_SUBMIT");
             return state.set('addedReview', true);
 
         case AppActionsConstants.UPDATE_USER_AFTER_SUBMIT:
