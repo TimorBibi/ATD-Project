@@ -65,6 +65,18 @@ export default {
             message: '',
         },
     }),
+    users: Map({
+        showRestaurantForm: false,
+        showReviews: Map({
+            selectedUser: '',
+            visible: false,
+        }),
+        editReview: Map({
+            selectedReview: '',
+            edit: false,
+        }),
+        movetoViewProfilePage: false,
+    }),
     addReview :Map({
         restaurantName: '',
         restaurantLocation: '',

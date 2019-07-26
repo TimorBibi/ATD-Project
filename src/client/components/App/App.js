@@ -8,7 +8,8 @@ import RegisterPage from "../RegisterPage/RegisterPage";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import LogInPage from '../LogInPage/LogInPage';
 import Restaurants from '../Restaurants/Restaurants';
-import ViewProfilePage from '../ViewProfilePage/ViewProfilePage'
+import ViewProfilePage from '../ViewProfilePage/ViewProfilePage';
+import Users from '../Users/Users';
 
 
 class App extends React.Component {
@@ -49,6 +50,7 @@ class App extends React.Component {
                         <Route path="/register" component={RegisterPage} />
                         <Route path="/login" component={LogInPage} />
                         <Route path="/viewProfile" component={ViewProfilePage} />
+                        <Route path="/users" component={Users} />
                     </div>
                 </div>
             </Router>

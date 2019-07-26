@@ -36,6 +36,10 @@ class TopBar extends React.Component {
                            onClick={(e, data) => this.props.setActiveEventHandler(e, data, this.props.activeItem)}>
                     Home
                 </Menu.Item>
+                <Menu.Item name='users' active={active === 'users'} href="/users"
+                           onClick={(e, data) => this.props.setActiveEventHandler(e, data, this.props.activeItem)}>
+                    Users
+                </Menu.Item>
                 <Menu.Menu position='right'>
                     <Dropdown item text='User'>
                         {dropDownMenu()}

@@ -5,6 +5,7 @@ import RegisterPage from './components/RegisterPage/reducer';
 import LogInPageReducer from "./components/LogInPage/reducer";
 import RestaurantsReducer from './components/Restaurants/reducer';
 import AddReviewReducer from './components/AddReview/reducer';
+import UsersReducer from "./components/Users/reducer";
 
 export default combineReducers({
   app: AppReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   loginPage: LogInPageReducer,
   // viewProfilePge: ViewProfilePageReducer,
   restaurants: RestaurantsReducer,
-  addReview: AddReviewReducer
+  addReview: AddReviewReducer,
+  users: UsersReducer
 });

@@ -5,8 +5,8 @@ let Schema = mongoose.Schema;
 let userSchema = new Schema({
     username: String,
     password: String,
-    location: {name: String, x: Number, y: Number},
-    picture: { data: String, contentType: String },
+    location: {city: String, x: Number, y: Number},
+    picture: {data: String, contentType: String },
     reviews: [],
 });
 

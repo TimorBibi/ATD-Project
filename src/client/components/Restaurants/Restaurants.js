@@ -19,7 +19,6 @@ class Restaurants extends React.Component {
         this.viewReviewItem = this.viewReviewItem.bind(this);
         this.editReviewItem = this.editReviewItem.bind(this);
         this.downloadFile = this.downloadFile.bind(this);
-        this.submitAndUpdateEdit = this.submitAndUpdateEdit.bind(this);
         // <ViewProfilePage userID={user.username}/>
     }
 
@@ -35,12 +34,6 @@ class Restaurants extends React.Component {
             this.props.updateStateFieldEventHandler(e, {id:'picture' ,value: value});
         };
         fs.readAsDataURL(file);
-    }
-
-    submitAndUpdateEdit(e, review)
-    {
-        this.props.submitEditEventHandler(e, this.props.editReview, review);
-        this.props.makeEditableEventHandler(e, this.props.editReview, review);
     }
 
     viewRestaurantItem(restaurant, showReviews)

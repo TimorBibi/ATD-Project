@@ -39,7 +39,7 @@ module.exports = (app) => {
                                 let newUser = new UserModel({
                                     username: req.body.username,
                                     password: req.body.password,
-                                    location: {name: location.city, x: location.x, y: location.y},
+                                    location: {city: location.city, x: location.x, y: location.y},
                                     picture: {
                                         data: req.body.picture.pictureData,
                                         contentType: req.body.picture.pictureType
@@ -55,7 +55,7 @@ module.exports = (app) => {
                             const token = jwt.sign({'username': req.body.username}, secret, {
                                 expiresIn: '1h'
                             });
-                            res.cookie('token', token, { httpOnly: true })
+                            res.cookie('token', token, { httpOnly: true });
                             res.json({succeed: true, username: req.body.username});
                         })
                         .catch(_handleError);
