@@ -12,7 +12,7 @@ function toggleRestaurantForm(currVal) {
 
 function updateStateFieldAction(field, value) {
     return {
-        type: RestaurantsActionsConstants.UPDATE_REST_STATE_FIELD,
+        type: RestaurantsActionsConstants.UPDATE_STATE_FIELD,
         payload: {
             field,
             value,

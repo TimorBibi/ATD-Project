@@ -11,7 +11,7 @@ const RestaurantsReducer = (state = initialState.restaurants, action) => {
             return state.set('showRestaurantForm', action.payload.newVal)
                 .set('submitMessage', {succeed: false, message: ''});
 
-        case RestaurantsActionsConstants.UPDATE_REST_STATE_FIELD:
+        case RestaurantsActionsConstants.UPDATE_STATE_FIELD:
             return state.set(action.payload.field, action.payload.value)
                 .set('submitMessage', {succeed: false, message: ''});
 

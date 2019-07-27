@@ -1,4 +1,3 @@
-const {Map, List} = require('immutable');
 let CitiesModel = require('../model/cities');
 let UserModel = require('../model/user');
 let RestaurantModel = require('../model/restaurant');

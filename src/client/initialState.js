@@ -67,6 +67,9 @@ export default {
     }),
     users: Map({
         showRestaurantForm: false,
+        searchKey: '',
+        searchValue:'',
+        usersToShow: List(),
         showReviews: Map({
             selectedUser: '',
             visible: false,
@@ -76,6 +79,7 @@ export default {
             edit: false,
         }),
         movetoViewProfilePage: false,
+
     }),
     addReview :Map({
         restaurantName: '',
@@ -121,5 +125,6 @@ export default {
             succeed: false,
             message: '',
         },
+        editProfile: false,
     }),
 };

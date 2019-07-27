@@ -1,8 +1,10 @@
 import React from 'react';
 import './Users.scss';
 import {connect} from 'react-redux';
-import {Button, Form} from 'semantic-ui-react'
+import {Button, Form} from 'semantic-ui-react';
+import {Dropdown} from "primereact/dropdown";
 import {DataView, DataViewLayoutOptions} from 'primereact/dataview';
+import {InputText} from 'primereact/inputtext';
 import {List, Map} from 'immutable';
 import {Rating} from 'primereact/rating';
 import UsersActions from '../Users/actions';
@@ -14,10 +16,12 @@ class Users extends React.Component {
         this.itemTemplate = this.itemTemplate.bind(this);
         this.viewUserItem = this.viewUserItem.bind(this);
         this.viewReviewItem = this.viewReviewItem.bind(this);
+        this.searchBy = this.searchBy.bind(this);
+        this.resetSearchField = this.resetSearchField.bind(this);
         // <ViewProfilePage userID={user.username}/> //todo: use it for review component
     }
 
-    componentDidUpdate() {
+        componentDidUpdate() {
         if (this.props.movetoViewProfilePage)
             this.props.history.push('/viewProfile'); //reload the root page
     }
@@ -62,7 +66,8 @@ class Users extends React.Component {
         const hasFreeText = review.freeText?
             (<label htmlFor="freeText">Description: {review.freeText}</label>)
             : null;
-        const reviewImg = review.picture.data !== null?
+        console.log("rrrrrrrr",review.picture);
+        const reviewImg = review.picture.contentType !== "" && review.picture.contentType!==null?
             (<div className="imgPreview">
                 <img src={review.picture.data} width="200" height="100"/>
             </div>):
@@ -76,6 +81,10 @@ class Users extends React.Component {
                 <Form.Field width='9'>
                     <p id="restaurant">{review.name}</p>
                 </Form.Field>
+                <Form.Field width='9'>
+                <label htmlFor="location" className="form-text">Location: </label>
+                    <p id="location">{review.location.city}</p>
+                </Form.Field >
                 <Form.Field width='9'>
                     <label htmlFor="bathroomRate" className="form-text">Bathroom Quality:</label>
                     <Rating id='bathroomRate' value={review.bathroom} cancel={false} readonly={true}/>
@@ -119,10 +128,63 @@ class Users extends React.Component {
         }
     }
 
+    resetSearchField()
+    {
+        this.props.updateSearchKeyEventHandler('');
+        this.props.updateSearchValueEventHandler('');
+        this.props.updateShowUsersEventHandler(this.props.users);
+    }
+    searchBy()
+    {
+        const key = this.props.searchKey;
+        const value = this.props.searchValue;
+        const users = this.props.users;
+
+        if (value === '' || key==='')
+            return users;
+
+        if(key === 'user')
+            return users.filter((user)=> user.username.toLowerCase() === value.toLowerCase());
+        if(key === 'location')
+            return users.filter((user)=> user.location.city.toLowerCase() === value.toLowerCase());
+        if(key === 'restaurant')
+            return users.filter((user)=> user.reviews.length > 0?
+                user.reviews.filter((review)=> review.name === value).length > 0 : false);
+    }
+
+    renderHeader() {
+        const searchOptions = [
+            {label: 'User Name', value: 'user'},
+            {label: 'User Location', value: 'location'},
+            {label: 'Restaurant Name', value: 'restaurant'}
+        ];
+
+        return (
+            <div className="p-grid">
+                <div className="p-col-6" style={{textAlign: 'left'}}>
+                    <Dropdown options={searchOptions} value={this.props.searchKey} placeholder="Search By"
+                              onChange={(e) => (this.props.updateSearchKeyEventHandler(e.value))} />
+                    <InputText id="searchValue" value={this.props.searchValue} onChange={this.props.updateStateFieldEventHandler}/>
+                    <Button id="searchButton"  className="ui button"
+                            onClick={() => (this.props.updateShowUsersEventHandler(this.searchBy()))}
+                    >Search</Button>
+                    <Button id="showAllButton"  className="ui button"
+                            onClick={() => (this.resetSearchField())}
+                    >Show All Users</Button>
+                </div>
+                <div className="p-col-6" style={{textAlign: 'right'}}>
+                </div>
+            </div>
+        );
+    }
+
     render() {
+        const header = this.renderHeader();
+
         return (
             <div className='users'>
-                <DataView value={this.props.users} layout="list"
+                {header}
+                <DataView value={this.props.usersToShow} layout="list"
                           itemTemplate={this.itemTemplate}
                           rows={this.props.users.length}/>
             </div>
@@ -133,9 +195,12 @@ class Users extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
+        searchKey: state['users'].get('searchKey'),
+        searchValue: state['users'].get('searchValue'),
         showRestForm: state['users'].get('showRestaurantForm'),
         isConnected: state['app'].get('isConnected'),
         users: (List) (state['app'].get('users')).toArray(),
+        usersToShow: (List) (state['users'].get('usersToShow')).toArray(),
         showReviews: state['users'].get('showReviews'),
         username: state['app'].get('username'),
         movetoViewProfilePage: state['users'].get('movetoViewProfilePage'),
@@ -145,11 +210,23 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        updateStateFieldEventHandler: (e) => {
+            dispatch(UsersActions.updateStateFieldAction(e.target.id, e.target.value));
+        },
         showUserReviewsEventHandler: (data, prevReviewValue) => {
             dispatch(UsersActions.showUserReviewsAction(prevReviewValue, data.id));
         },
         moveToUserProfileEventHandler:() => {
             dispatch(UsersActions.moveToUserProfileAction());
+        },
+        updateShowUsersEventHandler: (users) => {
+            dispatch(UsersActions.updateShowUsersAction(users));
+        },
+        updateSearchKeyEventHandler: (key) => {
+            dispatch(UsersActions.updateSearchKeyAction(key));
+        },
+        updateSearchValueEventHandler: (value) => {
+            dispatch(UsersActions.updateSearchValueAction(value));
         }
     }
 };

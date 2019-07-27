@@ -67,8 +67,8 @@ class Restaurants extends React.Component {
         const hasFreeText = review.freeText?
             (<label htmlFor="freeText">Description: {review.freeText}</label>)
             : null;
-        console.log("pipipi", review.picture.data !== null);
-        const reviewImg = review.picture.data !== null?
+
+        const reviewImg = review.picture.contentType !== "" && review.picture.contentType!==null?
             (<div className="imgPreview">
                 <img src={review.picture.data} width="200" height="100"/>
             </div>):
@@ -119,7 +119,7 @@ class Restaurants extends React.Component {
 
     editReviewItem(review)
     {
-        const reviewImg = review.picture.data !== null?
+        const reviewImg = review.picture.contentType !== "" && review.picture.contentType!==null?
             (<div className="imgPreview">
                 <img src={review.picture.data} width="200" height="100"/>
             </div>):

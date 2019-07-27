@@ -8,7 +8,10 @@ import {DataView} from "primereact/components/dataview/DataView";
 import ViewProfilePageActions from "./actions";
 import {Rating} from "primereact/components/rating/Rating";
 import {InputTextarea} from "primereact/components/inputtextarea/InputTextarea";
-import RestaurantsActions from "../Restaurants/actions";
+import {Growl} from "primereact/components/growl/Growl";
+import {InputText} from "primereact/components/inputtext/InputText";
+import {Password} from "primereact/components/password/Password";
+import {AutoComplete} from "primereact/components/autocomplete/AutoComplete";
 const {Map, List} = require('immutable');
 
 class ViewProfilePage extends React.Component {
@@ -26,6 +29,8 @@ class ViewProfilePage extends React.Component {
         this.itemTemplate = this.itemTemplate.bind(this);
         this.viewReviewItem = this.viewReviewItem.bind(this);
         this.editReviewItem = this.editReviewItem.bind(this);
+        this.editProfile = this.editProfile.bind(this);
+        this.viewProfile = this.viewProfile.bind(this);
         this.downloadFile = this.downloadFile.bind(this);
         // <ViewProfilePage userID={user.username}/>
     }
@@ -50,8 +55,8 @@ class ViewProfilePage extends React.Component {
         const hasFreeText = review.freeText?
             (<label htmlFor="freeText">Description: {review.freeText}</label>)
             : null;
-        console.log("pipipi", review.picture.data !== null);
-        const reviewImg = review.picture.data !== null?
+
+        const reviewImg = review.picture.contentType !== "" && review.picture.contentType!==null?
             (<div className="imgPreview">
                 <img src={review.picture.data} width="200" height="100"/>
             </div>):
@@ -101,7 +106,7 @@ class ViewProfilePage extends React.Component {
 
     editReviewItem(review)
     {
-        const reviewImg = review.picture.data !== null?
+        const reviewImg = review.picture.contentType !== "" && review.picture.contentType!==null?
             (<div className="imgPreview">
                 <img src={review.picture.data} width="200" height="100"/>
             </div>):
@@ -197,6 +202,84 @@ class ViewProfilePage extends React.Component {
         }
     }
 
+    editProfile(user, imgsrc)
+    {
+        console.log("&&&&&&&&&", this.props.username,
+            this.props.password,
+            this.props.location,
+            this.props.profilePicture);
+       return (
+           <div className="editProfile">
+               {/*<Growl ref={(el) => this.growl = el} position="bottomright"/>*/}
+               <Form className="editProfile-form" onSubmit={() => {
+                   this.props.submitEventHandler(
+                       this.props.username,
+                       this.props.password,
+                       this.props.location,
+                       this.props.profilePicture,
+                       this.props.locations,
+                       this.props.isValid);
+                       this.props.editProfileEventHandler(this.props.editProfile);
+               }}>
+                   <Form.Field width='9'>
+                    {/*<span className="p-float-label">*/}
+                       <label htmlFor="username" className="form-text">Username:</label>
+                       <InputText id="username" value={this.props.username} onChange={this.props.updateStateFieldEventHandler}
+                                    onBlur={(e)=>this.props.validateUsernameEventHandler(e, this.props.username)} />
+                    {/*</span>*/}
+                   </Form.Field>
+                   <Form.Field width='9'>
+                      {/*<span className="p-float-label">*/}
+                       <label htmlFor="password" className="form-text">Password:</label>
+                       <Password id='password'
+                                  value={this.props.password} onChange={this.props.updateStateFieldEventHandler}/>
+                      {/*</span>*/}
+                   </Form.Field>
+                   <Form.Field width='9'>
+                       <Input type="file" id="picture"  accept="image/*" onChange={this.downloadFile}/>
+                       <div className="imgPreview">
+                           <img src={imgsrc} width="200" height="100"/>
+                       </div>
+                   </Form.Field>
+                   <Form.Field width='9'>
+                       <label htmlFor="location" className="form-text">Location:</label>
+                       <AutoComplete id='location' value={this.props.location}
+                                     onChange={this.props.updateStateFieldEventHandler}
+                                     suggestions={this.props.suggestions}
+                                     completeMethod={(e) => this.props.suggestLocationsEventHandler(this.props.locations, e)} />
+                   </Form.Field>
+                   <Form.Button content='Save' type="submit"/>
+                   <Form.Button className="ui button"
+                                onClick={() => this.props.editProfileEventHandler(this.props.editProfile)} >Cancel</Form.Button>
+               </Form>
+           </div>
+       );
+    }
+
+    viewProfile(user, imgsrc, addReview)
+    {
+        return (<div>
+            <Form className="viewProfile-form" key={user.get('username')}>
+                <Form.Field width='9'>
+                    <h2 id="userName">{user.get('username')}</h2>
+                </Form.Field>
+                <Form.Field width='9'>
+                    <div className="imgPreview">
+                        <img src={imgsrc} width="200" height="100"/>
+                    </div>
+                </Form.Field>
+                <Form.Field width='9'>
+                    <label htmlFor="location">Location:</label>
+                    <p id="location">{Map(user.get('location')).get('city')} </p>
+                </Form.Field>
+            </Form>
+            <Button id={"edit_"+user.get('userName')}  className="ui button"
+                    onClick={() => this.props.editProfileEventHandler(this.props.editProfile)}>Edit Profile</Button>
+            <Button label="Add Review" icon="plus" onClick={() => this.props.toggleRestaurantFormEventHandler(this.props.showRestForm)}/>
+            {addReview}
+        </div>);
+    }
+
     render() {
         const user = Map(this.props.users.find((usr)=> usr['username'] === this.props.username));
         const imgsrc = Map(user.get('picture')).get('data');
@@ -206,16 +289,13 @@ class ViewProfilePage extends React.Component {
                       itemTemplate={this.itemTemplate}
                       rows={List(user.get('reviews')).size}/>
             : <label htmlFor="noReviews" className="form-text">no reviews</label>;
+
+        const userProfile = this.props.editProfile?
+            this.editProfile(user, imgsrc): this.viewProfile(user, imgsrc, addReview);
+
         return (
             <div>
-                    <h2 id="usernameValue">{this.props.username}</h2>
-                <div className="imgPreview">
-                    <img src={imgsrc} width="200" height="100"/>
-                </div>
-                    <h5><label htmlFor="locationLabel" className="form-text">Location:    </label>
-                    <label htmlFor="locationValue" className="form-text">{Map(user.get('location')).get('city')}</label></h5>
-                <Button label="Add Review" icon="plus" onClick={() => this.props.toggleRestaurantFormEventHandler(this.props.showRestForm)}/>
-                {addReview}
+                {userProfile}
                 {showReview}
             </div>
         )
@@ -226,6 +306,13 @@ class ViewProfilePage extends React.Component {
 const mapStateToProps = (state) => {
     return {
         username: state['app'].get('username'),
+        password: state['registerPage'].get('password'),
+        location: state['registerPage'].get('location'),
+        locations: state['registerPage'].get('locations'),
+        profilePicture: state['registerPage'].get('picture'),
+        isValid: state['registerPage'].get('isValid'),
+        suggestions: state['registerPage'].get('suggestions'),
+
         users: (List) (state['app'].get('users')).toArray(),
         isConnected: state['app'].get('isConnected'),
         movetoViewProfilePage: state['users'].get('movetoViewProfilePage'),
@@ -242,6 +329,7 @@ const mapStateToProps = (state) => {
         avgRate: state['viewProfilePage'].get('avgRate'),
         freeText: state['viewProfilePage'].get('freeText'),
         picture: state['viewProfilePage'].get('picture'),
+        editProfile: state['viewProfilePage'].get('editProfile'),
     }
 
 };
@@ -282,6 +370,18 @@ const mapDispatchToProps = (dispatch) => {
                 delivery,
                 picture,
                 freeText));
+        },
+        editProfileEventHandler: (prevValue) => {
+            dispatch(ViewProfilePageActions.editProfileAction(prevValue));
+        },
+        validateUsernameEventHandler: (e, currName) => {
+            dispatch(ViewProfilePageActions.validateUsernameAction(e.target.value, currName));
+        },
+        suggestLocationsEventHandler: (locations, e) => {
+            dispatch(ViewProfilePageActions.suggestLocationsAction(locations ,e.query));
+        },
+        submitEventHandler: (username, password, location, picture, locations, isValid) => {
+            dispatch(ViewProfilePageActions.submitUserAction(username, password, location, picture, locations, isValid));
         },
     }
 };

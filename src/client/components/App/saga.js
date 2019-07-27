@@ -2,6 +2,7 @@ import {AppActionsConstants} from './constants'
 import { call, put, takeEvery } from 'redux-saga/effects'
 import AppActions from './actions'
 import RegisterPageActions from "../RegisterPage/actions";
+import UsersActions from "../Users/actions";
 
 function* checkToken(action){
     console.log('AppSaga=', action);
@@ -71,7 +72,7 @@ function* loadUsers(action){
 
         const json = yield call([res, 'json']); //retrieve body of response
         yield put(AppActions.loadUsersSuccessAction(json));
-
+        yield put (UsersActions.initShowUsersAction(json));
     } catch (e) {
         yield put(AppActions.appFailureAction(e.message));
     }

@@ -1,4 +1,5 @@
 import { ViewProfilePageActionsConstants } from './constants';
+import {RegisterPageActionsConstants} from "../RegisterPage/constants";
 
 function toggleRestaurantForm(currVal) {
     let newVal = !currVal;
@@ -12,7 +13,7 @@ function toggleRestaurantForm(currVal) {
 
 function updateStateFieldAction(field, value) {
     return {
-        type: ViewProfilePageActionsConstants.UPDATE_REST_STATE_FIELD,
+        type: ViewProfilePageActionsConstants.UPDATE_STATE_FIELD,
         payload: {
             field,
             value,
@@ -107,6 +108,111 @@ function deleteReviewFailureAction(error){
     };
 }
 
+function editProfileAction(prevValue) {
+    return {
+        type: ViewProfilePageActionsConstants.EDIT_PROFILE,
+        payload: {
+            prevValue: prevValue
+        }
+    }
+}
+function validateUsernameAction(name, currName){
+    return {
+        type: ViewProfilePageActionsConstants.VALIDATE_USERNAME,
+        uri: '/api/validate/edit/username',
+        payload: {
+            checkName: name,
+            currName: currName
+        }
+    }
+}
+
+
+function RegisterPageFailureAction(error){
+    return {
+        type: ViewProfilePageActionsConstants.REGISTER_FAILURE,
+        payload: {
+            error: error
+        }
+    }
+}
+
+function suggestLocationsAction(fullList, subString){
+    const suggestedLocations =
+        fullList.filter(elm => {
+            return elm.toLowerCase().startsWith(subString.toLowerCase());
+        });
+    return {
+        type: ViewProfilePageActionsConstants.SUGGEST_LOCATION,
+        payload: {
+            suggestedLocations: suggestedLocations
+        }
+    }
+}
+
+function validateActionSuccess(isValid){
+    if(isValid)
+        return {
+            type: ViewProfilePageActionsConstants.VALIDATE_ACTION_SUCCESS,
+        };
+    else
+        return {
+            type: ViewProfilePageActionsConstants.VALIDATE_ACTION_FAILURE,
+            payload: {
+                message: "The username is already used, please choose different one."
+            }
+        };
+}
+
+function submitUserAction(username, password, location, picture, locations, isValid) {
+    if(username.length > 0 && location && picture && password) {
+        if(!isValid)
+            return {
+                type: ViewProfilePageActionsConstants.VALIDATE_ACTION_FAILURE,
+                payload: {
+                    message: `The username is already used,\nplease choose different one.`
+                }
+            };
+        if (locations.find((elm) => elm === location))
+            return {
+                type: ViewProfilePageActionsConstants.SUBMIT_USER,
+                uri: '/api/submit/edit/user',
+                payload: {
+                    username: username,
+                    password: password,
+                    location: location,
+                    picture: picture,
+                }
+            }
+        else
+            return {
+                type: ViewProfilePageActionsConstants.MISSING_FIELDS,
+                payload: {
+                    succeed: false,
+                    message: "Please choose valid location."
+                }
+            };
+    }
+    else
+        return {
+            type: ViewProfilePageActionsConstants.MISSING_FIELDS,
+            payload: {
+                succeed: false,
+                message: "Please fill in all the fields."
+            }
+        };
+}
+
+function submitUserSuccessAction(value) {
+    return {
+        type: ViewProfilePageActionsConstants.SUBMIT_USER_SUCCESS,
+        payload: {
+            message: value.username + ' submitted.'
+        }
+    }
+
+}
+
 
 let ViewProfilePageActions = {
     toggleRestaurantForm,
@@ -118,6 +224,13 @@ let ViewProfilePageActions = {
     deleteReviewAction,
     deleteReviewSucceedAction,
     deleteReviewFailureAction,
+    editProfileAction,
+    validateUsernameAction,
+    RegisterPageFailureAction,
+    suggestLocationsAction,
+    validateActionSuccess,
+    submitUserAction,
+    submitUserSuccessAction
 };
 
 export default ViewProfilePageActions
