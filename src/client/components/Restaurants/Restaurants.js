@@ -147,6 +147,7 @@ class Restaurants extends React.Component {
                           this.props.freeText
                       );
                       this.props.makeEditableEventHandler(e, this.props.editReview, review);
+                      this.resetSearchField();
                   }}>
             <Form.Field width='9'>
                 <label htmlFor="writer">Writer: </label>

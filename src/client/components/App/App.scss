@@ -8,11 +8,22 @@ body, html {
 }
 
 .app-header {
-  background-color: #222;
+  background-image: url("/src/img/logo.jpg");
+  background-repeat: repeat-x;
+  background-position: center;
+  height: 184px;
+  width: 100%;
   padding: 10px;
-  color: white;
+
+}
+
+.app-header-title
+{
+  color: #633263;
   font-size: 20pt;
 }
+
+
 
 .app-input {
   line-height: 30px;

@@ -44,7 +44,7 @@ class App extends React.Component {
                 <div className="app-root">
                     <div className="app-header">
                         <TopBar/>
-                        <h2>Restaurateur</h2>
+                        <h2 className="app-header-title"/>
                     </div>
                     <div className="app-body">
                         <Route exact path="/" component={Restaurants} />
