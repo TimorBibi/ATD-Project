@@ -164,7 +164,7 @@ class Users extends React.Component {
                 <div className="p-col-6" style={{textAlign: 'left'}}>
                     <Dropdown options={searchOptions} value={this.props.searchKey} placeholder="Search By"
                               onChange={(e) => (this.props.updateSearchKeyEventHandler(e.value))} />
-                    <InputText id="searchValue" value={this.props.searchValue} onChange={this.props.updateStateFieldEventHandler}/>
+                    <InputText id="searchValue" onChange={this.props.updateStateFieldEventHandler}/>
                     <Button id="searchButton"  className="ui button"
                             onClick={() => (this.props.updateShowUsersEventHandler(this.searchBy()))}
                     >Search</Button>

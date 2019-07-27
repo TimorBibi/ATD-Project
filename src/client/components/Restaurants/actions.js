@@ -1,4 +1,5 @@
 import { RestaurantsActionsConstants } from './constants';
+import {UsersActionsConstants} from "../Users/constants";
 
 function toggleRestaurantForm(currVal) {
     let newVal = !currVal;
@@ -16,6 +17,15 @@ function updateStateFieldAction(field, value) {
         payload: {
             field,
             value,
+        }
+    }
+}
+
+function updateSliderFieldAction(value){
+    return {
+        type: RestaurantsActionsConstants.UPDATE_SLIDER_FIELD,
+        payload: {
+            value
         }
     }
 }
@@ -118,6 +128,34 @@ function deleteReviewFailureAction(error){
     };
 }
 
+function initShowRestaurantsAction(restaurants)
+{
+    return {
+        type: RestaurantsActionsConstants.UPDATE_RESTAURANTS_TO_SHOW,
+        payload: {
+            restaurants: restaurants
+        }
+    }
+}
+
+function updateShowRestaurantsAction(restaurants)
+{
+    return {
+        type: RestaurantsActionsConstants.UPDATE_RESTAURANTS_TO_SHOW,
+        payload: {
+            restaurants: restaurants
+        }
+    }
+}
+
+function updateSearchValueAction()
+{
+    return {
+        type: RestaurantsActionsConstants.UPDATE_REST_SEARCH_VALUE,
+    }
+}
+
+
 let RestaurantsActions = {
     toggleRestaurantForm,
     updateStateFieldAction,
@@ -129,6 +167,10 @@ let RestaurantsActions = {
     deleteReviewAction,
     deleteReviewSucceedAction,
     deleteReviewFailureAction,
+    initShowRestaurantsAction,
+    updateShowRestaurantsAction,
+    updateSearchValueAction,
+    updateSliderFieldAction,
 };
 
 export default RestaurantsActions

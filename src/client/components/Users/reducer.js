@@ -1,6 +1,6 @@
 import { UsersActionsConstants} from './constants'
 import initialState from '../../initialState'
-import {Map} from 'immutable'
+import {List, Map} from 'immutable'
 import {LogInPageActionsConstants} from "../LogInPage/constants";
 
 const UsersReducer = (state = initialState.restaurants, action) => {
@@ -24,12 +24,13 @@ const UsersReducer = (state = initialState.restaurants, action) => {
             return state.set('movetoViewProfilePage', false);
 
         case UsersActionsConstants.UPDATE_USERS_TO_SHOW:
-            return state.set('usersToShow', action.payload.users);
+            const users = (List)(action.payload.users).sortBy((user)=> user.username);
+            return state.set('usersToShow', users);
 
         case UsersActionsConstants.UPDATE_SEARCH_KEY:
             return state.set('searchKey', action.payload.key);
 
-        case UsersActionsConstants.UPDATE_SEARCH_VALUE:
+        case UsersActionsConstants.UPDATE_USER_SEARCH_VALUE:
             return state.set('searchValue', action.payload.value);
 
         default: //otherwise state is lost!

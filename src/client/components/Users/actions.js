@@ -38,7 +38,6 @@ function movedFromUsersPage() {
 
 function initShowUsersAction(users)
 {
-    console.log("$$$$$$$", users);
     return {
         type: UsersActionsConstants.UPDATE_USERS_TO_SHOW,
         payload: {
@@ -70,7 +69,7 @@ function updateSearchKeyAction(key)
 function updateSearchValueAction(value)
 {
     return {
-        type: UsersActionsConstants.UPDATE_SEARCH_VALUE,
+        type: UsersActionsConstants.UPDATE_USER_SEARCH_VALUE,
         payload: {
             value: value
         }

@@ -1,6 +1,7 @@
 import { RestaurantsActionsConstants} from './constants'
 import initialState from '../../initialState'
-import {Map} from 'immutable'
+import {Map,List} from 'immutable'
+import {UsersActionsConstants} from "../Users/constants";
 
 const RestaurantsReducer = (state = initialState.restaurants, action) => {
     console.log('Restaurants state=', state);
@@ -14,6 +15,9 @@ const RestaurantsReducer = (state = initialState.restaurants, action) => {
         case RestaurantsActionsConstants.UPDATE_STATE_FIELD:
             return state.set(action.payload.field, action.payload.value)
                 .set('submitMessage', {succeed: false, message: ''});
+
+        case RestaurantsActionsConstants.UPDATE_SLIDER_FIELD:
+            return state.set('ratingRangeValues', action.payload.value);
 
         case RestaurantsActionsConstants.VIEW_REVIEWS:
             return state.set('showReviews', new Map({
@@ -35,14 +39,22 @@ const RestaurantsReducer = (state = initialState.restaurants, action) => {
                 .set('freeText', action.payload.freeText)
                 .set('picture', action.payload.picture);
 
+        case RestaurantsActionsConstants.UPDATE_RESTAURANTS_TO_SHOW:
+            const restaurants = (List)(action.payload.restaurants).sortBy((rest)=> -1*rest.avgRate);
+            return state.set('restaurantsToShow', restaurants);
+
+        case RestaurantsActionsConstants.UPDATE_REST_SEARCH_VALUE:
+            return state.set('searchNameValue', '')
+                        .set('searchLocationValue', '')
+                        .set('ratingRangeValues', [1,5]);
+
+
 //TODO: delete both cases of edit
         case RestaurantsActionsConstants.SUBMIT_EDIT_REVIEW_SUCCEED:
-            console.log("!!!!!!!!!!!!!!!!!SUBMIT_EDIT_REVIEW_SUCCEED");
             return state.set('submitMessage', {succeed: false, message: ''});
 
 
         case RestaurantsActionsConstants.SUBMIT_EDIT_REVIEW_FAILURE:
-            console.log("!!!!!!!!!!!!!!!!!!SUBMIT_EDIT_REVIEW_FAILURE");
             return state.set('submitMessage', {succeed: false, message: ''});
 
 

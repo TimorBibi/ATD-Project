@@ -8,6 +8,8 @@ import {List, Map} from 'immutable'
 import AddReview from "../AddReview/AddReview";
 import {Rating} from 'primereact/rating'
 import {InputTextarea} from 'primereact/inputtextarea';
+import {InputText} from "primereact/components/inputtext/InputText";
+import {Slider} from "primereact/components/slider/Slider";
 
 
 class Restaurants extends React.Component {
@@ -19,6 +21,8 @@ class Restaurants extends React.Component {
         this.viewReviewItem = this.viewReviewItem.bind(this);
         this.editReviewItem = this.editReviewItem.bind(this);
         this.downloadFile = this.downloadFile.bind(this);
+        this.searchBy = this.searchBy.bind(this);
+        this.resetSearchField = this.resetSearchField.bind(this);
         // <ViewProfilePage userID={user.username}/>
     }
 
@@ -223,19 +227,67 @@ class Restaurants extends React.Component {
         }
     }
 
+    resetSearchField()
+    {
+        this.props.updateSearchValueEventHandler();
+        this.props.updateShowRestaurantsEventHandler(this.props.restaurants);
+    }
+
+    searchBy()
+    {
+        const name = this.props.searchNameValue;
+        const location = this.props.searchLocationValue;
+        const lvalue = this.props.ratingRangeValues[0];
+        const rvalue = this.props.ratingRangeValues[1];
+        const restaurants = this.props.restaurants;
+
+        return restaurants.filter((rest)=> name === ''? true: rest.name === name)
+            .filter((rest)=> location === ''? true: rest.location.city === location)
+            .filter((rest)=> rest.avgRate >= lvalue && rest.avgRate <= rvalue);
+    }
+
+    renderHeader() {
+        return (
+            <div className="p-grid">
+                <div className="p-col-6" style={{textAlign: 'left'}}>
+                    <label htmlFor="search">Search Restaurant By </label>
+                    <label htmlFor="searchName">Name: </label>
+                    <InputText id="searchNameValue" value={this.props.searchNameValue} onChange={this.props.updateStateFieldEventHandler}/>
+                    <label htmlFor="searchLocation">Location: </label>
+                    <InputText id="searchLocationValue" value={this.props.searchLocationValue} onChange={this.props.updateStateFieldEventHandler}/>
+                    <h4>Rating Range: {this.props.ratingRangeValues[0]},{this.props.ratingRangeValues[1]}</h4>
+                    <Slider id="ratingRangeValues" value={this.props.ratingRangeValues} min={1} max={5} animate={true}
+                            onChange={this.props.updateSliderFieldEventHandler} range={true} style={{width: '14em'}} />
+
+                    <Button id="searchButton"  className="ui button"
+                            onClick={() => (this.props.updateShowRestaurantsEventHandler(this.searchBy()))}
+                    >Search</Button>
+
+                    <Button id="showAllButton"  className="ui button"
+                            onClick={() => (this.resetSearchField())}
+                    >Show All Restaurants</Button>
+                </div>
+                <div className="p-col-6" style={{textAlign: 'right'}}>
+                </div>
+            </div>
+        );
+    }
+
     //TODO: validate filled props
     render() {
+        const header = this.renderHeader();
         const allowAddReview = !this.props.isConnected ? null :
             <Button label="Add Review" icon="plus" onClick={() => this.props.toggleRestaurantFormEventHandler(this.props.showRestForm)}/>;
 
         const addReview = this.props.showRestForm? <AddReview/>: null;
         return (
             <div className='restaurants'>
+                {header}
                 {allowAddReview}
                 {addReview}
-                <DataView value={this.props.restaurants} layout="list"
+                <DataView value={this.props.restaurantsToShow} layout="list"
                           itemTemplate={this.itemTemplate}
-                          rows={this.props.restaurants.length}/>
+                          rows={this.props.restaurantsToShow.length}/>
             </div>
         );
     }
@@ -247,9 +299,13 @@ const mapStateToProps = (state) => {
         showRestForm: state['restaurants'].get('showRestaurantForm'),
         isConnected: state['app'].get('isConnected'),
         restaurants: (List) (state['app'].get('restaurants')).toArray(),
+        restaurantsToShow: (List) (state['restaurants'].get('restaurantsToShow')).toArray(),
         showReviews: state['restaurants'].get('showReviews'),
         editReview: state['restaurants'].get('editReview'),
         username: state['app'].get('username'),
+        searchNameValue:state['restaurants'].get('searchNameValue'),
+        searchLocationValue:state['restaurants'].get('searchLocationValue'),
+        ratingRangeValues:state['restaurants'].get('ratingRangeValues'),
         // restaurantName: state['restaurants'].get('restaurantName'),
         // restaurantLocation: state['restaurants'].get('restaurantLocation'),
         bathroomRate: state['restaurants'].get('bathroomRate'),
@@ -278,6 +334,9 @@ const mapDispatchToProps = (dispatch) => {
             else
                 dispatch(RestaurantsActions.updateStateFieldAction(e.target.id, e.target.value));
         },
+        updateSliderFieldEventHandler: (e) => {
+            dispatch(RestaurantsActions.updateSliderFieldAction(e.value));
+        },
         showReviewsEventHandler: (data, prevReviewValue) => {
             dispatch(RestaurantsActions.showReviewsAction(prevReviewValue, data.id));
         },
@@ -302,6 +361,13 @@ const mapDispatchToProps = (dispatch) => {
                 picture,
                 freeText));
         },
+        updateShowRestaurantsEventHandler: (restaurants) => {
+            dispatch(RestaurantsActions.updateShowRestaurantsAction(restaurants));
+        },
+
+        updateSearchValueEventHandler: () => {
+            dispatch(RestaurantsActions.updateSearchValueAction());
+        }
     }
 };
 

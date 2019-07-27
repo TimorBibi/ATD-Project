@@ -40,6 +40,10 @@ export default {
     }),
     restaurants: Map({
         showRestaurantForm: false,
+        searchNameValue: '',
+        searchLocationValue:'',
+        ratingRangeValues:[1,5],
+        restaurantsToShow: List(),
         showReviews: Map({
             selectedRest: '',
             visible: false,

@@ -3,6 +3,7 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 import AppActions from './actions'
 import RegisterPageActions from "../RegisterPage/actions";
 import UsersActions from "../Users/actions";
+import RestaurantsActions from "../Restaurants/actions";
 
 function* checkToken(action){
     console.log('AppSaga=', action);
@@ -91,6 +92,7 @@ function* loadRestaurants(action){
 
         const json = yield call([res, 'json']); //retrieve body of response
         yield put(AppActions.loadRestaurantsSuccessAction(json));
+        yield put (RestaurantsActions.initShowRestaurantsAction(json));
 
     } catch (e) {
         yield put(AppActions.appFailureAction(e.message));
