@@ -30,11 +30,11 @@ function updateSliderFieldAction(value){
     }
 }
 
-function showReviewsAction(prevReviewValue, currId){
+function showReviewsAction(prevReviewValue, currId, reviews){
     const prev = prevReviewValue.get('selectedRest');
     const payload = (prev === currId)?
-        {selectedRest: currId, visible: !prevReviewValue.get('visible')}:
-        {selectedRest: currId, visible: true};
+        {selectedRest: currId, visible: !prevReviewValue.get('visible'), reviews: reviews}:
+        {selectedRest: currId, visible: true, reviews: reviews};
     return {
         type: RestaurantsActionsConstants.VIEW_REVIEWS,
         payload: payload
@@ -155,6 +155,47 @@ function updateSearchValueAction()
     }
 }
 
+function updateSearchReviewAction(value)
+{
+    const seperator = value.indexOf(':');
+    const key = value.substring(0, seperator);
+    const val = value.substring(seperator+1, value.length);
+
+    return {
+        type: RestaurantsActionsConstants.UPDATE_SEARCH_REVIEW,
+        payload: {
+            key: key,
+            value: val
+        }
+    }
+}
+
+function updateShowReviewsAction(reviews)
+{
+    return {
+        type: RestaurantsActionsConstants.UPDATE_REVIEWS_TO_SHOW,
+        payload: {
+            reviews: reviews
+        }
+    }
+}
+
+function updateReviewSliderFieldAction(value){
+    return {
+        type: RestaurantsActionsConstants.UPDATE_REVIEW_SLIDER_FIELD,
+        payload: {
+            value
+        }
+    }
+}
+
+function updateReviewSearchValueAction()
+{
+    return {
+        type: RestaurantsActionsConstants.UPDATE_REVIEW_SEARCH_VALUE,
+    }
+}
+
 
 let RestaurantsActions = {
     toggleRestaurantForm,
@@ -171,6 +212,10 @@ let RestaurantsActions = {
     updateShowRestaurantsAction,
     updateSearchValueAction,
     updateSliderFieldAction,
+    updateSearchReviewAction,
+    updateShowReviewsAction,
+    updateReviewSliderFieldAction,
+    updateReviewSearchValueAction,
 };
 
 export default RestaurantsActions

@@ -10,6 +10,8 @@ import {Rating} from 'primereact/rating'
 import {InputTextarea} from 'primereact/inputtextarea';
 import {InputText} from "primereact/components/inputtext/InputText";
 import {Slider} from "primereact/components/slider/Slider";
+import {Dropdown} from "primereact/dropdown";
+import UsersActions from "../Users/actions";
 
 
 class Restaurants extends React.Component {
@@ -23,10 +25,14 @@ class Restaurants extends React.Component {
         this.downloadFile = this.downloadFile.bind(this);
         this.searchBy = this.searchBy.bind(this);
         this.resetSearchField = this.resetSearchField.bind(this);
+        this.resetSearchReviewField = this.resetSearchReviewField.bind(this);
+        this.sortReviewBy = this.sortReviewBy.bind(this);
+        this.criteriaField = this.criteriaField.bind(this);
         // <ViewProfilePage userID={user.username}/>
     }
 
-    downloadFile(e) {
+
+        downloadFile(e) {
         const file = e.target.files[0];
         let fs = new FileReader();
         fs.onloadend = () => {
@@ -40,7 +46,7 @@ class Restaurants extends React.Component {
         fs.readAsDataURL(file);
     }
 
-    viewRestaurantItem(restaurant, showReviews)
+    viewRestaurantItem(restaurant, showReviews, header)
     {
         const hasReviews = (!restaurant.avgRate && !restaurant.reviews.length)?
             (<label htmlFor="avgRate">no reviews</label>):
@@ -50,7 +56,7 @@ class Restaurants extends React.Component {
 
                 <Button id={restaurant.name+"_"+restaurant.location.city}
                         onClick={(e, data) =>
-                            this.props.showReviewsEventHandler(data, this.props.showReviews)}
+                            this.props.showReviewsEventHandler(data, this.props.showReviews, restaurant.reviews)}
                 >View {restaurant.name} Reviews</Button>
             </div>);
         return(
@@ -60,6 +66,7 @@ class Restaurants extends React.Component {
                 <p id="location">{restaurant.location.city}</p>
                 {hasReviews}
                 <hr/>
+                {header}
                 {showReviews}
             </div>
         );
@@ -205,13 +212,152 @@ class Restaurants extends React.Component {
         );
     }
 
+    criteriaField(review, criteria)
+    {
+        switch (criteria) {
+            case 'bathroom':
+                return review.bathroom;
+            case 'staff':
+                return review.staff;
+            case 'clean':
+                return review.clean;
+            case 'driveIn':
+                return review.driveIn;
+            case 'delivery':
+                return review.delivery;
+            case 'food':
+                return review.food;
+            default:
+                return 5;
+        }
+    }
 
+    sortReviewBy(reviews)
+    {
+        let currtime = new Date().toJSON();
+        const show = this.props.showOnlyReviewValue;
+        const criteria = this.props.criteriaReviewValue.substring(this.props.criteriaReviewValue.indexOf(':'));//2
+        const sort = this.props.sortReviewValue;
+        const minRate = this.props.ratingRangeReviewValues[0];
+        const maxRate = this.props.ratingRangeReviewValues[1];
+        let timeParseValue;
+        switch (show) {
+        case 'showOnlyReviewValue:week':
+            timeParseValue = 10;
+            break;
+        case 'showOnlyReviewValue:month':
+            timeParseValue = 7;
+            break;
+        case 'showOnlyReviewValue:year':
+            timeParseValue = 4;
+            break;
+        default ://all
+            timeParseValue = 0;
+        }
+
+        console.log("ssss",this.props.ratingRangeReviewValues[0]);
+        console.log("ssssdd",this.props.ratingRangeReviewValues[1]);
+        // console.log("sspp",reviews[1].delivery);
+        // console.log("sspp",reviews[0].delivery);
+        // console.log("sspp",this.criteriaField(reviews[0], criteria));
+        // console.log("sspp",this.criteriaField(reviews[1], criteria));
+
+        // return reviews.filter((review)=> (review.username === "admin"));
+        let output = reviews.filter((review)=> (timeParseValue === 0? true:
+            (((timeParseValue !== 10) &&
+            (currtime.substring(0,timeParseValue) === review.timeStamp.substring(0,timeParseValue)))
+            || ((timeParseValue === 10) &&
+            (Math.abs(Number(currtime.substring(8,10)) - Number(review.timeStamp.substring(8,10)))<= 7)))
+            && (this.criteriaField(review, criteria) >= minRate && this.criteriaField(review, criteria) <= maxRate)));
+
+        if(sort === 'sortReviewValue:newFirst')
+            return (List)(output).sortBy((review) => review.timeStamp).reverse();
+        return (List)(output).sortBy((review) => review.timeStamp);
+    }
+
+    resetSearchReviewField(restaurant)
+    {
+       this.props.updateReviewSearchValueEventHandler();
+       this.props.updateShowReviewsEventHandler(restaurant.reviews);
+    }
+
+    reviewHeader(restaurant) {
+
+        const sortOptions = [
+            {label: 'Newest First', value: 'sortReviewValue:newFirst'},
+            {label: 'Oldest First', value: 'sortReviewValue:oldFirst'},
+        ];
+
+        const showOnlyOptions = [
+            {label: 'Last Week', value: 'showOnlyReviewValue:week'},
+            {label: 'Last Month', value: 'showOnlyReviewValue:month'},
+            {label: 'Last Year', value: 'showOnlyReviewValue:year'},
+            {label: 'All Times', value: 'showOnlyReviewValue:all'},
+        ];
+
+        const criteriaOptions = [
+            {label: 'Bathroom Quality', value: 'criteriaReviewValue:bathroom'},
+            {label: 'Staff Kindness', value: 'criteriaReviewValue:staff'},
+            {label: 'Cleanliness', value: 'criteriaReviewValue:clean'},
+            {label: 'Drive-thru quality', value: 'criteriaReviewValue:driveIn'},
+            {label: 'Delivery Speed', value: 'criteriaReviewValue:delivery'},
+            {label: 'Food Quality', value: 'criteriaReviewValue:food'},
+        ];
+
+        const criteriaSlider = this.props.criteriaReviewValue ==='criteriaReviewValue:'? null:
+            <div>
+            <h4>Rating Range: {this.props.ratingRangeReviewValues[0]},{this.props.ratingRangeReviewValues[1]}</h4>
+            <Slider id="ratingRangeReviewValues" value={this.props.ratingRangeReviewValues} min={1} max={5} animate={true}
+                        onChange={this.props.updateReviewSliderFieldEventHandler} range={true} style={{width: '14em'}} />
+             </div>;
+        return (
+            <div className="p-grid">
+                <div className="p-col-6" style={{textAlign: 'left'}}>
+                    <label htmlFor="sortReview">Sort Reviews By </label>
+                    <div className="p-col-6" style={{textAlign: 'left'}}>
+                        <Dropdown key = "sortReviewValue" options={sortOptions} value={this.props.sortReviewValue} placeholder="Newest First"
+                                  onChange={(e) => (this.props.updateSearchReviewEventHandler(e.value))} />
+                    </div>
+
+                    <label htmlFor="showOnlyReview">Show reviews since: </label>
+                    <div className="p-col-6" >
+                        <Dropdown  key = "showOnlyReviewValue" options={showOnlyOptions} value={this.props.showOnlyReviewValue} placeholder="All Times"
+                                  onChange={(e) => (this.props.updateSearchReviewEventHandler(e.value))} />
+                    </div>
+
+                    <label htmlFor="criteriaReview">Criteria: </label>
+                    <div className="p-col-6" >
+                        <Dropdown  key = "criteriaReviewValue" options={criteriaOptions} value={this.props.criteriaReviewValue} placeholder=""
+                                  onChange={(e) => (this.props.updateSearchReviewEventHandler(e.value))} />
+                    </div>
+
+
+                    {criteriaSlider}
+
+                    <Button id="searchReviewButton"  className="ui button"
+                            onClick={() => (this.props.updateShowReviewsEventHandler(this.sortReviewBy(restaurant.reviews)))}
+                    >Search</Button>
+
+                    <Button id="showAllReviewsButton"  className="ui button"
+                            onClick={() => (this.resetSearchReviewField(restaurant))}
+                    >Show All Reviews</Button>
+                </div>
+                <div className="p-col-6" style={{textAlign: 'right'}}>
+                </div>
+            </div>
+        );
+    }
 
     itemTemplate(restaurant, layout) {
         if (layout === 'list') {
-            const showReviews = ((this.props.showReviews.get('selectedRest') === restaurant.name+"_"+restaurant.location.city)
-                                && this.props.showReviews.get('visible')) ?
-                restaurant.reviews.map((review) => {
+            // this.props.updateShowReviewsEventHandler(restaurant.reviews);
+            const reviewsCond = ((this.props.showReviews.get('selectedRest') === restaurant.name+"_"+restaurant.location.city)
+                && this.props.showReviews.get('visible'));
+
+            const header = reviewsCond? this.reviewHeader(restaurant): null;
+            const showReviews = reviewsCond?
+                // restaurant.reviews.map((review) => {
+                this.props.reviewsToShow.map((review) => {
                     const editable = review.username !== this.props.username ? null:
                         (<div>
                             <Button id={review.username+"_"+review.timeStamp}  className="ui button"
@@ -224,7 +370,7 @@ class Restaurants extends React.Component {
                         this.editReviewItem(review): this.viewReviewItem(review, editable);
                 })
                 : null;
-            return (this.viewRestaurantItem(restaurant, showReviews));
+            return (this.viewRestaurantItem(restaurant, showReviews, header));
         }
     }
 
@@ -247,7 +393,7 @@ class Restaurants extends React.Component {
             .filter((rest)=> rest.avgRate >= lvalue && rest.avgRate <= rvalue);
     }
 
-    renderHeader() {
+    restaurantHeader() {
         return (
             <div className="p-grid">
                 <div className="p-col-6" style={{textAlign: 'left'}}>
@@ -276,7 +422,7 @@ class Restaurants extends React.Component {
 
     //TODO: validate filled props
     render() {
-        const header = this.renderHeader();
+        const header = this.restaurantHeader();
         const allowAddReview = !this.props.isConnected ? null :
             <Button label="Add Review" icon="plus" onClick={() => this.props.toggleRestaurantFormEventHandler(this.props.showRestForm)}/>;
 
@@ -303,6 +449,11 @@ const mapStateToProps = (state) => {
         restaurantsToShow: (List) (state['restaurants'].get('restaurantsToShow')).toArray(),
         showReviews: state['restaurants'].get('showReviews'),
         editReview: state['restaurants'].get('editReview'),
+        showOnlyReviewValue:state['restaurants'].get('showOnlyReviewValue'),
+        criteriaReviewValue:state['restaurants'].get('criteriaReviewValue'),
+        sortReviewValue:state['restaurants'].get('sortReviewValue'),
+        ratingRangeReviewValues:state['restaurants'].get('ratingRangeReviewValues'),
+        reviewsToShow:(List) (state['restaurants'].get('reviewsToShow')).toArray(),
         username: state['app'].get('username'),
         searchNameValue:state['restaurants'].get('searchNameValue'),
         searchLocationValue:state['restaurants'].get('searchLocationValue'),
@@ -338,8 +489,8 @@ const mapDispatchToProps = (dispatch) => {
         updateSliderFieldEventHandler: (e) => {
             dispatch(RestaurantsActions.updateSliderFieldAction(e.value));
         },
-        showReviewsEventHandler: (data, prevReviewValue) => {
-            dispatch(RestaurantsActions.showReviewsAction(prevReviewValue, data.id));
+        showReviewsEventHandler: (data, prevReviewValue, reviews) => {
+            dispatch(RestaurantsActions.showReviewsAction(prevReviewValue, data.id, reviews));
         },
         makeEditableEventHandler: (e, prevEditReview, reviewContent) => {
             dispatch(RestaurantsActions.enableEditReviewAction(prevEditReview, e.target.id, reviewContent))
@@ -368,6 +519,22 @@ const mapDispatchToProps = (dispatch) => {
 
         updateSearchValueEventHandler: () => {
             dispatch(RestaurantsActions.updateSearchValueAction());
+        },
+
+        updateSearchReviewEventHandler: (value) =>{
+            dispatch(RestaurantsActions.updateSearchReviewAction(value));
+        },
+
+        updateReviewSliderFieldEventHandler: (e) =>{
+            dispatch(RestaurantsActions.updateReviewSliderFieldAction(e.value));
+        },
+
+        updateShowReviewsEventHandler:(reviews) => {
+            dispatch(RestaurantsActions.updateShowReviewsAction(reviews));
+
+        },
+        updateReviewSearchValueEventHandler:() =>{
+            dispatch(RestaurantsActions.updateReviewSearchValueAction());
         }
     }
 };

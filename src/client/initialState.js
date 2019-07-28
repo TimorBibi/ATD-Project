@@ -44,6 +44,11 @@ export default {
         searchLocationValue:'',
         ratingRangeValues:[1,5],
         restaurantsToShow: List(),
+        showOnlyReviewValue:'showOnlyReviewValue:all',
+        criteriaReviewValue:'criteriaReviewValue:',
+        sortReviewValue:'sortReviewValue:newFirst',
+        ratingRangeReviewValues:[1,5],
+        reviewsToShow: List(),
         showReviews: Map({
             selectedRest: '',
             visible: false,
