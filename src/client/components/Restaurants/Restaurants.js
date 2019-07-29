@@ -255,12 +255,14 @@ class Restaurants extends React.Component {
             timeParseValue = 0;
         }
 
-        let output = reviews.filter((review)=> (timeParseValue === 0? true:
+
+        let output = reviews.filter((review)=> (timeParseValue === 0? (this.criteriaField(review, criteria) >= minRate
+            && this.criteriaField(review, criteria) <= maxRate):
             (((timeParseValue !== 10) &&
             (currtime.substring(0,timeParseValue) === review.timeStamp.substring(0,timeParseValue)))
             || ((timeParseValue === 10) &&
-            (Math.abs(Number(currtime.substring(8,10)) - Number(review.timeStamp.substring(8,10)))<= 7)))
-            && (this.criteriaField(review, criteria) >= minRate && this.criteriaField(review, criteria) <= maxRate)));
+            (Math.abs(Number(currtime.substring(8,10)) - Number(review.timeStamp.substring(8,10)))<= 7))))
+            && (this.criteriaField(review, criteria) >= minRate && this.criteriaField(review, criteria) <= maxRate));
 
         if(sort === 'sortReviewValue:newFirst')
             return (List)(output).sortBy((review) => review.timeStamp).reverse();
