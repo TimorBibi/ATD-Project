@@ -11,9 +11,10 @@ export default {
         editedReview: false,
         addedUser: false,
         addedReview: false,
+        activeItem: 'home'
+
     }),
     topbar: Map({
-        activeItem: 'home'
     }),
     registerPage: Map({
         username: '',

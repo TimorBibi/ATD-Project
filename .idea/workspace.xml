@@ -3,7 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="38eee9c1-e08d-47d5-9b60-dee31a50d5e8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/components/Restaurants/Restaurants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/Restaurants/Restaurants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/App/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/App/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/App/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/App/actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/App/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/App/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/App/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/App/reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/TopBar/TopBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/TopBar/TopBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/TopBar/TopBar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/TopBar/TopBar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/TopBar/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/TopBar/actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/TopBar/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/TopBar/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/TopBar/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/TopBar/reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/Users/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/Users/Users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/initialState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/initialState.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/client/components/Restaurants/Restaurants.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/TopBar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="526" column="10" lean-forward="true" selection-start-line="526" selection-start-column="10" selection-end-line="526" selection-end-column="10" />
+            <state relative-caret-position="184">
+              <caret line="66" column="35" lean-forward="true" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -29,33 +39,96 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/server/model/review.js">
+        <entry file="file://$PROJECT_DIR$/src/client/initialState.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="350">
-              <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/components/Restaurants/reducer.js">
+        <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/actions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="23" column="48" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
+            <state relative-caret-position="150">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
               <folding>
-                <element signature="e#0#56#0" expanded="true" />
+                <element signature="e#0#53#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/components/Restaurants/actions.js">
+        <entry file="file://$PROJECT_DIR$/src/client/components/App/actions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="875">
-              <caret line="36" column="55" selection-start-line="36" selection-start-column="55" selection-end-line="36" selection-end-column="55" />
+            <state relative-caret-position="179">
+              <caret line="100" column="28" lean-forward="true" selection-start-line="100" selection-start-column="28" selection-end-line="100" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/reducer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
               <folding>
-                <element signature="e#0#58#0" expanded="true" />
+                <element signature="e#0#52#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/client/components/App/reducer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="321">
+              <caret line="29" column="39" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#46#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/constants.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/components/App/constants.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/components/App/App.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="73" selection-start-line="73" selection-end-line="73" />
+              <folding>
+                <element signature="e#42#68#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/components/Restaurants/Restaurants.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1077">
+              <caret line="204" column="49" selection-start-line="204" selection-start-column="43" selection-end-line="204" selection-end-column="49" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,11 +146,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>updatesearch</find>
-      <find>updateSearchReviewKeyEventHandler</find>
-      <find>??</find>
-      <find>updateSearchReviewEventHandler</find>
-      <find>slider</find>
       <find>reset</find>
       <find>showrev</find>
       <find>0</find>
@@ -103,6 +171,11 @@
       <find>sortBy</find>
       <find>sortB</find>
       <find>updateReviewSearchValueEventHandler</find>
+      <find>seta</find>
+      <find>topbar</find>
+      <find>setActiveEventHandler</find>
+      <find>activeItem</find>
+      <find>review</find>
     </findStrings>
     <replaceStrings>
       <replace>y</replace>
@@ -117,10 +190,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/client/components/AddReview/saga.js" />
-        <option value="$PROJECT_DIR$/src/client/components/1/actions.js" />
-        <option value="$PROJECT_DIR$/src/client/components/1/constants.js" />
         <option value="$PROJECT_DIR$/src/client/components/1/index.js" />
         <option value="$PROJECT_DIR$/src/client/components/1/reducer.js" />
         <option value="$PROJECT_DIR$/src/client/components/1/Restaurants.js" />
@@ -137,17 +206,13 @@
         <option value="$PROJECT_DIR$/src/client/components/AddReview/actions.js" />
         <option value="$PROJECT_DIR$/src/server/api/addReview.js" />
         <option value="$PROJECT_DIR$/src/server/api/app.js" />
-        <option value="$PROJECT_DIR$/src/client/components/App/actions.js" />
-        <option value="$PROJECT_DIR$/src/client/components/App/constants.js" />
         <option value="$PROJECT_DIR$/src/client/components/Restaurants/saga.js" />
         <option value="$PROJECT_DIR$/src/client/components/Users/index.js" />
-        <option value="$PROJECT_DIR$/src/client/components/TopBar/TopBar.js" />
         <option value="$PROJECT_DIR$/src/server/api/RegisterPage.js" />
         <option value="$PROJECT_DIR$/src/client/sagas.js" />
         <option value="$PROJECT_DIR$/src/client/components/Users/saga.js" />
         <option value="$PROJECT_DIR$/src/client/reducers.js" />
         <option value="$PROJECT_DIR$/src/server/model/user.js" />
-        <option value="$PROJECT_DIR$/src/client/components/App/reducer.js" />
         <option value="$PROJECT_DIR$/src/server/api/Users.js" />
         <option value="$PROJECT_DIR$/src/client/components/ViewProfilePage/constants.js" />
         <option value="$PROJECT_DIR$/src/client/components/ViewProfilePage/saga.js" />
@@ -156,18 +221,26 @@
         <option value="$PROJECT_DIR$/src/server/api/Restaurants.js" />
         <option value="$PROJECT_DIR$/src/server/api/viewProfilePage.js" />
         <option value="$PROJECT_DIR$/src/client/components/ViewProfilePage/ViewProfilePage.js" />
-        <option value="$PROJECT_DIR$/src/client/components/Users/Users.js" />
         <option value="$PROJECT_DIR$/src/client/components/App/saga.js" />
         <option value="$PROJECT_DIR$/src/client/components/Users/constants.js" />
         <option value="$PROJECT_DIR$/src/client/components/Users/actions.js" />
         <option value="$PROJECT_DIR$/src/client/components/Users/reducer.js" />
         <option value="$PROJECT_DIR$/src/client/components/App/App.scss" />
-        <option value="$PROJECT_DIR$/src/client/components/App/App.js" />
         <option value="$PROJECT_DIR$/src/client/components/Restaurants/constants.js" />
-        <option value="$PROJECT_DIR$/src/client/initialState.js" />
         <option value="$PROJECT_DIR$/src/client/components/Restaurants/actions.js" />
         <option value="$PROJECT_DIR$/src/client/components/Restaurants/reducer.js" />
         <option value="$PROJECT_DIR$/src/client/components/Restaurants/Restaurants.js" />
+        <option value="$PROJECT_DIR$/src/client/components/TopBar/TopBar.scss" />
+        <option value="$PROJECT_DIR$/src/client/components/Users/Users.js" />
+        <option value="$PROJECT_DIR$/src/client/components/App/App.js" />
+        <option value="$PROJECT_DIR$/src/client/initialState.js" />
+        <option value="$PROJECT_DIR$/src/client/components/TopBar/constants.js" />
+        <option value="$PROJECT_DIR$/src/client/components/App/constants.js" />
+        <option value="$PROJECT_DIR$/src/client/components/TopBar/reducer.js" />
+        <option value="$PROJECT_DIR$/src/client/components/App/reducer.js" />
+        <option value="$PROJECT_DIR$/src/client/components/TopBar/TopBar.js" />
+        <option value="$PROJECT_DIR$/src/client/components/TopBar/actions.js" />
+        <option value="$PROJECT_DIR$/src/client/components/App/actions.js" />
       </list>
     </option>
   </component>
@@ -176,7 +249,7 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="240" />
-    <option name="y" value="127" />
+    <option name="y" value="126" />
     <option name="width" value="1440" />
     <option name="height" value="765" />
   </component>
@@ -218,7 +291,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="AddReview" type="462c0819:PsiDirectoryNode" />
+              <item name="App" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cur-ATD-Project" type="b2602c69:ProjectViewProjectNode" />
@@ -226,20 +299,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Restaurants" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cur-ATD-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cur-ATD-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cur-ATD-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cur-ATD-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="TopBar" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -312,7 +372,8 @@
       <workItem from="1564124355688" duration="33307000" />
       <workItem from="1564211658823" duration="39477000" />
       <workItem from="1564300746552" duration="23713000" />
-      <workItem from="1564379073297" duration="1900000" />
+      <workItem from="1564379073297" duration="6859000" />
+      <workItem from="1564402618315" duration="1402000" />
     </task>
     <task id="LOCAL-00001" summary="fixing initCities">
       <created>1563375005138</created>
@@ -332,13 +393,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="352993000" />
+    <option name="totallyTimeSpent" value="359354000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09744409" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2100639" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -370,69 +431,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="before register user to the db" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/client/components/AddReview/saga.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#0#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/model/app.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/model/cities.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/App/constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/Users/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/server/api/LogInPage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
           <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/sagas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/TopBar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="25" column="130" selection-start-line="25" selection-start-column="119" selection-end-line="25" selection-end-column="130" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -551,13 +553,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/App/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="73" column="5" lean-forward="true" selection-start-line="68" selection-start-column="4" selection-end-line="73" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/components/LogInPage/actions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -571,16 +566,6 @@
           <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
           <folding>
             <element signature="e#0#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/App/reducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -671,23 +656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/App/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-392">
-          <caret line="40" column="49" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
-          <folding>
-            <element signature="e#42#68#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/App/App.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/components/Users/actions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="94">
@@ -722,37 +690,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/initialState.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="53" column="18" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/Users/Users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="733">
-          <caret line="215" column="14" lean-forward="true" selection-start-line="215" selection-start-column="14" selection-end-line="215" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/components/Restaurants/constants.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="18" column="61" selection-start-line="18" selection-start-column="61" selection-end-line="18" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/Restaurants/Restaurants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="526" column="10" lean-forward="true" selection-start-line="526" selection-start-column="10" selection-end-line="526" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -773,12 +714,140 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/App/App.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/sagas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/TopBar.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/components/Restaurants/actions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
+        <state relative-caret-position="369">
           <caret line="36" column="55" selection-start-line="36" selection-start-column="55" selection-end-line="36" selection-end-column="55" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/Users/Users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/Restaurants/Restaurants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1077">
+          <caret line="204" column="49" selection-start-line="204" selection-start-column="43" selection-end-line="204" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/App/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
+          <folding>
+            <element signature="e#42#68#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/initialState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/App/constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/reducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/TopBar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="66" column="35" lean-forward="true" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#0#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/App/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="100" column="28" lean-forward="true" selection-start-line="100" selection-start-column="28" selection-end-line="100" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/components/App/reducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="29" column="39" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
           </folding>
         </state>
       </provider>

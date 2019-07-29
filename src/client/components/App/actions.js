@@ -96,6 +96,16 @@ function updateUserAfterSubmit(){
     }
 }
 
+function setActiveAction(name) {
+    return {
+        type: AppActionsConstants.SET_ACTIVE,
+        payload: {
+            name
+        }
+    };
+}
+
+
 
 let AppActions  = {
     connectUserAction,
@@ -110,6 +120,7 @@ let AppActions  = {
     loadRestaurantsSuccessAction,
     updateReviewAfterSubmit,
     updateUserAfterSubmit,
+    setActiveAction,
 };
 
 export default AppActions

@@ -42,8 +42,8 @@ class App extends React.Component {
       return (
             <Router>
                 <div className="app-root">
+                    <TopBar/>
                     <div className="app-header">
-                        <TopBar/>
                         <h2 className="app-header-title"/>
                     </div>
                     <div className="app-body">

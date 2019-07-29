@@ -1,5 +1,6 @@
 import initialState from '../../initialState';
 import {AppActionsConstants} from './constants.js';
+import {TopBarActionsConstants} from "../TopBar/constants";
 
 const AppReducer = (state = initialState.app, action) => {
     console.log('AppReducerState=', state);
@@ -25,6 +26,10 @@ const AppReducer = (state = initialState.app, action) => {
 
         case AppActionsConstants.UPDATE_USER_AFTER_SUBMIT:
             return state.set('addedUser', true);
+
+        case AppActionsConstants.SET_ACTIVE:
+            console.log("??ffff?????", action.payload.name);
+            return state.set('activeItem', action.payload.name);
 
         default: //otherwise state is lost!
             return state;

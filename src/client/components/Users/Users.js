@@ -6,6 +6,7 @@ import {Dropdown} from "primereact/dropdown";
 import {DataView, DataViewLayoutOptions} from 'primereact/dataview';
 import {InputText} from 'primereact/inputtext';
 import {List, Map} from 'immutable';
+import {Menubar} from 'primereact/menubar';
 import {Rating} from 'primereact/rating';
 import UsersActions from '../Users/actions';
 

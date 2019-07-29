@@ -31,21 +31,25 @@ class TopBar extends React.Component {
         };
 
         return (
-            <Menu className="ui top fixed menu">
-                <Menu.Item name='home' active={active === 'home'} href="/"
-                           onClick={(e, data) => this.props.setActiveEventHandler(e, data, this.props.activeItem)}>
+            <div className="ui tabular menu">
+            <Menu>
+                <Menu.Item  className="item" name='home' active={active === 'home'} href="/"
+                           onClick={(e, data) => this.props.setActiveEventHandler(data)}>
                     Home
                 </Menu.Item>
-                <Menu.Item name='users' active={active === 'users'} href="/users"
-                           onClick={(e, data) => this.props.setActiveEventHandler(e, data, this.props.activeItem)}>
+                <Menu.Item  className="item" name='users' active={active === 'users'} href="/users"
+                           onClick={(e, data) => this.props.setActiveEventHandler(data)}>
                     Users
                 </Menu.Item>
                 <Menu.Menu position='right'>
-                    <Dropdown item text='User'>
+                    <Menu.Item className="item" name='user'>
+                    <Dropdown text='User'>
                         {dropDownMenu()}
                     </Dropdown>
+                    </Menu.Item>
                 </Menu.Menu>
             </Menu>
+            </div>
         );
     }
 }
@@ -53,14 +57,14 @@ class TopBar extends React.Component {
 const mapStateToProps = (state) => {
     return {
         isConnected: state['app'].get('isConnected'),
-        // activeItem: state['topbar'].get('activeItem'), //TODO handle active Item after reRendering (cookies?)
+        activeItem: state['app'].get('activeItem'), //TODO handle active Item after reRendering (cookies?)
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setActiveEventHandler: (e, data, current) => {
-            dispatch(TopBarActions.setActiveAction(current, data.name));
+        setActiveEventHandler: (data) => {
+            dispatch(AppActions.setActiveAction(data.name));
         },
         logOutEventHandler: () => {
             dispatch(AppActions.disconnectUserAction());
