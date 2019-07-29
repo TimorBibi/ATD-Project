@@ -16,8 +16,8 @@ function* submitEditReview(action){
             });
 
         const json = yield call([res, 'json']); //retrieve body of response
-        yield put(RestaurantsActions.submitEditReviewSucceedAction(json));
-        yield put(AppActions.updateReviewAfterSubmit());
+        yield put(AppActions.submitEditReviewSucceedAction(json));
+        yield put(RestaurantsActions.updateShowReviews());
     } catch (e) {
         yield put(RestaurantsActions.editReviewFailureAction(e.message));
     }
@@ -37,7 +37,6 @@ function* deleteReview(action){
 
         const json = yield call([res, 'json']); //retrieve body of response
         yield put(RestaurantsActions.deleteReviewSucceedAction(json));
-        yield put(AppActions.updateReviewAfterSubmit());
     } catch (e) {
         yield put(RestaurantsActions.deleteReviewFailureAction(e.message));
     }

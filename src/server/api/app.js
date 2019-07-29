@@ -71,19 +71,4 @@ module.exports = (app) => {
             })
             .catch(_handleError);
     });
-
-    app.get('/api/load/update/edit/review/users/restaurants', function(req, res) {
-        console.log('/api/load/update/edit/review/users/restaurants');
-        RestaurantsModel
-            // .find({req.body.})
-            .then(doc => {
-                if (doc === null) { //init cities model
-                    res.json(List([]));
-                }
-                else {
-                    res.json(List(doc));
-                }
-            })
-            .catch(_handleError);
-    });
 };

@@ -37,7 +37,6 @@ class RegisterPage extends React.Component {
                 pictureType: file.type,
                 pictureData: pictureData,
             };
-            // console.log("00000000", pictureData);
             this.props.updateStateFieldEventHandler(e, {id:'picture' ,value: value});
         }
         fs.readAsDataURL(file);
