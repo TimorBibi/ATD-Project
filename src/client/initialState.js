@@ -54,10 +54,13 @@ export default {
             selectedRest: '',
             visible: false,
         }),
-        editReview: Map({
-            selectedReview: '',
-            edit: false,
-        }),
+        submitMessage: {
+            succeed: false,
+            message: '',
+        },
+    }),
+    review: Map({
+        editReview: false,
         bathroomRate: 1,
         staffRate: 1,
         cleanRate: 1,
@@ -69,10 +72,6 @@ export default {
         picture: {
             pictureType: '',
             pictureData: [],
-        },
-        submitMessage: {
-            succeed: false,
-            message: '',
         },
     }),
     users: Map({

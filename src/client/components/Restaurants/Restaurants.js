@@ -11,8 +11,7 @@ import {InputTextarea} from 'primereact/inputtextarea';
 import {InputText} from "primereact/components/inputtext/InputText";
 import {Slider} from "primereact/components/slider/Slider";
 import {Dropdown} from "primereact/dropdown";
-import UsersActions from "../Users/actions";
-
+import Review from "../Review/Review";
 
 class Restaurants extends React.Component {
 
@@ -351,18 +350,9 @@ class Restaurants extends React.Component {
             const header = reviewsCond? this.reviewHeader(restaurant): null;
             const showReviews = reviewsCond?
                 // restaurant.reviews.map((review) => {
-                this.props.reviewsToShow.map((review) => {
-                    const editable = review.username !== this.props.username ? null:
-                        (<div>
-                            <Button id={review.username+"_"+review.timeStamp}  className="ui button"
-                                    onClick={(e) => this.props.makeEditableEventHandler(e, this.props.editReview, review)}>Edit</Button>
-                            <Button id={"delete_"+review.username+"_"+review.timeStamp}  className="ui button"
-                                    onClick={() => this.props.deleteReviewEventHandler(review)}>Delete</Button>
-                        </div>);
-                    return ((this.props.editReview.get('selectedReview') === review.username+"_"+review.timeStamp)
-                                        && this.props.editReview.get('edit')) ?
-                        this.editReviewItem(review): this.viewReviewItem(review, editable);
-                })
+                //TODO <Review review={review}/>
+                this.props.reviewsToShow.map((review) =>
+                    <Review review={review} key={review.username+'_'+review.timeStamp+"comp"}/> )
                 : null;
             return (this.viewRestaurantItem(restaurant, showReviews, header));
         }

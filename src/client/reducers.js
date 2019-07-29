@@ -7,6 +7,7 @@ import RestaurantsReducer from './components/Restaurants/reducer';
 import AddReviewReducer from './components/AddReview/reducer';
 import UsersReducer from "./components/Users/reducer";
 import ViewProfilePageReducer from "./components/ViewProfilePage/reducer";
+import ReviewReducer from "./components/Review/reducer";
 
 export default combineReducers({
   app: AppReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
   viewProfilePage: ViewProfilePageReducer,
   restaurants: RestaurantsReducer,
   addReview: AddReviewReducer,
-  users: UsersReducer
+  users: UsersReducer,
+  review: ReviewReducer,
 });

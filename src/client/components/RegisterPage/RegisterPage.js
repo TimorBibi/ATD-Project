@@ -42,7 +42,6 @@ class RegisterPage extends React.Component {
         }
         fs.readAsDataURL(file);
     }
-
     render() {
         return (
             <div className="registerPAge">

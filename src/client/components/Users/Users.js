@@ -9,6 +9,7 @@ import {List, Map} from 'immutable';
 import {Menubar} from 'primereact/menubar';
 import {Rating} from 'primereact/rating';
 import UsersActions from '../Users/actions';
+import Review from "../Review/Review";
 
 class Users extends React.Component {
 
@@ -121,9 +122,8 @@ class Users extends React.Component {
         if (layout === 'list') {
             const showReviews = ((this.props.showReviews.get('selectedUser') === user.username)
                                 && this.props.showReviews.get('visible')) ?
-                user.reviews.map((review) => {
-                    return (this.viewReviewItem(review));
-                })
+                user.reviews.map((review) =>
+                <Review review={review} key={review.username+"_user_"+review.timeStamp} /> )
                 : null;
             return (this.viewUserItem(user, showReviews));
         }
