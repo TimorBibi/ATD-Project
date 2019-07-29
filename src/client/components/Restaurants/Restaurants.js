@@ -236,7 +236,7 @@ class Restaurants extends React.Component {
     {
         let currtime = new Date().toJSON();
         const show = this.props.showOnlyReviewValue;
-        const criteria = this.props.criteriaReviewValue.substring(this.props.criteriaReviewValue.indexOf(':'));//2
+        const criteria = this.props.criteriaReviewValue.substring(this.props.criteriaReviewValue.indexOf(':')+1);
         const sort = this.props.sortReviewValue;
         const minRate = this.props.ratingRangeReviewValues[0];
         const maxRate = this.props.ratingRangeReviewValues[1];
@@ -255,14 +255,6 @@ class Restaurants extends React.Component {
             timeParseValue = 0;
         }
 
-        console.log("ssss",this.props.ratingRangeReviewValues[0]);
-        console.log("ssssdd",this.props.ratingRangeReviewValues[1]);
-        // console.log("sspp",reviews[1].delivery);
-        // console.log("sspp",reviews[0].delivery);
-        // console.log("sspp",this.criteriaField(reviews[0], criteria));
-        // console.log("sspp",this.criteriaField(reviews[1], criteria));
-
-        // return reviews.filter((review)=> (review.username === "admin"));
         let output = reviews.filter((review)=> (timeParseValue === 0? true:
             (((timeParseValue !== 10) &&
             (currtime.substring(0,timeParseValue) === review.timeStamp.substring(0,timeParseValue)))
