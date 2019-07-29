@@ -12,16 +12,14 @@ const culcAvg = (values) => {
     return (values.reduce((acc, val) => acc + val) / noZero);
 };
 
-const culcnewAvg = (numOfReviews, oldAvg, newValue) => {
-    if(numOfReviews === 1)
-        numOfReviews=0;
-    return ((oldAvg * numOfReviews + newValue)/ (numOfReviews + 1));
+const culcoldAvg = (numOfReviews, restAvg, reviewValue) => {
+    if(numOfReviews - 1 ===0)
+        return 0;
+    return (((restAvg * numOfReviews) - reviewValue)/ (numOfReviews - 1));
 };
 
-const culcoldAvg = (numOfReviews, oldAvg, oldValue) => {
-    if(numOfReviews === 1)
-        return 0;
-    return ((oldAvg * numOfReviews - oldValue)/ (numOfReviews - 1));
+const culcnewAvg = (numOfReviews, oldAvg, newReviewAvg, oldReviewAvg) => {
+    return (((oldAvg * numOfReviews) - oldReviewAvg + newReviewAvg)/ (numOfReviews));
 };
 
 module.exports = (app) => {
@@ -62,7 +60,7 @@ module.exports = (app) => {
 
     app.post('/api/submit/edit/review', function(req, res) {
         console.log('Restaurants.post/api/submit/edit/review');
-        let avgValue = culcAvg([req.body.bathroom, req.body.staff, req.body.clean, req.body.food,
+        let newReviewAvg = culcAvg([req.body.bathroom, req.body.staff, req.body.clean, req.body.food,
             req.body.driveIn, req.body.delivery,]);
         RestaurantModel
             // .findOne({name: req.body.name, location: location})
@@ -81,6 +79,7 @@ module.exports = (app) => {
 
                     if(review)
                         {
+                            const oldReviewAvg = review.avgRate;
                             restaurant.reviews.pull(review);
                             review.bathroom = req.body.bathroom;
                             review.staff = req.body.staff;
@@ -91,10 +90,11 @@ module.exports = (app) => {
                             review.freeText = req.body.freeText;
                             review.picture.data = req.body.picture.pictureData;
                             review.picture.contentType = req.body.picture.pictureType;
-                            review.avgRate = avgValue;
+                            review.avgRate = newReviewAvg;
                             restaurant.reviews.push(review);
-                            restaurant.avgRate =  culcnewAvg(restaurant.reviews.length, restaurant.avgRate, avgValue);
+                            restaurant.avgRate =  culcnewAvg(restaurant.reviews.length, restaurant.avgRate, newReviewAvg, oldReviewAvg);
                             restaurant.save(_handleError);
+                            req.restaurant = restaurant;
 
                         }
                         else
@@ -126,16 +126,28 @@ module.exports = (app) => {
                                         data: req.body.picture.pictureData,
                                         contentType: req.body.picture.pictureType
                                     };
-                                    review.avgRate = avgValue;
+                                    review.avgRate = newReviewAvg;
                                 }
                                 user.reviews.push(review);
                                 user.save(_handleError);
-                                res.json({succeed: true, message: '', review: review})
-
                             } else {
                               res.json({succeed: false, message: `Server Can't find the user: ${req.body.username}`});
                               throw "Can't find the user";
                             }
+                        })
+                        .then(()=> {
+                            RestaurantModel
+                                .find()
+                                .then(doc => {
+                                        req.restaurants = doc;
+                                    }).then(()=>{
+                                UserModel
+                                    .find()
+                                    .then(doc => {
+                                        req.users = doc;
+                                        res.json({succeed: true, message: '', restaurants: req.restaurants, users: req.users})
+                                    })
+                                })
                         }).catch(_handleError);
                 }).catch(_handleError);
     });

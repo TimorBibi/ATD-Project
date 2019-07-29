@@ -23,7 +23,6 @@ function* submitEditReview(action){
     }
 }
 
-
 function* RestaurantsSaga() {
     //using takeEvery, you take the action away from reducer to saga
     yield takeEvery(RestaurantsActionsConstants.SUBMIT_EDIT_REVIEW, submitEditReview);

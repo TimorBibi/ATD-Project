@@ -45,6 +45,7 @@ export default {
         searchLocationValue:'',
         ratingRangeValues:[1,5],
         restaurantsToShow: List(),
+        closerBetterValues:null,
         showOnlyReviewValue:'showOnlyReviewValue:all',
         criteriaReviewValue:'criteriaReviewValue:',
         sortReviewValue:'sortReviewValue:newFirst',

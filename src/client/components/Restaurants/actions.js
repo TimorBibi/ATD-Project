@@ -60,7 +60,6 @@ function enableEditReviewAction(prevEditReview, currId, reviewContent){
 
 function submitEditReviewAction(username, name, location, timeStamp, bathroom, staff, clean, food, driveIn, delivery, picture, freeText)
 {
-    console.log("!!!submitEditReviewAction", bathroom);
     return {
         type: RestaurantsActionsConstants.SUBMIT_EDIT_REVIEW,
         uri: '/api/submit/edit/review',
@@ -74,26 +73,6 @@ function submitEditReviewAction(username, name, location, timeStamp, bathroom, s
 }
 
 
-function submitEditReviewSucceedAction({succeed, message}){
-    if (!succeed)
-        return {
-            type: RestaurantsActionsConstants.SUBMIT_EDIT_REVIEW_FAILURE,
-            payload: {
-                message: message,
-            }
-        };
-    else
-        return {type: RestaurantsActionsConstants.SUBMIT_EDIT_REVIEW_SUCCEED,};
-}
-
-function editReviewFailureAction(error){
-        return {
-            type: RestaurantsActionsConstants.RESTAURANTS_FAILURE,
-            payload: {
-                error: error
-            }
-        };
-}
 
 function deleteReviewAction(review)
 {
@@ -197,14 +176,28 @@ function updateReviewSearchValueAction()
 }
 
 
+function updateSliderCloserBetterAction(value){
+    return {
+        type: RestaurantsActionsConstants.UPDATE_CLOSER_BETTER_SLIDER_FIELD,
+        payload: {
+            value
+        }
+    }
+}
+
+function updateShowReviews(){
+    return {
+        type: RestaurantsActionsConstants.SHOW_REVIEWS,
+    }
+}
+
+
 let RestaurantsActions = {
     toggleRestaurantForm,
     updateStateFieldAction,
     showReviewsAction,
     enableEditReviewAction,
     submitEditReviewAction,
-    submitEditReviewSucceedAction,
-    editReviewFailureAction,
     deleteReviewAction,
     deleteReviewSucceedAction,
     deleteReviewFailureAction,
@@ -216,6 +209,8 @@ let RestaurantsActions = {
     updateShowReviewsAction,
     updateReviewSliderFieldAction,
     updateReviewSearchValueAction,
+    updateSliderCloserBetterAction,
+    updateShowReviews
 };
 
 export default RestaurantsActions

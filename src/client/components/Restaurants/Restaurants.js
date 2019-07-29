@@ -27,6 +27,7 @@ class Restaurants extends React.Component {
         this.resetSearchReviewField = this.resetSearchReviewField.bind(this);
         this.sortReviewBy = this.sortReviewBy.bind(this);
         this.criteriaField = this.criteriaField.bind(this);
+        this.culcCloserBetter = this.culcCloserBetter.bind(this);
         // <ViewProfilePage userID={user.username}/>
     }
 
@@ -134,7 +135,6 @@ class Restaurants extends React.Component {
                 <img src={review.picture.data} width="200" height="100"/>
             </div>):
             null;
-        console.log("???",this.props.bathroomRate);
         return (
             <Form className="register-form" key={review.username+"_"+review.timeStamp}
                   onSubmit={(e) => {
@@ -364,6 +364,41 @@ class Restaurants extends React.Component {
         this.props.updateShowRestaurantsEventHandler(this.props.restaurants);
     }
 
+    culcCloserBetter(rests)
+    {
+        const closerBetterValue = this.props.closerBetterValues;
+        if(closerBetterValue === null)
+            return rests;
+        const myLocation = this.props.users.find((user)=> user.username === this.props.username).location;
+
+        const locations = rests.map((rest)=> rest.location);
+
+        const dists = locations.map((loc) => Math.sqrt(Math.pow((myLocation.x- loc.x), 2) + Math.pow((myLocation.y - loc.y), 2)));
+
+        const maxDist = Math.max(...dists);
+
+        const normDists = dists.map((dist)=> dist/maxDist);
+
+        const normRates = rests.map((rest) => (1 - (rest.avgRate -1)/4));        console.log("222???111",maxDist);
+
+        const closerBetterValues = normDists.map((dist, index) =>
+            ((normRates[index]*closerBetterValue) + (dist *(4 - closerBetterValue))));
+
+
+        const output = rests.sort(function (a, b)
+        {
+
+            if (closerBetterValues[rests.indexOf(a)] > closerBetterValues[rests.indexOf(b)]) {
+                return 1;
+            } else {
+                return -1;
+            }
+
+        });
+        return output;
+
+    }
+
     searchBy()
     {
         const name = this.props.searchNameValue;
@@ -378,6 +413,15 @@ class Restaurants extends React.Component {
     }
 
     restaurantHeader() {
+        const showCloserBetter = this.props.isConnected?
+            (<div>
+                <h4>Closer-Better: {this.props.closerBetterValues}</h4>
+                <Slider  id="closer-betterValues" value={this.props.closerBetterValues} min={0} max={4} animate={true}
+                         onChange={(e)=>{
+                             this.props.updateSliderCloserBetterEventHandler(e);
+                             (this.props.updateShowRestaurantsEventHandler(this.culcCloserBetter(this.searchBy())))}
+                         } style={{width: '14em'}}  />
+            </div>): null;
         return (
             <div className="p-grid">
                 <div className="p-col-6" style={{textAlign: 'left'}}>
@@ -389,9 +433,9 @@ class Restaurants extends React.Component {
                     <h4>Rating Range: {this.props.ratingRangeValues[0]},{this.props.ratingRangeValues[1]}</h4>
                     <Slider id="ratingRangeValues" value={this.props.ratingRangeValues} min={1} max={5} animate={true}
                             onChange={this.props.updateSliderFieldEventHandler} range={true} style={{width: '14em'}} />
-
+                    {showCloserBetter}
                     <Button id="searchButton"  className="ui button"
-                            onClick={() => (this.props.updateShowRestaurantsEventHandler(this.searchBy()))}
+                            onClick={() => (this.props.updateShowRestaurantsEventHandler(this.culcCloserBetter(this.searchBy())))}
                     >Search</Button>
 
                     <Button id="showAllButton"  className="ui button"
@@ -430,6 +474,7 @@ const mapStateToProps = (state) => {
         showRestForm: state['restaurants'].get('showRestaurantForm'),
         isConnected: state['app'].get('isConnected'),
         restaurants: (List) (state['app'].get('restaurants')).toArray(),
+        users: (List) (state['app'].get('users')).toArray(),
         restaurantsToShow: (List) (state['restaurants'].get('restaurantsToShow')).toArray(),
         showReviews: state['restaurants'].get('showReviews'),
         editReview: state['restaurants'].get('editReview'),
@@ -442,6 +487,7 @@ const mapStateToProps = (state) => {
         searchNameValue:state['restaurants'].get('searchNameValue'),
         searchLocationValue:state['restaurants'].get('searchLocationValue'),
         ratingRangeValues:state['restaurants'].get('ratingRangeValues'),
+        closerBetterValues:state['restaurants'].get('closerBetterValues'),
         // restaurantName: state['restaurants'].get('restaurantName'),
         // restaurantLocation: state['restaurants'].get('restaurantLocation'),
         bathroomRate: state['restaurants'].get('bathroomRate'),
@@ -519,6 +565,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         updateReviewSearchValueEventHandler:() =>{
             dispatch(RestaurantsActions.updateReviewSearchValueAction());
+        },
+        updateSliderCloserBetterEventHandler:(e) => {
+            dispatch(RestaurantsActions.updateSliderCloserBetterAction(e.value));
         }
     }
 };

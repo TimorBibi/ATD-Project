@@ -43,7 +43,8 @@ const RestaurantsReducer = (state = initialState.restaurants, action) => {
                 .set('picture', action.payload.picture);
 
         case RestaurantsActionsConstants.UPDATE_RESTAURANTS_TO_SHOW:
-            const restaurants = (List)(action.payload.restaurants).sortBy((rest)=> -1*rest.avgRate);
+            // const restaurants = (List)(action.payload.restaurants).sortBy((rest)=> -1*rest.avgRate);
+            const restaurants = (List)(action.payload.restaurants);
             return state.set('restaurantsToShow', restaurants);
 
         case RestaurantsActionsConstants.UPDATE_REST_SEARCH_VALUE:
@@ -52,11 +53,7 @@ const RestaurantsReducer = (state = initialState.restaurants, action) => {
                         .set('ratingRangeValues', [1,5]);
 
         case RestaurantsActionsConstants.UPDATE_REVIEWS_TO_SHOW:
-            //TODO: parse timestamp here
-            // const reviews = (List)(action.payload.reviews).sortBy((user)=> user.username);
-            console.log("wwwwwwww", action.payload.reviews);
             return state.set('reviewsToShow', action.payload.reviews);
-            // return state.set('usersToShow', reviews);
 
         case RestaurantsActionsConstants.UPDATE_SEARCH_REVIEW:
             return state.set(action.payload.key, action.payload.key+":"+action.payload.value);
@@ -70,14 +67,14 @@ const RestaurantsReducer = (state = initialState.restaurants, action) => {
                 .set('criteriaReviewValue', 'criteriaReviewValue:')
                 .set('ratingRangeReviewValues', [1,5]);
 
-//TODO: delete both cases of edit
-        case RestaurantsActionsConstants.SUBMIT_EDIT_REVIEW_SUCCEED:
-            return state.set('submitMessage', {succeed: false, message: ''});
+        case RestaurantsActionsConstants.UPDATE_CLOSER_BETTER_SLIDER_FIELD:
+            return state.set('closerBetterValues', action.payload.value);
 
-
-        case RestaurantsActionsConstants.SUBMIT_EDIT_REVIEW_FAILURE:
-            return state.set('submitMessage', {succeed: false, message: ''});
-
+        case RestaurantsActionsConstants.SHOW_REVIEWS:
+            return state.set('showReviews', new Map({
+                selectedRest: '',
+                visible: false,
+            }));
 
         default: //otherwise state is lost!
             return state;
