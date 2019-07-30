@@ -107,13 +107,15 @@ function setActiveAction(name) {
 }
 
 function submitEditReviewSucceedAction({succeed, message, restaurants, users}){
-    if (!succeed)
+    if (!succeed) {
+        console.log(message);
         return {
             type: AppActionsConstants.SUBMIT_EDIT_REVIEW_FAILURE,
             payload: {
                 message: message
             }
         };
+    }
     else
         return {type: AppActionsConstants.SUBMIT_EDIT_REVIEW_SUCCEED,
             payload: {

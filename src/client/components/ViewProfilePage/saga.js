@@ -88,8 +88,7 @@ function* submitUser(action) {
 function* ViewProfilePageSaga() {
     //using takeEvery, you take the action away from reducer to saga
     yield takeEvery(ViewProfilePageActionsConstants.SUBMIT_EDIT_REVIEW, submitEditReview);
-    yield takeEvery(ViewProfilePageActionsConstants.DELETE_REVIEW, deleteReview);
     yield takeEvery(ViewProfilePageActionsConstants.VALIDATE_USERNAME, validateUsername);
-    yield takeEvery(ViewProfilePageActionsConstants.SUBMIT_USER, submitUser);}
+}
 
 export default ViewProfilePageSaga;

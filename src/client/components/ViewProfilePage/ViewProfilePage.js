@@ -128,7 +128,7 @@ class ViewProfilePage extends React.Component {
                           this.props.picture,
                           this.props.freeText
                       );
-                      this.props.makeEditableEventHandler(e, this.props.editReview, review);
+                      Review.makeEditableEventHandler(e, this.props.editReview, review);
                   }}>
                 <Form.Field width='9'>
                     <h2 id="restaurantName">{review.name}</h2>
@@ -179,7 +179,7 @@ class ViewProfilePage extends React.Component {
                 {/*<Form.Button id={"edit_" + review.username+"_"+review.timeStamp} className="ui button"*/}
                 {/*        onClick=  {(e) => submitEditEventHandler(e, review)}>Edit</Form.Button>*/}
                 <Form.Button id={"cancel_" + review.username+"_"+review.timeStamp} className="ui button"
-                             onClick={(e) => this.props.makeEditableEventHandler(e, this.props.editReview, review)} >Cancel</Form.Button>
+                             onClick={(e) => Review.makeEditableEventHandler(e, this.props.editReview, review)} >Cancel</Form.Button>
                 <hr/>
             </Form>
         );
@@ -191,7 +191,7 @@ class ViewProfilePage extends React.Component {
             const editable =
                 (<div>
                     <Button id={review.username+"_"+review.timeStamp}  className="ui button"
-                            onClick={(e) => this.props.makeEditableEventHandler(e, this.props.editReview, review)}>Edit</Button>
+                            onClick={(e) => Review.makeEditableEventHandler(e, this.props.editReview, review)}>Edit</Button>
                     <Button id={"delete_"+ review.username+"_"+review.timeStamp}  className="ui button"
                             onClick={() => this.props.deleteReviewEventHandler(review)}>Delete</Button>
                 </div>);

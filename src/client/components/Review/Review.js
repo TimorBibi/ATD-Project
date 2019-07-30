@@ -14,9 +14,25 @@ class Review extends React.Component {
         this.viewReviewItem = this.viewReviewItem.bind(this);
         this.editReviewItem = this.editReviewItem.bind(this);
         this.downloadFile = this.downloadFile.bind(this);
+        this.updateStateField = this.updateStateField.bind(this);
+        this.makeEditableAction = this.makeEditableAction.bind(this);
+
+        const {username, name, location, bathroom, staff, clean, food,
+            driveIn, delivery, freeText,
+            picture, timeStamp, avgRate} = this.props.review;
+
+        const editReview = false;
+
+        this.state = {
+            editReview, avgRate,
+            username, name, location,
+            bathroom, staff, clean,
+            food, driveIn, delivery,
+            freeText, picture, timeStamp
+        };
     }
 
-        downloadFile(e) {
+     downloadFile(e) {
         const file = e.target.files[0];
         let fs = new FileReader();
         fs.onloadend = () => {
@@ -25,36 +41,56 @@ class Review extends React.Component {
                 pictureType: file.type,
                 pictureData: pictureData,
             };
-            this.props.updateStateFieldEventHandler(e, {id:'picture' ,value: value});
+            this.updateStateField(e, {id:'picture' ,value: value});
         };
         fs.readAsDataURL(file);
     }
 
-    viewReviewItem(review)
+    updateStateField(e, data= null){
+        if (data) {
+            this.setState({[data.id]: data.value});
+        }
+        else {
+            this.setState({[e.target.id]: e.target.value});
+        }
+    }
+
+    makeEditableAction(){
+
+        const newEdit = !this.state.editReview;
+        this.setState({
+            editReview: newEdit,
+        });
+    }
+
+    viewReviewItem()
     {
-        const hasFreeText = review.get('freeText')?
-            (<label htmlFor="freeText">Description: {review.get('freeText')}</label>)
+        const hasFreeText = this.state.freeText ?
+            (<label htmlFor="freeText">Description: {this.state.freeText}</label>)
             : null;
-
-        const reviewImg = review.get('picture').contentType !== "" && review.get('picture').contentType!==null?
+        const reviewImg = !this.state.picture.contentType ? null:
             (<div className="imgPreview">
-                <img src={review.get('picture').data} width="200" height="100"/>
-            </div>):
-            null;
+                <img src={this.state.picture.data} width="200" height="100"/>
+            </div>);
 
-        const editable = review.get('username') !== this.props.username ? null:
+
+        const editable = this.state.username !== this.props.username ? null:
             (<div>
-                <Button id={review.get('username')+"_"+review.get('timeStamp')}  className="ui button"
-                        onClick={() => this.props.makeEditableEventHandler(this.props.editReview, review)}>Edit</Button>
-                <Button id={"delete_"+review.get('username')+"_"+review.get('timeStamp')}  className="ui button"
-                        onClick={() => this.props.deleteReviewEventHandler(review)}>Delete</Button>
+                <Button id={this.state.username+"_"+this.state.timeStamp}  className="ui button"
+                        onClick={() => this.makeEditableAction()}>Edit</Button>
+                        {/*onClick={() => Review.makeEditableEventHandler(this.props.editReview, review)}>Edit</Button>*/}
+                <Button id={"delete_"+this.state.username+"_"+this.state.timeStamp}  className="ui button"
+                        onClick={() => this.props.deleteReviewEventHandler(this.state)}>Delete</Button>
             </div>);
 
         return(
-            <Form className="register-form" key={review.get('username')+"_"+review.get('timeStamp')}>
+            <Form className="register-form" key={this.state.username+"_"+this.state.timeStamp}>
+                <Form.Field width='9'>
+                    <h2 id="name">{this.state.name}</h2>
+                </Form.Field>
                 <Form.Field width='9'>
                     <label htmlFor="writer">Writer: </label>
-                    <p id="writer">{review.get('username')}</p>
+                    <p id="writer">{this.state.username}</p>
                 </Form.Field>
                 <Form.Field width='9'>
                     {reviewImg}
@@ -62,27 +98,27 @@ class Review extends React.Component {
 
                 <Form.Field width='9'>
                     <label htmlFor="bathroomRate" className="form-text">Bathroom Quality:</label>
-                    <Rating id='bathroomRate' value={review.get('bathroom')} cancel={false} readonly={true}/>
+                    <Rating id='bathroomRate' value={this.state.bathroom} cancel={false} readonly={true}/>
                 </Form.Field>
                 <Form.Field width='9'>
                     <label htmlFor="staffRate">Staff Kindness:</label>
-                    <Rating id='staffRate' value={review.get('staff')}  stars={5} cancel={false} readonly={true}/>
+                    <Rating id='staffRate' value={this.state.staff}  stars={5} cancel={false} readonly={true}/>
                 </Form.Field>
                 <Form.Field width='9'>
                     <label htmlFor="cleanRate">Cleanliness:</label>
-                    <Rating id='cleanRate' value={review.get('clean')}  stars={5} cancel={false} readonly={true}/>
+                    <Rating id='cleanRate' value={this.state.clean}  stars={5} cancel={false} readonly={true}/>
                 </Form.Field>
                 <Form.Field width='9'>
                     <label htmlFor="foodRate">Food Quality:</label>
-                    <Rating id='foodRate' value={review.get('food')} stars={5} cancel={false} readonly={true}/>
+                    <Rating id='foodRate' value={this.state.food} stars={5} cancel={false} readonly={true}/>
                 </Form.Field>
                 <Form.Field width='9'>
                     <label htmlFor="driveInRate">Drive-thru Quality:</label>
-                    <Rating id='driveInRate' value={review.get('driveIn')}  stars={5} readonly={true}/>
+                    <Rating id='driveInRate' value={this.state.driveIn}  stars={5} readonly={true}/>
                 </Form.Field>
                 <Form.Field width='9'>
                     <label htmlFor="deliveryRate">Delivery Speed:</label>
-                    <Rating id='deliveryRate' value={review.get('delivery')} stars={5} readonly={true}/>
+                    <Rating id='deliveryRate' value={this.state.delivery} stars={5} readonly={true}/>
                 </Form.Field>
                 <Form.Field width='9'>
                     {hasFreeText}
@@ -94,35 +130,38 @@ class Review extends React.Component {
     }
 
 
-    editReviewItem(review)
+    editReviewItem()
     {
-        const reviewImg = review.get('picture').contentType !== "" && review.get('picture').contentType!==null?
+        const reviewImg = !this.state.picture.contentType ? null:
             (<div className="imgPreview">
-                <img src={review.get('picture').data} width="200" height="100"/>
-            </div>):
-            null;
+                <img src={this.state.picture.data} width="200" height="100"/>
+            </div>);
         return (
-            <Form className="register-form" key={review.get('username')+"_"+review.get('timeStamp')}
+            <Form className="register-form" key={this.state.username+"_"+this.state.timeStamp}
                   onSubmit={() => {
                       this.props.submitEditEventHandler(
-                          review.get('username'),
-                          review.get('name'),
-                          review.get('location'),
-                          review.get('timeStamp'),
-                          this.props.bathroomRate,
-                          this.props.staffRate,
-                          this.props.cleanRate,
-                          this.props.foodRate,
-                          this.props.driveInRate,
-                          this.props.deliveryRate,
-                          this.props.picture,
-                          this.props.freeText
+                          this.state.username,
+                          this.state.name,
+                          this.state.location,
+                          this.state.timeStamp,
+                          this.state.bathroom,
+                          this.state.staff,
+                          this.state.clean,
+                          this.state.food,
+                          this.state.driveIn,
+                          this.state.delivery,
+                          this.state.picture,
+                          this.state.freeText,
+                          this.state.avgRate,
                       );
-                      this.props.makeEditableEventHandler(this.props.editReview, review);
+                      this.makeEditableAction();
                   }}>
             <Form.Field width='9'>
+                <h2 id="name">{this.state.name}</h2>
+            </Form.Field>
+            <Form.Field width='9'>
                 <label htmlFor="writer">Writer: </label>
-                <p id="writer">{review.get('username')}</p>
+                <p id="writer">{this.state.username}</p>
             </Form.Field>
             <Form.Field width='9'>
                 <Input type="file" id="picture"  accept="image/*" onChange={this.downloadFile}/>
@@ -130,57 +169,55 @@ class Review extends React.Component {
             </Form.Field>
 
             <Form.Field width='9'>
-                <label htmlFor="bathroomRate" className="form-text">Bathroom Quality:</label>
-                <Rating id='bathroomRate' value={this.props.bathroomRate} cancel={false}
-                        onChange={this.props.updateStateFieldEventHandler}/>
+                <label htmlFor="bathroom" className="form-text">Bathroom Quality:</label>
+                <Rating id='bathroom' value={this.state.bathroom} cancel={false}
+                        onChange={(e) => this.updateStateField(e)}/>
             </Form.Field>
             <Form.Field width='9'>
-                <label htmlFor="staffRate">Staff Kindness:</label>
-                <Rating id='staffRate' value={this.props.staffRate}  stars={5} cancel={false}
-                        onChange={this.props.updateStateFieldEventHandler}/>
+                <label htmlFor="staff">Staff Kindness:</label>
+                <Rating id='staff' value={this.state.staff}  stars={5} cancel={false}
+                        onChange={(e) => this.updateStateField(e)}/>
             </Form.Field>
             <Form.Field width='9'>
-                <label htmlFor="cleanRate">Cleanliness:</label>
-                <Rating id='cleanRate' value={this.props.cleanRate}  stars={5} cancel={false}
-                        onChange={this.props.updateStateFieldEventHandler}/>
+                <label htmlFor="clean">Cleanliness:</label>
+                <Rating id='clean' value={this.state.clean}  stars={5} cancel={false}
+                        onChange={(e) => this.updateStateField(e)}/>
             </Form.Field>
             <Form.Field width='9'>
-                <label htmlFor="foodRate">Food Quality:</label>
-                <Rating id='foodRate' value={this.props.foodRate} stars={5} cancel={false}
-                        onChange={this.props.updateStateFieldEventHandler}/>
+                <label htmlFor="food">Food Quality:</label>
+                <Rating id='food' value={this.state.food} stars={5} cancel={false}
+                        onChange={(e) => this.updateStateField(e)}/>
             </Form.Field>
             <Form.Field width='9'>
-                <label htmlFor="driveInRate">Drive-thru Quality:</label>
-                <Rating id='driveInRate' value={this.props.driveInRate}  stars={5}
-                        onChange={this.props.updateStateFieldEventHandler}/>
+                <label htmlFor="driveIn">Drive-thru Quality:</label>
+                <Rating id='driveIn' value={this.state.driveIn}  stars={5}
+                        onChange={(e) => this.updateStateField(e)}/>
             </Form.Field>
             <Form.Field width='9'>
-                <label htmlFor="deliveryRate">Delivery Speed:</label>
-                <Rating id='deliveryRate' value={this.props.deliveryRate} stars={5}
-                        onChange={this.props.updateStateFieldEventHandler}/>
+                <label htmlFor="delivery">Delivery Speed:</label>
+                <Rating id='delivery' value={this.state.delivery} stars={5}
+                        onChange={(e) => this.updateStateField(e)}/>
             </Form.Field>
             <Form.Field width='9'>
                 <label htmlFor="freeText">Description: </label>
-                <InputTextarea id="freeText" value={this.props.freeText}
-                               onChange={this.props.updateStateFieldEventHandler}/>
+                <InputTextarea id="freeText" value={this.state.freeText}
+                               onChange={(e) => this.updateStateField(e)}/>
             </Form.Field>
                 <br/>
-                <Form.Button id={"edit_" + review.get('username')+"_"+review.get('timeStamp')}
+                <Form.Button id={"edit_" + this.state.username+"_"+this.state.timeStamp}
                              content='Submit Review' type="submit"/>
-                <Form.Button id={"cancel_" + review.get('username')+"_"+review.get('timeStamp')} className="ui button"
-                        onClick={() => this.props.makeEditableEventHandler(this.props.editReview, review)} >
+                <Form.Button id={"cancel_" + this.state.username+"_"+this.state.timeStamp}
+                             content="Cancel"
+                             onClick={() => this.makeEditableAction()}/>
                     Cancel
-                </Form.Button>
                 <hr/>
             </Form>
         );
     }
 
     render() {
-        const review = new Map(this.props.review);
-
-        const toRender = this.props.editReview ?
-            this.editReviewItem(review): this.viewReviewItem(review);
+        const toRender = this.state.editReview ?
+            this.editReviewItem(): this.viewReviewItem();
 
         return (
             <div className='review'>
@@ -194,44 +231,21 @@ class Review extends React.Component {
 const mapStateToProps = (state) => {
     return {
         username: state['app'].get('username'),
-        editReview: state['review'].get('editReview'),
-        bathroomRate: state['review'].get('bathroomRate'),
-        staffRate: state['review'].get('staffRate'),
-        cleanRate: state['review'].get('cleanRate'),
-        foodRate: state['review'].get('foodRate'),
-        driveInRate: state['review'].get('driveInRate'),
-        deliveryRate: state['review'].get('deliveryRate'),
-        avgRate: state['review'].get('avgRate'),
-        freeText: state['review'].get('freeText'),
-        picture: state['review'].get('picture'),
-
     }
-
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateStateFieldEventHandler: (e, data) => {
-            if (data) {
-                dispatch(ReviewActions.updateStateFieldAction(data.id, data.value));
-            }
-            else
-                dispatch(ReviewActions.updateStateFieldAction(e.target.id, e.target.value));
-        },
-        //TODO reviewContent is a Map
-        makeEditableEventHandler: (prevEditReview, reviewContent) => {
-            dispatch(ReviewActions.enableEditReviewAction(prevEditReview, reviewContent))
-        },
-        //TODO reviewContent is a Map
         deleteReviewEventHandler: (reviewContent) => {
             dispatch(ReviewActions.deleteReviewAction(reviewContent));
         },
-        //TODO ReviewActions.submitEditReviewAction from restaurant to here + saga function
-        submitEditEventHandler: (username, name, location, timeStamp, bathroom, staff, clean, food, driveIn, delivery, picture, freeText) => {
-            dispatch(ReviewActions.submitEditReviewAction(
+        submitEditEventHandler: (username, name, location, timeStamp,
+                                 bathroom, staff, clean, food, driveIn,
+                                 delivery, picture, freeText, avgRate) => {
+            dispatch(ReviewActions.submitEditReviewAction({
                 username, name, location, timeStamp,
                 bathroom, staff, clean, food,
-                driveIn, delivery, picture, freeText));
+                driveIn, delivery, picture, freeText, avgRate}));
         },
     }
 };

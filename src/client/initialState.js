@@ -8,7 +8,6 @@ export default {
         users: List(),
         restaurants: List(),
         locations: [],
-        editedReview: false,
         addedUser: false,
         addedReview: false,
         activeItem: 'home'
@@ -61,19 +60,7 @@ export default {
         },
     }),
     review: Map({
-        editReview: false,
-        bathroomRate: 1,
-        staffRate: 1,
-        cleanRate: 1,
-        foodRate: 1,
-        driveInRate: 0,
-        deliveryRate: 0,
-        avgRate: 0,
-        freeText: '',
-        picture: {
-            pictureType: '',
-            pictureData: [],
-        },
+
     }),
     users: Map({
         showRestaurantForm: false,

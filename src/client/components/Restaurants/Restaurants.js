@@ -19,8 +19,6 @@ class Restaurants extends React.Component {
         super();
         this.itemTemplate = this.itemTemplate.bind(this);
         this.viewRestaurantItem = this.viewRestaurantItem.bind(this);
-        this.viewReviewItem = this.viewReviewItem.bind(this);
-        this.editReviewItem = this.editReviewItem.bind(this);
         this.downloadFile = this.downloadFile.bind(this);
         this.searchBy = this.searchBy.bind(this);
         this.resetSearchField = this.resetSearchField.bind(this);
@@ -69,145 +67,6 @@ class Restaurants extends React.Component {
                 {header}
                 {showReviews}
             </div>
-        );
-    }
-
-
-    viewReviewItem(review, editable)
-    {
-        const hasFreeText = review.freeText?
-            (<label htmlFor="freeText">Description: {review.freeText}</label>)
-            : null;
-
-        const reviewImg = review.picture.contentType !== "" && review.picture.contentType!==null?
-            (<div className="imgPreview">
-                <img src={review.picture.data} width="200" height="100"/>
-            </div>):
-            null;
-
-        return(
-            <Form className="register-form" key={review.username+"_"+review.timeStamp}>
-                <Form.Field width='9'>
-                    <label htmlFor="writer">Writer: </label>
-                    <p id="writer">{review.username}</p>
-                </Form.Field>
-                <Form.Field width='9'>
-                    {reviewImg}
-                </Form.Field>
-
-                <Form.Field width='9'>
-                    <label htmlFor="bathroomRate" className="form-text">Bathroom Quality:</label>
-                    <Rating id='bathroomRate' value={review.bathroom} cancel={false} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <label htmlFor="staffRate">Staff Kindness:</label>
-                    <Rating id='staffRate' value={review.staff}  stars={5} cancel={false} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <label htmlFor="cleanRate">Cleanliness:</label>
-                    <Rating id='cleanRate' value={review.clean}  stars={5} cancel={false} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <label htmlFor="foodRate">Food Quality:</label>
-                    <Rating id='foodRate' value={review.food} stars={5} cancel={false} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <label htmlFor="driveInRate">Drive-thru Quality:</label>
-                    <Rating id='driveInRate' value={review.driveIn}  stars={5} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <label htmlFor="deliveryRate">Delivery Speed:</label>
-                    <Rating id='deliveryRate' value={review.delivery} stars={5} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
-                    {hasFreeText}
-                </Form.Field>
-                <br/>
-                {editable}
-                <hr/>
-            </Form>)
-    }
-
-    editReviewItem(review)
-    {
-        const reviewImg = review.picture.contentType !== "" && review.picture.contentType!==null?
-            (<div className="imgPreview">
-                <img src={review.picture.data} width="200" height="100"/>
-            </div>):
-            null;
-        return (
-            <Form className="register-form" key={review.username+"_"+review.timeStamp}
-                  onSubmit={(e) => {
-                      this.props.submitEditEventHandler(
-                          review.username,
-                          review.name,
-                          review.location,
-                          review.timeStamp,
-                          this.props.bathroomRate,
-                          this.props.staffRate,
-                          this.props.cleanRate,
-                          this.props.foodRate,
-                          this.props.driveInRate,
-                          this.props.deliveryRate,
-                          this.props.picture,
-                          this.props.freeText
-                      );
-                      this.props.makeEditableEventHandler(e, this.props.editReview, review);
-                      this.resetSearchField();
-                  }}>
-            <Form.Field width='9'>
-                <label htmlFor="writer">Writer: </label>
-                <p id="writer">{review.username}</p>
-            </Form.Field>
-            <Form.Field width='9'>
-                <Input type="file" id="picture"  accept="image/*" onChange={this.downloadFile}/>
-                {reviewImg}
-            </Form.Field>
-
-            <Form.Field width='9'>
-                <label htmlFor="bathroomRate" className="form-text">Bathroom Quality:</label>
-                <Rating id='bathroomRate' value={this.props.bathroomRate} cancel={false}
-                        onChange={this.props.updateStateFieldEventHandler}/>
-            </Form.Field>
-            <Form.Field width='9'>
-                <label htmlFor="staffRate">Staff Kindness:</label>
-                <Rating id='staffRate' value={this.props.staffRate}  stars={5} cancel={false}
-                        onChange={this.props.updateStateFieldEventHandler}/>
-            </Form.Field>
-            <Form.Field width='9'>
-                <label htmlFor="cleanRate">Cleanliness:</label>
-                <Rating id='cleanRate' value={this.props.cleanRate}  stars={5} cancel={false}
-                        onChange={this.props.updateStateFieldEventHandler}/>
-            </Form.Field>
-            <Form.Field width='9'>
-                <label htmlFor="foodRate">Food Quality:</label>
-                <Rating id='foodRate' value={this.props.foodRate} stars={5} cancel={false}
-                        onChange={this.props.updateStateFieldEventHandler}/>
-            </Form.Field>
-            <Form.Field width='9'>
-                <label htmlFor="driveInRate">Drive-thru Quality:</label>
-                <Rating id='driveInRate' value={this.props.driveInRate}  stars={5}
-                        onChange={this.props.updateStateFieldEventHandler}/>
-            </Form.Field>
-            <Form.Field width='9'>
-                <label htmlFor="deliveryRate">Delivery Speed:</label>
-                <Rating id='deliveryRate' value={this.props.deliveryRate} stars={5}
-                        onChange={this.props.updateStateFieldEventHandler}/>
-            </Form.Field>
-            <Form.Field width='9'>
-                <label htmlFor="freeText">Description: </label>
-                <InputTextarea id="freeText" value={this.props.freeText}
-                               onChange={this.props.updateStateFieldEventHandler}/>
-            </Form.Field>
-                <br/>
-                {/*{editable}*/}
-                <Form.Button id={"edit_" + review.username+"_"+review.timeStamp} content='Submit Review' type="submit"/>
-                {/*<Form.Button id={"edit_" + review.username+"_"+review.timeStamp} className="ui button"*/}
-                {/*        onClick=  {(e) => submitEditEventHandler(e, review)}>Edit</Form.Button>*/}
-                <Form.Button id={"cancel_" + review.username+"_"+review.timeStamp} className="ui button"
-                        onClick={(e) => this.props.makeEditableEventHandler(e, this.props.editReview, review)} >Cancel</Form.Button>
-                <hr/>
-            </Form>
         );
     }
 
@@ -343,13 +202,11 @@ class Restaurants extends React.Component {
 
     itemTemplate(restaurant, layout) {
         if (layout === 'list') {
-            // this.props.updateShowReviewsEventHandler(restaurant.reviews);
             const reviewsCond = ((this.props.showReviews.get('selectedRest') === restaurant.name+"_"+restaurant.location.city)
                 && this.props.showReviews.get('visible'));
 
             const header = reviewsCond? this.reviewHeader(restaurant): null;
             const showReviews = reviewsCond?
-                // restaurant.reviews.map((review) => {
                 //TODO <Review review={review}/>
                 this.props.reviewsToShow.map((review) =>
                     <Review review={review} key={review.username+'_'+review.timeStamp+"comp"}/> )

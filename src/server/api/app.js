@@ -12,7 +12,15 @@ let _handleError = function(err){
 module.exports = (app) => {
     app.get('/api/checkToken', withAuth, function(req, res) {
         console.log('app.get/api/checkToken');
-        res.json({succeed: true, username: req.username});
+        UsersModel
+            .find({username: req.username})
+            .then((user) => {
+                if (user)
+                    res.json({succeed: true, username: req.username});
+                else
+                    res.json({succeed: false, username: ''});
+            })
+            .catch(_handleError);
     });
     app.get('/api/disconnect/user', function(req, res) {
         console.log('app.get/api/disconnect/user');

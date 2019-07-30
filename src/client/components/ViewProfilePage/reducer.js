@@ -54,8 +54,6 @@ const ViewProfilePageReducer = (state = initialState.viewProfilePage, action) =>
         case ViewProfilePageActionsConstants.REGISTER_FAILURE:
             return state.set('submitMessage', {succeed: false, message: ''});
 
-        case ViewProfilePageActionsConstants.SUBMIT_USER_SUCCESS:
-            return state.set('submitMessage', {succeed: true, message: action.payload.message});
 
         case ViewProfilePageActionsConstants.MISSING_FIELDS:
             return state.set('submitMessage', {succeed: false, message: action.payload.message});

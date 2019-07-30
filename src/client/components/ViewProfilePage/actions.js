@@ -164,54 +164,7 @@ function validateActionSuccess(isValid){
         };
 }
 
-function submitUserAction(username, password, location, picture, locations, isValid) {
-    if(username.length > 0 && location && picture && password) {
-        if(!isValid)
-            return {
-                type: ViewProfilePageActionsConstants.VALIDATE_ACTION_FAILURE,
-                payload: {
-                    message: `The username is already used,\nplease choose different one.`
-                }
-            };
-        if (locations.find((elm) => elm === location))
-            return {
-                type: ViewProfilePageActionsConstants.SUBMIT_USER,
-                uri: '/api/submit/edit/user',
-                payload: {
-                    username: username,
-                    password: password,
-                    location: location,
-                    picture: picture,
-                }
-            }
-        else
-            return {
-                type: ViewProfilePageActionsConstants.MISSING_FIELDS,
-                payload: {
-                    succeed: false,
-                    message: "Please choose valid location."
-                }
-            };
-    }
-    else
-        return {
-            type: ViewProfilePageActionsConstants.MISSING_FIELDS,
-            payload: {
-                succeed: false,
-                message: "Please fill in all the fields."
-            }
-        };
-}
 
-function submitUserSuccessAction(value) {
-    return {
-        type: ViewProfilePageActionsConstants.SUBMIT_USER_SUCCESS,
-        payload: {
-            message: value.username + ' submitted.'
-        }
-    }
-
-}
 
 
 let ViewProfilePageActions = {
@@ -229,8 +182,6 @@ let ViewProfilePageActions = {
     RegisterPageFailureAction,
     suggestLocationsAction,
     validateActionSuccess,
-    submitUserAction,
-    submitUserSuccessAction
 };
 
 export default ViewProfilePageActions

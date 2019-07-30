@@ -31,14 +31,12 @@ class App extends React.Component {
         }
         if(this.props.addedReview)
         {
-            console.log("!!!!!!!!!componentDidUpdate");
             this.props.loadRestaurantsEventHandler();
             this.props.loadUsersEventHandler();
         }
     }
 
   render() {
-      // console.log("!!!!users:", JSON.stringify(typeof (this.props.users)));
       return (
             <Router>
                 <div className="app-root">

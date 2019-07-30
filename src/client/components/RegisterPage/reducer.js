@@ -24,9 +24,6 @@ const RegisterPageReducer = (state = initialState.registerPage, action) => {
         case RegisterPageActionsConstants.REGISTER_FAILURE:
             return state.set('submitMessage', {succeed: false, message: ''});
 
-        case RegisterPageActionsConstants.SUBMIT_USER_SUCCESS:
-            return state.set('submitMessage', {succeed: true, message: action.payload.message});
-
         case RegisterPageActionsConstants.MISSING_FIELDS:
             return state.set('submitMessage', {succeed: false, message: action.payload.message});
 
