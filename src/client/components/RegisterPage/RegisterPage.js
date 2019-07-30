@@ -19,10 +19,14 @@ class RegisterPage extends React.Component {
     }
 
     componentDidUpdate() {
-        if (this.props.submitMessage.message && this.props.submitMessage.succeed)
-            this.growl.show({severity: 'success', summary: this.props.submitMessage.message});
-        else if (this.props.submitMessage.message)
-            this.growl.show({severity: 'error', summary: this.props.submitMessage.message});
+        // debugger;
+        if(this.props.submitMessage.message) {
+            if (this.props.submitMessage.succeed)
+                this.growl.show({severity: 'success', summary: this.props.submitMessage.message});
+            else
+                this.growl.show({severity: 'error', summary: this.props.submitMessage.message});
+            this.props.initRegisterMessageEventHandler();
+        }
 
         if (this.props.isConnected)
             this.props.history.push('/'); //reload the root page
@@ -38,7 +42,7 @@ class RegisterPage extends React.Component {
                 pictureData: pictureData,
             };
             this.props.updateStateFieldEventHandler(e, {id:'picture' ,value: value});
-        }
+        };
         fs.readAsDataURL(file);
     }
     render() {
@@ -63,7 +67,7 @@ class RegisterPage extends React.Component {
                   <Form.Field width='9'>
                       <span className="p-float-label">
                         <Password id='password' className="form-text form-input"
-                                  value={this.props.password} onChange={this.props.updateStateFieldEventHandler}/>
+                                  onChange={this.props.updateStateFieldEventHandler}/>
                         <label htmlFor="password" className="form-text">Password</label>
                       </span>
                   </Form.Field>
@@ -119,6 +123,9 @@ const mapDispatchToProps = (dispatch) => {
         submitEventHandler: (username, password, location, picture, locations, isValid) => {
             dispatch(RegisterPageActions.submitUserAction(username, password, location, picture, locations, isValid));
         },
+        initRegisterMessageEventHandler: () => {
+            dispatch(RegisterPageActions.initRegisterMessageAction());
+        }
     }
 };
 

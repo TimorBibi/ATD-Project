@@ -1,5 +1,4 @@
 import { RestaurantsActionsConstants } from './constants';
-import {UsersActionsConstants} from "../Users/constants";
 
 function toggleRestaurantForm(currVal) {
     let newVal = !currVal;
@@ -198,9 +197,6 @@ let RestaurantsActions = {
     showReviewsAction,
     enableEditReviewAction,
     submitEditReviewAction,
-    deleteReviewAction,
-    deleteReviewSucceedAction,
-    deleteReviewFailureAction,
     initShowRestaurantsAction,
     updateShowRestaurantsAction,
     updateSearchValueAction,

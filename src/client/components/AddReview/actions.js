@@ -1,4 +1,5 @@
 import { AddReviewActionsConstants } from './constants';
+import {RegisterPageActionsConstants} from "../RegisterPage/constants";
 
 function updateStateFieldAction(field, value) {
     return {
@@ -26,7 +27,7 @@ function suggestLocationsAction(fullList, subString){
 function submitReviewAction(username, name, location, bathroom, staff, clean,
                             food, driveIn, delivery, picture, freeText, locations, toggle)
 {
-    if (username && name && location) {
+    if (username && name.length> 0 && location) {
         if(locations.find((elm) => elm === location)) {
             let time = new Date().toJSON();
             return {
@@ -42,7 +43,7 @@ function submitReviewAction(username, name, location, bathroom, staff, clean,
             };
         } else
             return {
-                type: AddReviewActionsConstants.MISSING_FIELD,
+                type: AddReviewActionsConstants.MISSING_REVIEW_FIELDS,
                 payload: {
                     succeed: false,
                     message: "Please choose valid location."
@@ -50,7 +51,7 @@ function submitReviewAction(username, name, location, bathroom, staff, clean,
             };
     } else
         return {
-            type: AddReviewActionsConstants.MISSING_FIELD,
+            type: AddReviewActionsConstants.MISSING_REVIEW_FIELDS,
             payload: {
                 succeed: false,
                 message: "Please fill in Restaurant name and location."
@@ -85,6 +86,12 @@ function clearFieldsAction()
     return{type: AddReviewActionsConstants.CLEAR_FIELDS}
 }
 
+function initReviewMessageAction() {
+    return {
+        type: AddReviewActionsConstants.INIT_REVIEW_MESSAGE,
+    }
+}
+
 let AddReviewActions = {
     updateStateFieldAction,
     suggestLocationsAction,
@@ -92,6 +99,7 @@ let AddReviewActions = {
     submitReviewSucceedAction,
     reviewFailureAction,
     clearFieldsAction,
+    initReviewMessageAction,
 };
 
 export default AddReviewActions
