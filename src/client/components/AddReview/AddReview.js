@@ -9,6 +9,7 @@ import {Rating} from "primereact/components/rating/Rating";
 import {Growl} from "primereact/components/growl/Growl";
 import {InputTextarea} from 'primereact/inputtextarea';
 import { Button } from 'semantic-ui-react'
+import RestaurantsActions from "../Restaurants/actions";
 
 
 class AddReview extends React.Component {
@@ -33,10 +34,13 @@ class AddReview extends React.Component {
     }
 
     componentDidUpdate() {
-        if (this.props.submitMessage.message && this.props.submitMessage.succeed)
-            this.growl.show({severity: 'success', summary: this.props.submitMessage.message});
-        else if (this.props.submitMessage.message)
-            this.growl.show({severity: 'error', summary: this.props.submitMessage.message});
+        if(this.props.submitMessage.message) {
+            if (this.props.submitMessage.succeed)
+                this.growl.show({severity: 'success', summary: this.props.submitMessage.message});
+            else
+                this.growl.show({severity: 'error', summary: this.props.submitMessage.message});
+            this.props.initReviewMessageEventHandler();
+        }
     }
 
     render() {
@@ -116,6 +120,9 @@ class AddReview extends React.Component {
                 <Button id="clearFields"
                         onClick={() => this.props.clearFieldsEventHandler()}
                 >Clear Fields</Button>
+                <Button id="cancel"
+                        onClick={() => this.props.toggleAddReviewEventHandler(this.props.showRestForm)}
+                >Cancel</Button>
                 <Growl ref={(el) => this.growl = el} position="bottomright"/>
             </Form>
         );
@@ -175,6 +182,12 @@ const mapDispatchToProps = (dispatch) => {
                 locations,
                 toggle));
         },
+        initReviewMessageEventHandler:() => {
+            dispatch(AddReviewActions.initReviewMessageAction());
+        },
+        toggleAddReviewEventHandler:(currVal) => {
+            dispatch(RestaurantsActions.toggleRestaurantForm(currVal));
+        }
     }
 };
 

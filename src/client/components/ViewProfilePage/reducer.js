@@ -1,6 +1,5 @@
 import { ViewProfilePageActionsConstants} from './constants'
 import initialState from '../../initialState'
-import {RestaurantsActionsConstants} from "../Restaurants/constants";
 import {Map} from "immutable";
 import {RegisterPageActionsConstants} from "../RegisterPage/constants";
 
@@ -22,22 +21,18 @@ const ViewProfilePageReducer = (state = initialState.viewProfilePage, action) =>
                 visible: action.payload.visible,
             }));
 
-        case ViewProfilePageActionsConstants.EDIT_REVIEW:
-            return state.set('editReview', new Map({
-                selectedReview: action.payload.editReview.selectedReview,
-                edit: action.payload.editReview.edit,
-            })).set('avgRate', action.payload.avgRate)
-                .set('bathroomRate', action.payload.bathroom)
-                .set('staffRate', action.payload.staff)
-                .set('cleanRate', action.payload.clean)
-                .set('foodRate', action.payload.food)
-                .set('driveInRate', action.payload.driveIn)
-                .set('deliveryRate', action.payload.delivery)
-                .set('freeText', action.payload.freeText)
-                .set('picture', action.payload.picture);
+        case ViewProfilePageActionsConstants.SHOW_EDIT_PROFILE:
+            return state.set('editProfile', !action.payload.prevValue);
 
         case ViewProfilePageActionsConstants.EDIT_PROFILE:
-            return state.set('editProfile', !action.payload.prevValue);
+            return state.set('editProfile', !action.payload.prevValue)
+                .set('profileUsername', action.payload.user.get('username'))
+                .set('profileLocation', Map(action.payload.user.get('location')).get('city'))
+                .set('profilePicture', action.payload.user.get('picture'));
+
+        case ViewProfilePageActionsConstants.UPDATE_PASSWORD:
+            return state.set('profilePassword', action.payload.password);
+
 
         case ViewProfilePageActionsConstants.VALIDATE_ACTION_SUCCESS:
             return state.set('isValidUsername', true)
@@ -57,6 +52,9 @@ const ViewProfilePageReducer = (state = initialState.viewProfilePage, action) =>
 
         case ViewProfilePageActionsConstants.MISSING_FIELDS:
             return state.set('submitMessage', {succeed: false, message: action.payload.message});
+
+        case ViewProfilePageActionsConstants.INIT_VIEW_PROFILE_MESSAGE:
+            return state.set('submitMessage', {succeed: false, message: ''});
 
         default: //otherwise state is lost!
             return state;

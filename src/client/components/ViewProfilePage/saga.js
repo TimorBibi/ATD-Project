@@ -64,7 +64,8 @@ function* validateUsername(action){
     }
 }
 
-function* submitUser(action) {
+
+function* getPassword(action) {
     console.log('ViewProfilePageSaga=', action);
     try {
         const res = yield call(fetch, action.uri,
@@ -77,18 +78,15 @@ function* submitUser(action) {
             });
 
         const json = yield call([res, 'json']);
-        yield put(AppActions.connectUserAction(json));
-        yield put(AppActions.updateUserAfterSubmit());
-        yield put(ViewProfilePageActions.submitUserSuccessAction(json))
+        yield put(ViewProfilePageActions.getPasswordSuccessAction(json))
     } catch (e) {
-        yield put(ViewProfilePageActions.RegisterPageFailureAction(e.message));
+        console.log("get password failed");
     }
 }
 
 function* ViewProfilePageSaga() {
     //using takeEvery, you take the action away from reducer to saga
-    yield takeEvery(ViewProfilePageActionsConstants.SUBMIT_EDIT_REVIEW, submitEditReview);
     yield takeEvery(ViewProfilePageActionsConstants.VALIDATE_USERNAME, validateUsername);
-}
+    yield takeEvery(ViewProfilePageActionsConstants.EDIT_PROFILE, getPassword);}
 
 export default ViewProfilePageSaga;

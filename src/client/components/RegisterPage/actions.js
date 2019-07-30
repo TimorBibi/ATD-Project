@@ -12,7 +12,7 @@ function updateStateFieldAction(field, value) {
 
 function validateUsernameAction(name){
     return {
-        type: RegisterPageActionsConstants.VALIDATE_USERNAME,
+        type: RegisterPageActionsConstants.VALIDATE_REGISTER_USERNAME,
         uri: '/api/validate/username',
         payload: {
             name
@@ -46,11 +46,11 @@ function suggestLocationsAction(fullList, subString){
 function validateActionSuccess(isValid){
     if(isValid)
         return {
-            type: RegisterPageActionsConstants.VALIDATE_ACTION_SUCCESS,
+            type: RegisterPageActionsConstants.VALIDATE_REGISTER_ACTION_SUCCESS,
         };
     else
         return {
-            type: RegisterPageActionsConstants.VALIDATE_ACTION_FAILURE,
+            type: RegisterPageActionsConstants.VALIDATE_REGISTER_ACTION_FAILURE,
             payload: {
                 message: "The username is already used, please choose different one."
             }
@@ -58,10 +58,10 @@ function validateActionSuccess(isValid){
 }
 
 function submitUserAction(username, password, location, picture, locations, isValid) {
-    if(username.length > 0 && location && picture && password) {
+    if(username.length > 0 && location && picture.pictureType !== "" && picture.pictureType!==null && password) {
         if(!isValid)
             return {
-                type: RegisterPageActionsConstants.VALIDATE_ACTION_FAILURE,
+                type: RegisterPageActionsConstants.VALIDATE_REGISTER_ACTION_FAILURE,
                 payload: {
                     message: `The username is already used,\nplease choose different one.`
                 }
@@ -76,10 +76,10 @@ function submitUserAction(username, password, location, picture, locations, isVa
                     location: location,
                     picture: picture,
                 }
-            }
+            };
         else
             return {
-                type: RegisterPageActionsConstants.MISSING_FIELDS,
+                type: RegisterPageActionsConstants.MISSING_REGISTER_FIELDS,
                 payload: {
                     succeed: false,
                     message: "Please choose valid location."
@@ -88,7 +88,7 @@ function submitUserAction(username, password, location, picture, locations, isVa
     }
     else
         return {
-            type: RegisterPageActionsConstants.MISSING_FIELDS,
+            type: RegisterPageActionsConstants.MISSING_REGISTER_FIELDS,
             payload: {
                 succeed: false,
                 message: "Please fill in all the fields."
@@ -105,6 +105,11 @@ function submitUserSuccessAction(value) {
     }
 
 }
+function initRegisterMessageAction() {
+    return {
+        type: RegisterPageActionsConstants.INIT_REGISTER_MESSAGE,
+    }
+}
 
 let RegisterPageActions = {
     updateStateFieldAction,
@@ -113,7 +118,8 @@ let RegisterPageActions = {
     suggestLocationsAction,
     validateActionSuccess,
     submitUserAction,
-    submitUserSuccessAction
+    submitUserSuccessAction,
+    initRegisterMessageAction,
 };
 
 export default RegisterPageActions

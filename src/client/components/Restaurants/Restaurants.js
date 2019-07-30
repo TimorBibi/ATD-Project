@@ -345,17 +345,6 @@ const mapStateToProps = (state) => {
         searchLocationValue:state['restaurants'].get('searchLocationValue'),
         ratingRangeValues:state['restaurants'].get('ratingRangeValues'),
         closerBetterValues:state['restaurants'].get('closerBetterValues'),
-        // restaurantName: state['restaurants'].get('restaurantName'),
-        // restaurantLocation: state['restaurants'].get('restaurantLocation'),
-        bathroomRate: state['restaurants'].get('bathroomRate'),
-        staffRate: state['restaurants'].get('staffRate'),
-        cleanRate: state['restaurants'].get('cleanRate'),
-        foodRate: state['restaurants'].get('foodRate'),
-        driveInRate: state['restaurants'].get('driveInRate'),
-        deliveryRate: state['restaurants'].get('deliveryRate'),
-        avgRate: state['restaurants'].get('avgRate'),
-        freeText: state['restaurants'].get('freeText'),
-        picture: state['restaurants'].get('picture'),
         submitMessage: state['restaurants'].get('submitMessage'),
     }
 

@@ -45,7 +45,7 @@ function* submitUser(action){
 
 function* RegisterPageSaga() {
     //using takeEvery, you take the action away from reducer to saga
-    yield takeEvery(RegisterPageActionsConstants.VALIDATE_USERNAME, validateUsername);
+    yield takeEvery(RegisterPageActionsConstants.VALIDATE_REGISTER_USERNAME, validateUsername);
     yield takeEvery(RegisterPageActionsConstants.SUBMIT_USER, submitUser);
 }
 

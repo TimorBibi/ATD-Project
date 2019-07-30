@@ -19,7 +19,7 @@ function* submitReview(action){
         const json = yield call([res, 'json']); //retrieve body of response
         yield put(AddReviewActions.submitReviewSucceedAction(json));
         yield put(AppActions.updateReviewAfterSubmit());
-        yield put(AddReviewActions.clearFieldsAction());
+        // yield put(AddReviewActions.clearFieldsAction());
         yield put(RestaurantActions.toggleRestaurantForm(action.payload.toggle));
     } catch (e) {
         yield put(AddReviewActions.reviewFailureAction(e.message));
