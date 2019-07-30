@@ -68,7 +68,7 @@ const mapStateToProps = (state) => {
       restaurantsToShow: (List) (state['restaurants'].get('restaurantsToShow')).toArray(),
       addedUser: state['app'].get('addedUser'),
       addedReview: state['app'].get('addedReview'),
-      restaurants: state['app'].get('restaurants'),
+      restaurants: (List) (state['app'].get('restaurants')).toArray(),
   }
 };
 

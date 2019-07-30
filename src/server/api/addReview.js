@@ -37,7 +37,6 @@ module.exports = (app) => {
                 .then(restaurant => {
                     let avgValue = culcAvg([req.body.bathroom, req.body.staff, req.body.clean, req.body.food,
                         req.body.driveIn, req.body.delivery,]);
-                    console.log("FREE TEXT: ", req.body.freeText);
                     req.review = new ReviewModel({
                         username: req.body.username,
                         name: req.body.name,

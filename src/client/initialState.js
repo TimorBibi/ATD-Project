@@ -18,7 +18,7 @@ export default {
     registerPage: Map({
         username: '',
         password: '',
-        isValidUsername: true,
+        isValid: true,
         location: '',
         suggestions: [],
         picture: {
@@ -76,7 +76,7 @@ export default {
             edit: false,
         }),
         movetoViewProfilePage: false,
-
+        suggestions: List()
     }),
     addReview :Map({
         restaurantName: '',
@@ -101,6 +101,7 @@ export default {
         isValid: false,
     }),
     viewProfilePage: Map({
+        isValid: true,
         showRestaurantForm: false,
         editReview: Map({
             selectedReview: '',
@@ -119,6 +120,5 @@ export default {
     pictureType: '',
         pictureData: [],
 },
-    isValid: true,
     suggestions: [],
 };

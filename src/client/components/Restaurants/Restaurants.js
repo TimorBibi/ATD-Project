@@ -236,7 +236,7 @@ class Restaurants extends React.Component {
 
         const normDists = dists.map((dist)=> dist/maxDist);
 
-        const normRates = rests.map((rest) => (1 - (rest.avgRate -1)/4));        console.log("222???111",maxDist);
+        const normRates = rests.map((rest) => (1 - (rest.avgRate -1)/4));
 
         const closerBetterValues = normDists.map((dist, index) =>
             ((normRates[index]*closerBetterValue) + (dist *(4 - closerBetterValue))));

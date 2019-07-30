@@ -83,7 +83,9 @@ function reviewFailureAction(error){
 
 function clearFieldsAction()
 {
-    return{type: AddReviewActionsConstants.CLEAR_FIELDS}
+    return{
+        type: AddReviewActionsConstants.CLEAR_FIELDS
+    }
 }
 
 function initReviewMessageAction() {

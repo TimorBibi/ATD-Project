@@ -1,6 +1,8 @@
 import { UsersActionsConstants } from './constants';
 import {AppActionsConstants} from "../App/constants";
 import {LogInPageActionsConstants} from "../LogInPage/constants";
+import {RegisterPageActionsConstants} from "../RegisterPage/constants";
+import {ViewProfilePageActionsConstants} from "../ViewProfilePage/constants";
 
 
 function updateStateFieldAction(field, value) {
@@ -56,12 +58,15 @@ function updateShowUsersAction(users)
     }
 }
 
-function updateSearchKeyAction(key)
+function updateSearchKeyAction(key, locations, users, restaurants)
 {
     return {
         type: UsersActionsConstants.UPDATE_SEARCH_KEY,
         payload: {
-            key: key
+            key: key,
+            locations: locations,
+            users: users,
+            restaurants: restaurants
         }
     }
 }
@@ -77,6 +82,19 @@ function updateSearchValueAction(value)
 }
 
 
+function suggestInUsersAction(fullList, subString){
+    const suggested =
+        fullList.filter(elm => {
+            return elm.toLowerCase().startsWith(subString.toLowerCase());
+        });
+    return {
+        type: UsersActionsConstants.SUGGEST_IN_USERS,
+        payload: {
+            suggested: suggested
+        }
+    }
+}
+
 let UsersActions = {
     updateStateFieldAction,
     showUserReviewsAction,
@@ -86,6 +104,7 @@ let UsersActions = {
     updateShowUsersAction,
     updateSearchKeyAction,
     updateSearchValueAction,
+    suggestInUsersAction
 };
 
 export default UsersActions

@@ -2,6 +2,7 @@ import { UsersActionsConstants} from './constants'
 import initialState from '../../initialState'
 import {List, Map} from 'immutable'
 import {LogInPageActionsConstants} from "../LogInPage/constants";
+import {RegisterPageActionsConstants} from "../RegisterPage/constants";
 
 const UsersReducer = (state = initialState.restaurants, action) => {
     console.log('Restaurants state=', state);
@@ -28,7 +29,24 @@ const UsersReducer = (state = initialState.restaurants, action) => {
             return state.set('usersToShow', users);
 
         case UsersActionsConstants.UPDATE_SEARCH_KEY:
-            return state.set('searchKey', action.payload.key);
+            let suggestions;
+            switch (action.payload.key)
+            {
+                case 'user':
+                    suggestions = action.payload.users;
+                    break;
+                case 'location':
+                    suggestions = action.payload.locations;
+                    break;
+                case 'restaurant':
+                    suggestions = action.payload.restaurants;
+                    break;
+            }
+            return state.set('searchKey', action.payload.key)
+                        .set('suggestions', suggestions);
+
+        case UsersActionsConstants.SUGGEST_IN_USERS:
+            return state.set('suggestions', action.payload.suggested);
 
         case UsersActionsConstants.UPDATE_USER_SEARCH_VALUE:
             return state.set('searchValue', action.payload.value);

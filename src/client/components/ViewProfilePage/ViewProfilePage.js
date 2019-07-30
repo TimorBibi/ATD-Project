@@ -6,13 +6,13 @@ import AddReview from "../AddReview/AddReview";
 import {Button, Form, Input} from "semantic-ui-react";
 import {DataView} from "primereact/components/dataview/DataView";
 import ViewProfilePageActions from "./actions";
-import {Rating} from "primereact/components/rating/Rating";
-import {InputTextarea} from "primereact/components/inputtextarea/InputTextarea";
 import {Growl} from "primereact/components/growl/Growl";
 import {InputText} from "primereact/components/inputtext/InputText";
 import {Password} from "primereact/components/password/Password";
 import {AutoComplete} from "primereact/components/autocomplete/AutoComplete";
 const {Map, List} = require('immutable');
+import Review from "../Review/Review";
+
 
 class ViewProfilePage extends React.Component {
 
@@ -25,25 +25,21 @@ class ViewProfilePage extends React.Component {
     }
 
     componentDidUpdate() {
-        // debugger;
-        if(this.props.submitMessage.message) {
-            if (this.props.submitMessage.succeed)
-                this.growl.show({severity: 'success', summary: this.props.submitMessage.message});
-            else
-                this.growl.show({severity: 'error', summary: this.props.submitMessage.message});
-            this.props.initViewProfileMessageEventHandler();
-        }
+        // if(this.props.submitMessage.message) {
+        //     if (this.props.submitMessage.succeed)
+        //         this.growl.show({severity: 'success', summary: this.props.submitMessage.message});
+        //     else
+        //         this.growl.show({severity: 'error', summary: this.props.submitMessage.message});
+        //     this.props.initViewProfileMessageEventHandler();
+        // }
     }
 
     constructor(){
         super();
         this.itemTemplate = this.itemTemplate.bind(this);
-        this.viewReviewItem = this.viewReviewItem.bind(this);
-        this.editReviewItem = this.editReviewItem.bind(this);
         this.editProfile = this.editProfile.bind(this);
         this.viewProfile = this.viewProfile.bind(this);
         this.downloadFile = this.downloadFile.bind(this);
-        // <ViewProfilePage userID={user.username}/>
     }
 
     downloadFile(e) {
@@ -69,11 +65,10 @@ class ViewProfilePage extends React.Component {
 
     editProfile()
     {
-        console.log("??????", this.props.profileUsername);
-
         const imgsrc = Map(this.props.profilePicture).get('data');
         return (
            <div className="editProfile">
+               <Growl ref={(el) => this.growl = el} position="bottomright"/>
                <Form className="editProfile-form" onSubmit={() => {
                    this.props.submitEventHandler(
                        this.props.profileUsername,
@@ -81,14 +76,15 @@ class ViewProfilePage extends React.Component {
                        this.props.profileLocation,
                        this.props.profilePicture,
                        this.props.locations,
-                        this.props.isValid);
+                        this.props.isValid,
+                        this.props.username);
                        this.props.showEditProfileEventHandler(this.props.editProfile);
                }}>
                    <Form.Field width='9'>
                     {/*<span className="p-float-label">*/}
                        <label htmlFor="profileUsername" className="form-text">Username:</label>
                        <InputText id="profileUsername" value={this.props.profileUsername} onChange={this.props.updateStateFieldEventHandler}
-                                    onBlur={(e)=>this.props.validateUsernameEventHandler(e, this.props.username)} />
+                                    onBlur={(e)=>this.props.validateEditUsernameEventHandler(e, this.props.profileUsername)} />
                     {/*</span>*/}
                    </Form.Field>
                    <Form.Field width='9'>
@@ -112,9 +108,8 @@ class ViewProfilePage extends React.Component {
                                      completeMethod={(e) => this.props.suggestLocationsEventHandler(this.props.locations, e)} />
                    </Form.Field>
                    <Form.Button content='Save' type="submit"/>
-                   <Button className="ui button"
-                                onClick={() => this.props.showEditProfileEventHandler(this.props.editProfile)} >Cancel</Button>
-            <Growl ref={(el) => this.growl = el} position="bottomright"/>
+                   <button className="ui button" type="button"
+                                onClick={() => this.props.showEditProfileEventHandler(this.props.editProfile)} >Cancel</button>
            </Form>
            </div>
        );
@@ -137,9 +132,13 @@ class ViewProfilePage extends React.Component {
                     <p id="location">{Map(user.get('location')).get('city')} </p>
                 </Form.Field>
             </Form>
-            <Button id={"edit_"+user.get('userName')}  className="ui button"
-                    onClick={() => this.props.editProfileEventHandler(this.props.editProfile, user)}>Edit Profile</Button>
-            <Button label="Add Review" icon="plus" onClick={() => this.props.toggleRestaurantFormEventHandler(this.props.showRestForm)}/>
+            <Button id={"edit_"+user.get('userName')}  className="ui button" type="button"
+                    onClick={() => {
+                        this.props.editProfileEventHandler(this.props.editProfile, user);
+                        this.props.toggleRestaurantFormEventHandler(true);
+                    }}
+            >Edit Profile</Button>
+            <Button label="Add Review" icon="plus" type="button" onClick={() => this.props.toggleRestaurantFormEventHandler(this.props.showRestForm)}/>
             {addReview}
         </div>);
     }
@@ -207,17 +206,18 @@ const mapDispatchToProps = (dispatch) => {
         editProfileEventHandler: (prevValue, user) => {
             dispatch(ViewProfilePageActions.editProfileAction(prevValue, user));
         },
+
         showEditProfileEventHandler: (prevValue) => {
             dispatch(ViewProfilePageActions.showEditProfileAction(prevValue));
         },
-        validateUsernameEventHandler: (e, currName) => {
-            dispatch(ViewProfilePageActions.validateUsernameAction(e.target.value, currName));
+        validateEditUsernameEventHandler: (e, currName) => {
+            dispatch(ViewProfilePageActions.validateEditUsernameAction(e.target.value, currName));
         },
         suggestLocationsEventHandler: (locations, e) => {
             dispatch(ViewProfilePageActions.suggestLocationsAction(locations ,e.query));
         },
-        submitEventHandler: (username, password, location, picture, locations, isValid) => {
-            dispatch(ViewProfilePageActions.submitUserAction(username, password, location, picture, locations, isValid));
+        submitEventHandler: (username, password, location, picture, locations, isValid, currentUsername) => {
+            dispatch(ViewProfilePageActions.submitEditUserAction(username, password, location, picture, locations, isValid, currentUsername));
         },
         initViewProfileMessageEventHandler:() => {
             dispatch(ViewProfilePageActions.initViewProfileMessageAction());

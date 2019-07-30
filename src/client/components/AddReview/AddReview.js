@@ -2,13 +2,12 @@ import React from 'react';
 import './AddReview.scss';
 import {connect} from 'react-redux';
 import {InputText} from 'primereact/inputtext';
-import {Form, Input} from "semantic-ui-react";
+import {Form, Input, Button} from "semantic-ui-react";
 import {AutoComplete} from "primereact/components/autocomplete/AutoComplete";
 import AddReviewActions from "../AddReview/actions";
 import {Rating} from "primereact/components/rating/Rating";
 import {Growl} from "primereact/components/growl/Growl";
 import {InputTextarea} from 'primereact/inputtextarea';
-import { Button } from 'semantic-ui-react'
 import RestaurantsActions from "../Restaurants/actions";
 
 
@@ -45,7 +44,9 @@ class AddReview extends React.Component {
 
     render() {
         return (
-            <Form className="register-form"
+            <div>
+                <Growl ref={(el) => this.growl = el} position="bottomright"/>
+                <Form className="register-form"
               onSubmit={() => {
                   this.props.submitEventHandler(
                       this.props.username,
@@ -116,15 +117,15 @@ class AddReview extends React.Component {
                                    value={this.props.freeText} autoResize={true}
                                    onChange={this.props.updateStateFieldEventHandler} />
                 </Form.Field>
-                <Form.Button content='Submit Review' type="submit"/>
-                <Button id="clearFields"
+                <button id="clearFields" className="ui button" type="button"
                         onClick={() => this.props.clearFieldsEventHandler()}
-                >Clear Fields</Button>
-                <Button id="cancel"
+                >Clear Fields</button>
+                <button id="cancel" className="ui button" type="button"
                         onClick={() => this.props.toggleAddReviewEventHandler(this.props.showRestForm)}
-                >Cancel</Button>
-                <Growl ref={(el) => this.growl = el} position="bottomright"/>
-            </Form>
+                >Cancel</button>
+                <Form.Button  id="submit" content='Submit Review' type="submit" className="form-submit-button"/>
+                </Form>
+            </div>
         );
     }
 }

@@ -57,7 +57,8 @@ function validateActionSuccess(isValid){
         };
 }
 
-function submitUserAction(username, password, location, picture, locations, isValid) {
+function submitUserAction(username, password, location, picture, locations, isValid)
+{
     if(username.length > 0 && location && picture.pictureType !== "" && picture.pictureType!==null && password) {
         if(!isValid)
             return {
@@ -103,8 +104,9 @@ function submitUserSuccessAction(value) {
             message: value.username + ' submitted.'
         }
     }
-
 }
+
+
 function initRegisterMessageAction() {
     return {
         type: RegisterPageActionsConstants.INIT_REGISTER_MESSAGE,

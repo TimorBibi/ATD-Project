@@ -9,10 +9,10 @@ const RegisterPageReducer = (state = initialState.registerPage, action) => {
             return state.set(action.payload.field, action.payload.value);
 
         case RegisterPageActionsConstants.VALIDATE_REGISTER_ACTION_SUCCESS:
-            return state.set('isValidUsername', true);
+            return state.set('isValid', true);
 
         case RegisterPageActionsConstants.VALIDATE_REGISTER_ACTION_FAILURE:
-            return state.set('isValidUsername', false)
+            return state.set('isValid', false)
         .set('submitMessage', {succeed: false, message: action.payload.message});
 
         case RegisterPageActionsConstants.SUGGEST_LOCATION:

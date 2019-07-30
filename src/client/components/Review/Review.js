@@ -68,7 +68,7 @@ class Review extends React.Component {
         const hasFreeText = this.state.freeText ?
             (<label htmlFor="freeText">Description: {this.state.freeText}</label>)
             : null;
-        const reviewImg = !this.state.picture.contentType ? null:
+        const reviewImg = !this.state.picture ? null:
             (<div className="imgPreview">
                 <img src={this.state.picture.data} width="200" height="100"/>
             </div>);
@@ -76,10 +76,10 @@ class Review extends React.Component {
 
         const editable = this.state.username !== this.props.username ? null:
             (<div>
-                <Button id={this.state.username+"_"+this.state.timeStamp}  className="ui button"
+                <Button id={this.state.username+"_"+this.state.timeStamp} type="button" className="ui button"
                         onClick={() => this.makeEditableAction()}>Edit</Button>
                         {/*onClick={() => Review.makeEditableEventHandler(this.props.editReview, review)}>Edit</Button>*/}
-                <Button id={"delete_"+this.state.username+"_"+this.state.timeStamp}  className="ui button"
+                <Button id={"delete_"+this.state.username+"_"+this.state.timeStamp}  type="button" className="ui button"
                         onClick={() => this.props.deleteReviewEventHandler(this.state)}>Delete</Button>
             </div>);
 
@@ -206,10 +206,9 @@ class Review extends React.Component {
                 <br/>
                 <Form.Button id={"edit_" + this.state.username+"_"+this.state.timeStamp}
                              content='Submit Review' type="submit"/>
-                <Form.Button id={"cancel_" + this.state.username+"_"+this.state.timeStamp}
+                <Button id={"cancel_" + this.state.username+"_"+this.state.timeStamp} type="button"
                              content="Cancel"
                              onClick={() => this.makeEditableAction()}/>
-                    Cancel
                 <hr/>
             </Form>
         );

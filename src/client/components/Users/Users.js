@@ -7,9 +7,11 @@ import {DataView, DataViewLayoutOptions} from 'primereact/dataview';
 import {InputText} from 'primereact/inputtext';
 import {List, Map} from 'immutable';
 import {Menubar} from 'primereact/menubar';
+import {AutoComplete} from 'primereact/autocomplete';
 import {Rating} from 'primereact/rating';
 import UsersActions from '../Users/actions';
 import Review from "../Review/Review";
+import RegisterPageActions from "../RegisterPage/actions";
 
 class Users extends React.Component {
 
@@ -68,7 +70,6 @@ class Users extends React.Component {
         const hasFreeText = review.freeText?
             (<label htmlFor="freeText">Description: {review.freeText}</label>)
             : null;
-        console.log("rrrrrrrr",review.picture);
         const reviewImg = review.picture.contentType !== "" && review.picture.contentType!==null?
             (<div className="imgPreview">
                 <img src={review.picture.data} width="200" height="100"/>
@@ -165,7 +166,15 @@ class Users extends React.Component {
                 <div className="p-col-6" style={{textAlign: 'left'}}>
                     <Dropdown options={searchOptions} value={this.props.searchKey} placeholder="Search By"
                               onChange={(e) => (this.props.updateSearchKeyEventHandler(e.value))} />
-                    <InputText id="searchValue" onChange={this.props.updateStateFieldEventHandler}/>
+                    {/*<AutoComplete id='location' value={this.props.location}*/}
+                    {/*              onChange={this.props.updateStateFieldEventHandler}*/}
+                    {/*              suggestions={this.props.suggestions}*/}
+                    {/*              completeMethod={(e) => this.props.suggestLocationsEventHandler(this.props.locations, e)} />*/}
+                    <AutoComplete id="searchValue" onChange={this.props.updateStateFieldEventHandler}
+                                  suggestions={this.props.suggestions}
+                                  value = {this.props.searchValue}
+                                  completeMethod={(e) => this.props.suggestionsEventHandler(this.props.suggestions, e)}/>
+
                     <Button id="searchButton"  className="ui button"
                             onClick={() => (this.props.updateShowUsersEventHandler(this.searchBy()))}
                     >Search</Button>
@@ -201,6 +210,9 @@ const mapStateToProps = (state) => {
         showRestForm: state['users'].get('showRestaurantForm'),
         isConnected: state['app'].get('isConnected'),
         users: (List) (state['app'].get('users')).toArray(),
+        locations: (List) (state['app'].get('locations')).toArray(),
+        restaurants: (List) (state['app'].get('restaurants')).toArray(),
+        suggestions: (List) (state['users'].get('suggestions')).toArray(),
         usersToShow: (List) (state['users'].get('usersToShow')).toArray(),
         showReviews: state['users'].get('showReviews'),
         username: state['app'].get('username'),
@@ -228,7 +240,10 @@ const mapDispatchToProps = (dispatch) => {
         },
         updateSearchValueEventHandler: (value) => {
             dispatch(UsersActions.updateSearchValueAction(value));
-        }
+        },
+        suggestionsEventHandler: (auto, e) => {
+            dispatch(UsersActions.suggestInUsersAction(auto ,e.query));
+        },
     }
 };
 

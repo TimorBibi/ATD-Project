@@ -7,21 +7,6 @@ let _handleError = function(err){
 };
 
 
-const culcAvg = (values) => {
-    let noZero = values.filter(val => val > 0).length;
-    return (values.reduce((acc, val) => acc + val) / noZero);
-};
-
-const culcoldAvg = (numOfReviews, restAvg, reviewValue) => {
-    if(numOfReviews - 1 ===0)
-        return 0;
-    return (((restAvg * numOfReviews) - reviewValue)/ (numOfReviews - 1));
-};
-
-const culcnewAvg = (numOfReviews, oldAvg, newReviewAvg, oldReviewAvg) => {
-    return (((oldAvg * numOfReviews) - oldReviewAvg + newReviewAvg)/ (numOfReviews));
-};
-
 module.exports = (app) => {
     app.post('/api/submit/restaurant', function (req, res) {
         console.log('Restaurant.post/api/submit/restaurant');

@@ -93,7 +93,7 @@ const mapStateToProps = (state) => {
     return {
         username: state['registerPage'].get('username'),
         password: state['registerPage'].get('password'),
-        isValid: state['registerPage'].get('isValidUsername'),
+        isValid: state['registerPage'].get('isValid'),
         location: state['registerPage'].get('location'),
         locations: state['app'].get('locations'),
         suggestions: state['registerPage'].get('suggestions'),

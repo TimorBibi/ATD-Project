@@ -24,7 +24,7 @@ module.exports = (app) => {
     app.post('/api/submit/user', function(req, res) {
         console.log('registerPage.post/api/submit/user');
         UserModel
-            .findOne({name: req.body.username})
+            .findOne({username: req.body.username})//todo: change to username:??
             .then(doc => {
                 if (doc === null) { //submit user
                     CitiesModel
