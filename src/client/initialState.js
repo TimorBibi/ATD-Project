@@ -10,10 +10,9 @@ export default {
         locations: [],
         addedUser: false,
         addedReview: false,
-        activeItem: 'restaurants'
-
     }),
     topbar: Map({
+        activeItem: 'restaurants'
     }),
     registerPage: Map({
         username: '',

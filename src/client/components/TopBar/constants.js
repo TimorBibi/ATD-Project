@@ -1,5 +1,5 @@
 const TopBarActionsConstants = {
-    NONE: 'NONE,'
+    SET_ACTIVE: 'SET_ACTIVE',
 };
 
 export { TopBarActionsConstants };
