@@ -10,7 +10,7 @@ export default {
         locations: [],
         addedUser: false,
         addedReview: false,
-        activeItem: 'home'
+        activeItem: 'restaurants'
 
     }),
     topbar: Map({
@@ -58,8 +58,8 @@ export default {
             succeed: false,
             message: '',
         },
-        suggestions:[]
-
+        suggestions:[],
+        restDidUpdate : false,
     }),
     review: Map({
 
@@ -79,12 +79,12 @@ export default {
         }),
         movetoViewProfilePage: false,
         suggestions: [],
-        selectedSuggestionsOption: List()
+        selectedSuggestionsOption: List(),
+        usersDidUpdate: false,
     }),
     addReview :Map({
         restaurantName: '',
         restaurantLocation: '',
-        // reviewText: '',
         suggestions: [],
         submitMessage: {
             succeed: false,

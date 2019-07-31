@@ -26,7 +26,8 @@ const UsersReducer = (state = initialState.restaurants, action) => {
 
         case UsersActionsConstants.UPDATE_USERS_TO_SHOW:
             const users = (List)(action.payload.users).sortBy((user)=> user.username);
-            return state.set('usersToShow', users);
+            return state.set('usersToShow', users)
+                .set('usersDidUpdate', action.payload.updated);
 
         case UsersActionsConstants.UPDATE_SEARCH_KEY:
             let suggestions;

@@ -4,14 +4,11 @@ import {connect} from 'react-redux';
 import {Button, Form} from 'semantic-ui-react';
 import {Dropdown} from "primereact/dropdown";
 import {DataView, DataViewLayoutOptions} from 'primereact/dataview';
-import {InputText} from 'primereact/inputtext';
 import {List, Map} from 'immutable';
-import {Menubar} from 'primereact/menubar';
 import {AutoComplete} from 'primereact/autocomplete';
 import {Rating} from 'primereact/rating';
 import UsersActions from '../Users/actions';
 import Review from "../Review/Review";
-import RegisterPageActions from "../RegisterPage/actions";
 
 class Users extends React.Component {
 
@@ -22,7 +19,6 @@ class Users extends React.Component {
         this.viewReviewItem = this.viewReviewItem.bind(this);
         this.searchBy = this.searchBy.bind(this);
         this.resetSearchField = this.resetSearchField.bind(this);
-        // <ViewProfilePage userID={user.username}/> //todo: use it for review component
     }
 
         componentDidUpdate() {
@@ -122,7 +118,8 @@ class Users extends React.Component {
     itemTemplate(user, layout) {
         if (layout === 'list') {
             const showReviews = ((this.props.showReviews.get('selectedUser') === user.username)
-                                && this.props.showReviews.get('visible')) ?
+                                && this.props.showReviews.get('visible')
+                                 && user.reviews.length > 0) ?
                 user.reviews.map((review) =>
                 <Review review={review} key={review.username+"_user_"+review.timeStamp} /> )
                 : null;
@@ -142,7 +139,7 @@ class Users extends React.Component {
         const value = this.props.searchValue;
         const users = this.props.users;
 
-        if (value === '' || key==='')
+        if (!value || !key)
             return users;
 
         if(key === 'user')
@@ -217,6 +214,7 @@ const mapStateToProps = (state) => {
         showReviews: state['users'].get('showReviews'),
         username: state['app'].get('username'),
         movetoViewProfilePage: state['users'].get('movetoViewProfilePage'),
+        didUpdate: state['users'].get('usersDidUpdate'),
     }
 
 };
@@ -233,7 +231,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(UsersActions.moveToUserProfileAction());
         },
         updateShowUsersEventHandler: (users) => {
-            dispatch(UsersActions.updateShowUsersAction(users));
+            dispatch(UsersActions.updateShowUsersAction(users, false));
         },
         updateSearchKeyEventHandler: (key, locations, users, restaurants) => {
             dispatch(UsersActions.updateSearchKeyAction(key, locations, users, restaurants));

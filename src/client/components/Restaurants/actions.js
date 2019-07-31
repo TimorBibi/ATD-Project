@@ -29,6 +29,15 @@ function updateSliderFieldAction(value){
     }
 }
 
+function initToShowRestsAction(restaurants) {
+    return {
+        type: RestaurantsActionsConstants.INIT_TO_SHOW,
+        payload: {
+            restaurants: restaurants
+        }
+    }
+}
+
 function showReviewsAction(prevReviewValue, currId, reviews){
     const prev = prevReviewValue.get('selectedRest');
     const payload = (prev === currId)?
@@ -40,24 +49,13 @@ function showReviewsAction(prevReviewValue, currId, reviews){
     }
 }
 
-
-
-function initShowRestaurantsAction(restaurants)
+function updateShowRestaurantsAction(restaurants, restUpdated)
 {
     return {
         type: RestaurantsActionsConstants.UPDATE_RESTAURANTS_TO_SHOW,
         payload: {
-            restaurants: restaurants
-        }
-    }
-}
-
-function updateShowRestaurantsAction(restaurants)
-{
-    return {
-        type: RestaurantsActionsConstants.UPDATE_RESTAURANTS_TO_SHOW,
-        payload: {
-            restaurants: restaurants
+            restaurants: restaurants,
+            updated: restUpdated
         }
     }
 }
@@ -139,12 +137,20 @@ function suggestionsAction(fullList, subString){
     }
 }
 
+function upDateReviewsToShow(review){
+    return {
+        type: RestaurantsActionsConstants.UPDATE_REVIEWS_TO_SHOW_AFTER_DELETE,
+        payload: {
+            review: review,
+        }
+    }
+}
 
 let RestaurantsActions = {
     toggleRestaurantForm,
     updateStateFieldAction,
     showReviewsAction,
-    initShowRestaurantsAction,
+    initToShowRestsAction,
     updateShowRestaurantsAction,
     updateSearchValueAction,
     updateSliderFieldAction,
@@ -153,8 +159,8 @@ let RestaurantsActions = {
     updateReviewSliderFieldAction,
     updateReviewSearchValueAction,
     updateSliderCloserBetterAction,
-    updateShowReviews,
-    suggestionsAction
+    suggestionsAction,
+    upDateReviewsToShow,
 };
 
 export default RestaurantsActions

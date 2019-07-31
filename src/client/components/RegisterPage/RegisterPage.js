@@ -19,7 +19,6 @@ class RegisterPage extends React.Component {
     }
 
     componentDidUpdate() {
-        // debugger;
         if(this.props.submitMessage.message) {
             if (this.props.submitMessage.succeed)
                 this.growl.show({severity: 'success', summary: this.props.submitMessage.message});

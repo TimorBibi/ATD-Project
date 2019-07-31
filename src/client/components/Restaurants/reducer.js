@@ -29,6 +29,12 @@ const RestaurantsReducer = (state = initialState.restaurants, action) => {
             .set('criteriaReviewValue', 'criteriaReviewValue:')
             .set('ratingRangeReviewValues', [1,5]);
 
+        case RestaurantsActionsConstants.UPDATE_REVIEWS_TO_SHOW_AFTER_DELETE:
+            return state.set('reviewsToShow', state.get('reviewsToShow').filter((review) => {
+                return !(review.username === action.payload.review.username
+                && review.timeStamp === action.payload.review.timeStamp)
+            }));
+
         case RestaurantsActionsConstants.EDIT_REVIEW:
             return state.set('editReview', new Map({
                 selectedReview: action.payload.editReview.selectedReview,
@@ -44,9 +50,12 @@ const RestaurantsReducer = (state = initialState.restaurants, action) => {
                 .set('picture', action.payload.picture);
 
         case RestaurantsActionsConstants.UPDATE_RESTAURANTS_TO_SHOW:
-            // const restaurants = (List)(action.payload.restaurants).sortBy((rest)=> -1*rest.avgRate);
             const restaurants = (List)(action.payload.restaurants);
-            return state.set('restaurantsToShow', restaurants);
+            return state.set('restaurantsToShow', restaurants)
+                .set('restDidUpdate', action.payload.updated);
+
+        case RestaurantsActionsConstants.INIT_TO_SHOW:
+            return state.set('restaurantsToShow', action.payload.restaurants);
 
         case RestaurantsActionsConstants.UPDATE_REST_SEARCH_VALUE:
             return state.set('searchNameValue', '')
@@ -79,6 +88,7 @@ const RestaurantsReducer = (state = initialState.restaurants, action) => {
 
         case RestaurantsActionsConstants.SUGGEST_IN_RESTAURANTS:
             return state.set('suggestions', action.payload.suggested);
+
 
         default: //otherwise state is lost!
             return state;

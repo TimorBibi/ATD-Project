@@ -33,9 +33,9 @@ class TopBar extends React.Component {
         return (
             <div className="ui tabular menu">
             <Menu>
-                <Menu.Item  className="item" name='home' active={active === 'home'} href="/"
+                <Menu.Item  className="item" name='restaurants' active={active === 'restaurants'} href="/"
                            onClick={(e, data) => this.props.setActiveEventHandler(data)}>
-                    Home
+                    Restaurants
                 </Menu.Item>
                 <Menu.Item  className="item" name='users' active={active === 'users'} href="/users"
                            onClick={(e, data) => this.props.setActiveEventHandler(data)}>

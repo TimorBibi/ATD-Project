@@ -64,6 +64,7 @@ function validateEditUsernameAction(name, currName){
 
 function submitEditUserAction(username, password, location, picture, locations, isValid, currentUsername)
 {
+    console.log("HEREE11:",username, password, location, picture, isValid, currentUsername);
     if(username.length > 0 && location && picture.contentType !== "" && picture.contentType!==null && password)
     {
         if(!isValid) {
@@ -168,7 +169,6 @@ function submitEditUserFailureAction(error){
 
 
 let ViewProfilePageActions = {
-    toggleRestaurantForm,
     updateStateFieldAction,
     editProfileAction,
     showEditProfileAction,
@@ -179,7 +179,6 @@ let ViewProfilePageActions = {
     suggestLocationsAction,
     getPasswordSuccessAction,
     initViewProfileMessageAction,
-    submitEditUserSuccessAction,
     submitEditUserFailureAction
 };
 

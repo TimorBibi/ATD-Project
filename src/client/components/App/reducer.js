@@ -30,8 +30,7 @@ const AppReducer = (state = initialState.app, action) => {
             return state.set('activeItem', action.payload.name);
 
         case AppActionsConstants.SUBMIT_EDIT_REVIEW_SUCCEED:
-            return state.set('restaurants', List(action.payload.restaurants))
-                .set('users', List(action.payload.users));
+            return state.set('addedReview', true);
 
 
         default: //otherwise state is lost!

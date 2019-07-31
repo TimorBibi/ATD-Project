@@ -63,7 +63,6 @@ module.exports = (app) => {
                     res.json({succeed: false, message: "Server Can't find the review"});
                     throw "Can't find the review";
                 }
-                console.log("HEREE1111");
             })
             .then(() => {
                 UserModel
@@ -76,9 +75,7 @@ module.exports = (app) => {
                             });
                             if (review)
                             {
-                                console.log("HEREE222");
                                 user.reviews.pull(review);
-                                console.log("HEREE333");
                                 review.bathroom = req.body.bathroom;
                                 review.staff = req.body.staff;
                                 review.clean = req.body.clean;
@@ -98,16 +95,12 @@ module.exports = (app) => {
                             res.json({succeed: false, message: `Server Can't find the user: ${req.body.username}`});
                             throw "Can't find the user";
                         }
-                        console.log("HEREE444");
-
                     })
                     .then(()=> {
                         RestaurantModel
                             .find()
                             .then(doc => {
                                 req.restaurants = doc;
-                                console.log("HEREE555");
-
                             }).then(()=>{
                             UserModel
                                 .find()
@@ -115,8 +108,6 @@ module.exports = (app) => {
 
                                     req.users = doc;
                                     res.json({succeed: true, message: '', restaurants: req.restaurants, users: req.users})
-                                    console.log("HEREE666");
-
                                 })
                         })
                     }).catch(_handleError);

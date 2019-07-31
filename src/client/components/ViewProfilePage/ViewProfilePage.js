@@ -25,13 +25,13 @@ class ViewProfilePage extends React.Component {
     }
 
     componentDidUpdate() {
-        // if(this.props.submitMessage.message) {
-        //     if (this.props.submitMessage.succeed)
-        //         this.growl.show({severity: 'success', summary: this.props.submitMessage.message});
-        //     else
-        //         this.growl.show({severity: 'error', summary: this.props.submitMessage.message});
-        //     this.props.initViewProfileMessageEventHandler();
-        // }
+        if(this.props.submitMessage.message) {
+            if (this.props.submitMessage.succeed)
+                this.growl.show({severity: 'success', summary: this.props.submitMessage.message});
+            else
+                this.growl.show({severity: 'error', summary: this.props.submitMessage.message});
+            this.props.initViewProfileMessageEventHandler();
+        }
     }
 
     constructor(){
@@ -68,7 +68,6 @@ class ViewProfilePage extends React.Component {
         const imgsrc = Map(this.props.profilePicture).get('data');
         return (
            <div className="editProfile">
-               <Growl ref={(el) => this.growl = el} position="bottomright"/>
                <Form className="editProfile-form" onSubmit={() => {
                    this.props.submitEventHandler(
                        this.props.profileUsername,
@@ -95,7 +94,7 @@ class ViewProfilePage extends React.Component {
                       {/*</span>*/}
                    </Form.Field>
                    <Form.Field width='9'>
-                       <Input type="file" id="picture"  accept="image/*" onChange={this.downloadFile}/>
+                       <Input type="file" id="profilePicture"  accept="image/*" onChange={this.downloadFile}/>
                        <div className="imgPreview" id='profilePicture'>
                            <img src={imgsrc} width="200" height="100"/>
                        </div>
@@ -115,7 +114,7 @@ class ViewProfilePage extends React.Component {
        );
     }
 
-    viewProfile(user, imgsrc, addReview)
+    viewProfile(user, imgsrc)
     {
         return (<div className="viewProfile">
             <Form className="viewProfile-form" key={user.get('username')}>
@@ -135,18 +134,14 @@ class ViewProfilePage extends React.Component {
             <Button id={"edit_"+user.get('userName')}  className="ui button" type="button"
                     onClick={() => {
                         this.props.editProfileEventHandler(this.props.editProfile, user);
-                        this.props.toggleRestaurantFormEventHandler(true);
                     }}
             >Edit Profile</Button>
-            <Button label="Add Review" icon="plus" type="button" onClick={() => this.props.toggleRestaurantFormEventHandler(this.props.showRestForm)}/>
-            {addReview}
         </div>);
     }
 
     render() {
         const user = Map(this.props.users.find((usr)=> usr['username'] === this.props.username));
         const imgsrc = Map(user.get('picture')).get('data');
-        const addReview = this.props.showRestForm? <AddReview/>: null;
         const showReview = List(user.get('reviews')).size > 0?
             <DataView value= {List(user.get('reviews')).toArray()} layout="list"
                       itemTemplate={this.itemTemplate}
@@ -154,12 +149,13 @@ class ViewProfilePage extends React.Component {
             : <label htmlFor="noReviews" className="form-text">no reviews</label>;
 
         const userProfile = this.props.editProfile?
-            this.editProfile(): this.viewProfile(user, imgsrc, addReview);
+            this.editProfile(): this.viewProfile(user, imgsrc);
 
         return (
             <div className="profile">
                 {userProfile}
                 {showReview}
+                <Growl ref={(el) => this.growl = el} position="bottomright"/>
             </div>
         )
     }
@@ -192,9 +188,6 @@ const mapDispatchToProps = (dispatch) => {
         initViewProfileEventHandler: () =>
         {
             dispatch(UsersActions.movedFromUsersPage());
-        },
-        toggleRestaurantFormEventHandler: (currVal) => {
-            dispatch(ViewProfilePageActions.toggleRestaurantForm(currVal));
         },
         updateStateFieldEventHandler: (e, data) => {
             if (data) {

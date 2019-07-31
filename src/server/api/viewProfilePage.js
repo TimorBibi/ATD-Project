@@ -1,9 +1,9 @@
 let CitiesModel = require('../model/cities');
 let UserModel = require('../model/user');
 let RestaurantModel = require('../model/restaurant');
-const {Map, List} = require('immutable');
 const secret =  require('../middleware').secret;
 const jwt = require('jsonwebtoken');
+require('mongoose').set('debug', true);
 
 let _handleError = function(err){
     if (err) return console.log(err);
@@ -50,59 +50,47 @@ module.exports = (app) => {
                             if (citiesArray === null) {
                                 res.json({succeed: false});
                                 throw "citiesArray not found!";
-                            }
-                            else {
+                            } else {
                                 let location = citiesArray.cities.find((location) => location.city === req.body.location);
                                 doc.username = req.body.username;
                                 doc.password = req.body.password;
-                                doc.location= {city: location.city, x: location.x, y: location.y};
-                                doc.picture.data = req.body.picture.data;
-                                doc.picture.contentType = req.body.picture.contentType;
-                                //todo: check if reviews are null
-                                if(doc.reviews.length > 0)
-                                    doc.reviews = doc.reviews.map((review)=> review.username = req.body.currentUsername);
-
+                                doc.location = {city: location.city, x: location.x, y: location.y};
+                                doc.picture = {
+                                    data: req.body.picture.data,
+                                    contentType: req.body.picture.contentType
+                                };
+                                doc.reviews.map((review, index) => {
+                                    let newRev = review;
+                                    newRev.username = req.body.username;
+                                    doc.reviews.set(index, newRev);
+                                });
                                 doc.save(_handleError);
                             }
-                        }).then(()=>{
-                        // RestaurantModel
-                        //     .update(
-                        //      {'reviews.username': req.oldusername},
-                        //      {
-                        //         reviews: {username: req.body.username}
-                        //      }
-                        //     )
-                            // .find({'reviews.username': req.oldusername})
-                            // .then(restaurants =>{
-                            //     if(restaurants.length > 0)
-                            //     {
-
-                                    // restaurants = restaurants.map(
-                                    //     function(rest)
-                                    //     {
-                                    //     rest.reviews.map((review)=>
-                                    //     (review.username === req.oldusername?
-                                    //         review.username = req.body.username: review));
-                                    //     });
-                                    //
-                                    // restaurants[0].save(_handleError);
-                                // }
-
-                                // restaurant.reviews = restaurant.reviews.map((review)=>
-                                // review.username === req.user.userName? review.username = req.user.userName: review);
-                                // restaurant.save(_handleError);
-                            // })
-                        }).then(() => {//TODO: update cookie
+                        }).then(() => {
+                        RestaurantModel
+                            .find({'reviews.username': req.body.currentUsername})
+                            .then((restaurants) => {
+                                restaurants.map((restaurant) => {
+                                    restaurant.reviews = restaurant.reviews.map((review, revIndex) => {
+                                        if (review.username === req.body.currentUsername) {
+                                            let newRev = review;
+                                            newRev.username = req.body.username;
+                                            restaurant.reviews.set(revIndex, newRev);
+                                            return newRev;
+                                        }
+                                    });
+                                    restaurant.save(_handleError());
+                                });
+                            }).then(() => {// update cookie
                             const token = jwt.sign({'username': req.body.username}, secret, {
                                 expiresIn: '1h'
                             });
-                            res.cookie('token', token, { httpOnly: true });
+                            res.cookie('token', token, {httpOnly: true});
                             res.json({succeed: true, username: req.body.username});
                         })
-                        .catch(_handleError);
+                            .catch(_handleError);
+                    }).catch(_handleError);
                 }
             }).catch(_handleError);
-
     });
-
 };

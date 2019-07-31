@@ -1,8 +1,4 @@
 import { UsersActionsConstants } from './constants';
-import {AppActionsConstants} from "../App/constants";
-import {LogInPageActionsConstants} from "../LogInPage/constants";
-import {RegisterPageActionsConstants} from "../RegisterPage/constants";
-import {ViewProfilePageActionsConstants} from "../ViewProfilePage/constants";
 
 
 function updateStateFieldAction(field, value) {
@@ -38,22 +34,13 @@ function movedFromUsersPage() {
     }
 }
 
-function initShowUsersAction(users)
+function updateShowUsersAction(users, userUpdated)
 {
     return {
         type: UsersActionsConstants.UPDATE_USERS_TO_SHOW,
         payload: {
-            users: users
-        }
-    }
-}
-
-function updateShowUsersAction(users)
-{
-    return {
-        type: UsersActionsConstants.UPDATE_USERS_TO_SHOW,
-        payload: {
-            users: users
+            users: users,
+            updated: userUpdated
         }
     }
 }
@@ -100,11 +87,10 @@ let UsersActions = {
     showUserReviewsAction,
     moveToUserProfileAction,
     movedFromUsersPage,
-    initShowUsersAction,
     updateShowUsersAction,
     updateSearchKeyAction,
     updateSearchValueAction,
-    suggestInUsersAction
+    suggestInUsersAction,
 };
 
 export default UsersActions

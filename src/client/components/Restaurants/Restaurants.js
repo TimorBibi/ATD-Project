@@ -6,14 +6,10 @@ import {Button, Form, Input} from 'semantic-ui-react'
 import {DataView, DataViewLayoutOptions} from 'primereact/dataview';
 import {List, Map} from 'immutable'
 import AddReview from "../AddReview/AddReview";
-import {Rating} from 'primereact/rating'
-import {InputTextarea} from 'primereact/inputtextarea';
-import {InputText} from "primereact/components/inputtext/InputText";
 import {Slider} from "primereact/components/slider/Slider";
 import {Dropdown} from "primereact/dropdown";
 import Review from "../Review/Review";
 import {AutoComplete} from "primereact/components/autocomplete/AutoComplete";
-import RegisterPageActions from "../RegisterPage/actions";
 
 class Restaurants extends React.Component {
 
@@ -28,9 +24,13 @@ class Restaurants extends React.Component {
         this.sortReviewBy = this.sortReviewBy.bind(this);
         this.criteriaField = this.criteriaField.bind(this);
         this.culcCloserBetter = this.culcCloserBetter.bind(this);
-        // <ViewProfilePage userID={user.username}/>
     }
 
+    componentDidUpdate(){
+        if (this.props.didUpdate) {
+            this.props.updateShowRestaurantsEventHandler(this.culcCloserBetter(this.searchBy()));
+        }
+    }
 
         downloadFile(e) {
         const file = e.target.files[0];
@@ -205,7 +205,7 @@ class Restaurants extends React.Component {
     itemTemplate(restaurant, layout) {
         if (layout === 'list') {
             const reviewsCond = ((this.props.showReviews.get('selectedRest') === restaurant.name+"_"+restaurant.location.city)
-                && this.props.showReviews.get('visible'));
+                && this.props.showReviews.get('visible') && restaurant.reviews.length > 0);
 
             const header = reviewsCond? this.reviewHeader(restaurant): null;
             const showReviews = reviewsCond?
@@ -268,7 +268,7 @@ class Restaurants extends React.Component {
 
         return restaurants.filter((rest)=> name === ''? true: rest.name === name)
             .filter((rest)=> location === ''? true: rest.location.city === location)
-            .filter((rest)=> rest.avgRate >= lvalue && rest.avgRate <= rvalue);
+            .filter((rest)=> rest.avgRate === 0 || (rest.avgRate >= lvalue && rest.avgRate <= rvalue));
     }
 
     restaurantHeader() {
@@ -358,14 +358,15 @@ const mapStateToProps = (state) => {
         ratingRangeValues:state['restaurants'].get('ratingRangeValues'),
         closerBetterValues:state['restaurants'].get('closerBetterValues'),
         submitMessage: state['restaurants'].get('submitMessage'),
+        didUpdate: state['restaurants'].get('restDidUpdate'),
     }
 
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        toggleRestaurantFormEventHandler: (currVal) => {
-             dispatch(RestaurantsActions.toggleRestaurantForm(currVal));
+        toggleRestaurantFormEventHandler: (newVal) => {
+             dispatch(RestaurantsActions.toggleRestaurantForm(newVal));
          },
         updateStateFieldEventHandler: (e, data) => {
             if (data) {
@@ -377,11 +378,11 @@ const mapDispatchToProps = (dispatch) => {
         updateSliderFieldEventHandler: (e) => {
             dispatch(RestaurantsActions.updateSliderFieldAction(e.value));
         },
+        initToShowRestsEventHandler: (restaurants) => {
+          dispatch(RestaurantsActions.initToShowRestsAction(restaurants));
+        },
         showReviewsEventHandler: (data, prevReviewValue, reviews) => {
             dispatch(RestaurantsActions.showReviewsAction(prevReviewValue, data.id, reviews));
-        },
-        makeEditableEventHandler: (e, prevEditReview, reviewContent) => {
-            dispatch(RestaurantsActions.enableEditReviewAction(prevEditReview, e.target.id, reviewContent))
         },
         deleteReviewEventHandler: (reviewContent) => {
             dispatch(RestaurantsActions.deleteReviewAction(reviewContent));
@@ -402,7 +403,7 @@ const mapDispatchToProps = (dispatch) => {
                 freeText));
         },
         updateShowRestaurantsEventHandler: (restaurants) => {
-            dispatch(RestaurantsActions.updateShowRestaurantsAction(restaurants));
+            dispatch(RestaurantsActions.updateShowRestaurantsAction(restaurants, false));
         },
 
         updateSearchValueEventHandler: () => {

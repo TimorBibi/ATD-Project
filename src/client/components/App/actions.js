@@ -150,7 +150,6 @@ let AppActions  = {
     updateUserAfterSubmit,
     setActiveAction,
     submitEditReviewSucceedAction,
-    editReviewFailureAction
 
 };
 

@@ -56,8 +56,9 @@ function* submitEditUser(action){
             });
 
         const json = yield call([res, 'json']);
-        yield put(AppActions.updateUserAfterSubmit());
-        yield put(ViewProfilePageActions.submitEditUserSuccessAction(json))
+        yield put(AppActions.connectUserAction({succeed: json.succeed, username: json.username}));
+        yield put(AppActions.updateReviewAfterSubmit());
+
     } catch (e) {
         yield put(ViewProfilePageActions.submitEditUserFailureAction(e.message));
     }

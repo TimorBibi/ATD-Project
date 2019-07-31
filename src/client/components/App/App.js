@@ -16,9 +16,7 @@ class App extends React.Component {
 
     componentDidMount(){
         this.props.checkTokenEventHandle();
-        // if(this.props.locations.length === 0)
         this.props.loadCitiesEventHandler();
-        // console.log(this.props.locations);
         this.props.loadUsersEventHandler();
         this.props.loadRestaurantsEventHandler();
     }
@@ -37,6 +35,7 @@ class App extends React.Component {
     }
 
   render() {
+
       return (
             <Router>
                 <div className="app-root">
@@ -64,7 +63,6 @@ const mapStateToProps = (state) => {
       username: state['app'].get('username'),
       locations: state['app'].get('locations'),
       users: (List) (state['app'].get('users')).toArray(),
-      usersToShow: (List) (state['users'].get('usersToShow')).toArray(),
       restaurantsToShow: (List) (state['restaurants'].get('restaurantsToShow')).toArray(),
       addedUser: state['app'].get('addedUser'),
       addedReview: state['app'].get('addedReview'),
@@ -85,8 +83,7 @@ const mapDispatchToProps = (dispatch) => {
       },
       loadRestaurantsEventHandler: () => {
           dispatch(AppActions.loadRestaurantsAction());
-      },
-  }
+      },}
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
