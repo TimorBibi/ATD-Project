@@ -58,6 +58,8 @@ export default {
             succeed: false,
             message: '',
         },
+        suggestions:[]
+
     }),
     review: Map({
 
@@ -76,7 +78,8 @@ export default {
             edit: false,
         }),
         movetoViewProfilePage: false,
-        suggestions: List()
+        suggestions: [],
+        selectedSuggestionsOption: List()
     }),
     addReview :Map({
         restaurantName: '',

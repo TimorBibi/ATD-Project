@@ -1,6 +1,7 @@
 import { RestaurantsActionsConstants} from './constants'
 import initialState from '../../initialState'
 import {Map,List} from 'immutable'
+import {RegisterPageActionsConstants} from "../RegisterPage/constants";
 
 const RestaurantsReducer = (state = initialState.restaurants, action) => {
     console.log('Restaurants state=', state);
@@ -75,6 +76,9 @@ const RestaurantsReducer = (state = initialState.restaurants, action) => {
                 selectedRest: '',
                 visible: false,
             }));
+
+        case RestaurantsActionsConstants.SUGGEST_IN_RESTAURANTS:
+            return state.set('suggestions', action.payload.suggested);
 
         default: //otherwise state is lost!
             return state;

@@ -33,17 +33,18 @@ const UsersReducer = (state = initialState.restaurants, action) => {
             switch (action.payload.key)
             {
                 case 'user':
-                    suggestions = action.payload.users;
+                    suggestions = action.payload.users.map((user)=> user.username);
                     break;
                 case 'location':
                     suggestions = action.payload.locations;
                     break;
                 case 'restaurant':
-                    suggestions = action.payload.restaurants;
+                    suggestions = action.payload.restaurants.map((rest)=> rest.name);
                     break;
             }
+
             return state.set('searchKey', action.payload.key)
-                        .set('suggestions', suggestions);
+                        .set('selectedSuggestionsOption', suggestions);
 
         case UsersActionsConstants.SUGGEST_IN_USERS:
             return state.set('suggestions', action.payload.suggested);

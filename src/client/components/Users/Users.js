@@ -165,15 +165,14 @@ class Users extends React.Component {
             <div className="p-grid">
                 <div className="p-col-6" style={{textAlign: 'left'}}>
                     <Dropdown options={searchOptions} value={this.props.searchKey} placeholder="Search By"
-                              onChange={(e) => (this.props.updateSearchKeyEventHandler(e.value))} />
-                    {/*<AutoComplete id='location' value={this.props.location}*/}
-                    {/*              onChange={this.props.updateStateFieldEventHandler}*/}
-                    {/*              suggestions={this.props.suggestions}*/}
-                    {/*              completeMethod={(e) => this.props.suggestLocationsEventHandler(this.props.locations, e)} />*/}
+                              onChange={(e) =>
+                    (this.props.updateSearchKeyEventHandler(e.value, this.props.locations,
+                        this.props.users, this.props.restaurants))} />
+
                     <AutoComplete id="searchValue" onChange={this.props.updateStateFieldEventHandler}
                                   suggestions={this.props.suggestions}
                                   value = {this.props.searchValue}
-                                  completeMethod={(e) => this.props.suggestionsEventHandler(this.props.suggestions, e)}/>
+                                  completeMethod={(e) => this.props.suggestionsEventHandler(this.props.selectedSuggestionsOption, e)}/>
 
                     <Button id="searchButton"  className="ui button"
                             onClick={() => (this.props.updateShowUsersEventHandler(this.searchBy()))}
@@ -210,9 +209,10 @@ const mapStateToProps = (state) => {
         showRestForm: state['users'].get('showRestaurantForm'),
         isConnected: state['app'].get('isConnected'),
         users: (List) (state['app'].get('users')).toArray(),
-        locations: (List) (state['app'].get('locations')).toArray(),
+        locations: state['app'].get('locations'),
         restaurants: (List) (state['app'].get('restaurants')).toArray(),
         suggestions: (List) (state['users'].get('suggestions')).toArray(),
+        selectedSuggestionsOption: (List) (state['users'].get('selectedSuggestionsOption')).toArray(),
         usersToShow: (List) (state['users'].get('usersToShow')).toArray(),
         showReviews: state['users'].get('showReviews'),
         username: state['app'].get('username'),
@@ -235,8 +235,8 @@ const mapDispatchToProps = (dispatch) => {
         updateShowUsersEventHandler: (users) => {
             dispatch(UsersActions.updateShowUsersAction(users));
         },
-        updateSearchKeyEventHandler: (key) => {
-            dispatch(UsersActions.updateSearchKeyAction(key));
+        updateSearchKeyEventHandler: (key, locations, users, restaurants) => {
+            dispatch(UsersActions.updateSearchKeyAction(key, locations, users, restaurants));
         },
         updateSearchValueEventHandler: (value) => {
             dispatch(UsersActions.updateSearchValueAction(value));

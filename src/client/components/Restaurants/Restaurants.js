@@ -12,6 +12,8 @@ import {InputText} from "primereact/components/inputtext/InputText";
 import {Slider} from "primereact/components/slider/Slider";
 import {Dropdown} from "primereact/dropdown";
 import Review from "../Review/Review";
+import {AutoComplete} from "primereact/components/autocomplete/AutoComplete";
+import RegisterPageActions from "../RegisterPage/actions";
 
 class Restaurants extends React.Component {
 
@@ -284,9 +286,17 @@ class Restaurants extends React.Component {
                 <div className="p-col-6" style={{textAlign: 'left'}}>
                     <label htmlFor="search">Search Restaurant By </label>
                     <label htmlFor="searchName">Name: </label>
-                    <InputText id="searchNameValue" value={this.props.searchNameValue} onChange={this.props.updateStateFieldEventHandler}/>
+
+                    <AutoComplete id="searchNameValue" value={this.props.searchNameValue} onChange={this.props.updateStateFieldEventHandler}
+                                  suggestions={this.props.suggestions}
+                                  completeMethod={(e) => this.props.suggestionsEventHandler((this.props.restaurants.map((rest)=> rest.name)), e)}/>
+
                     <label htmlFor="searchLocation">Location: </label>
-                    <InputText id="searchLocationValue" value={this.props.searchLocationValue} onChange={this.props.updateStateFieldEventHandler}/>
+
+                    <AutoComplete id="searchLocationValue" value={this.props.searchLocationValue} onChange={this.props.updateStateFieldEventHandler}
+                                  suggestions={this.props.suggestions}
+                                  completeMethod={(e) => this.props.suggestionsEventHandler(this.props.locations, e)}/>
+
                     <h4>Rating Range: {this.props.ratingRangeValues[0]},{this.props.ratingRangeValues[1]}</h4>
                     <Slider id="ratingRangeValues" value={this.props.ratingRangeValues} min={1} max={5} animate={true}
                             onChange={this.props.updateSliderFieldEventHandler} range={true} style={{width: '14em'}} />
@@ -332,6 +342,8 @@ const mapStateToProps = (state) => {
         isConnected: state['app'].get('isConnected'),
         restaurants: (List) (state['app'].get('restaurants')).toArray(),
         users: (List) (state['app'].get('users')).toArray(),
+        locations: state['app'].get('locations'),
+        suggestions: state['restaurants'].get('suggestions'),
         restaurantsToShow: (List) (state['restaurants'].get('restaurantsToShow')).toArray(),
         showReviews: state['restaurants'].get('showReviews'),
         editReview: state['restaurants'].get('editReview'),
@@ -414,7 +426,10 @@ const mapDispatchToProps = (dispatch) => {
         },
         updateSliderCloserBetterEventHandler:(e) => {
             dispatch(RestaurantsActions.updateSliderCloserBetterAction(e.value));
-        }
+        },
+        suggestionsEventHandler: (suggest, e) => {
+            dispatch(RestaurantsActions.suggestionsAction(suggest ,e.query));
+        },
     }
 };
 
