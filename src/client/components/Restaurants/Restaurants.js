@@ -285,7 +285,7 @@ class Restaurants extends React.Component {
     restaurantHeader() {
         const showCloserBetter = this.props.isConnected?
             (<div>
-                <h4>Closer-Better: {this.props.closerBetterValues}</h4>
+                <h4>Closer-Better</h4>
                 <Slider  id="closer-betterValues" value={this.props.closerBetterValues} min={0} max={4} animate={true}
                          onChange={(e)=>{
                              this.props.updateSliderCloserBetterEventHandler(e);
