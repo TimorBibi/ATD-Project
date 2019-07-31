@@ -25,7 +25,7 @@ const AddReviewReducer = (state = initialState.addReview, action) => {
                 .set('driveInRate',0)
                 .set('deliveryRate',0)
                 .set('freeText','')
-                .set('picture',null);
+                .set('picture',{pictureType: '', pictureData: []});
                 // .set('submitMessage', {succeed: false, message: ''});
 
         case AddReviewActionsConstants.ADD_REVIEW_FAILURE:

@@ -2,9 +2,7 @@ import React from 'react';
 import './LogInPage.scss';
 import {connect} from 'react-redux';
 import LogInPageActions from '../LogInPage/actions';
-import {Form} from 'semantic-ui-react';
-import {InputText} from 'primereact/inputtext';
-import {Password} from 'primereact/password';
+import {Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react'
 import {Growl} from "primereact/components/growl/Growl";
 
 
@@ -23,27 +21,35 @@ class LogInPage extends React.Component {
     render() {
 
         return (
-          <Form className="logIn-form" onSubmit={() => {
-              this.props.loginEventHandler(
-                  this.props.username,
-                  this.props.password);}}>
-              <Growl ref={(el) => this.growl = el} position="bottomright"/>
-              <Form.Field width='9'>
-                <span className="p-float-label">
-                    <InputText id="username" value={this.props.username} onChange={this.props.updateStateFieldEventHandler}
-                               className="form-text form-input" />
-                    <label htmlFor="username" className="form-text">Username</label>
-                </span>
-              </Form.Field>
-              <Form.Field width='9'>
-                  <span className="p-float-label">
-                    <Password id='password' className="form-text form-input"
-                              value={this.props.password} onChange={this.props.updateStateFieldEventHandler}/>
-                    <label htmlFor="password" className="form-text">Password</label>
-                  </span>
-              </Form.Field>
-              <Form.Button content='LogIn' type="submit"/>
-          </Form>
+            <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+                <Grid.Column style={{ maxWidth: 450 }}>
+                    <Header as='h2' color='violet' textAlign='center'>
+                        {/*<Image src='/logo.png' /> */}
+                        Log-in to your account
+                    </Header>
+                    <Form className="logIn-form"  size='large' onSubmit={() => {
+                        this.props.loginEventHandler(
+                        this.props.username,
+                        this.props.password);}}>
+                    <Growl ref={(el) => this.growl = el} position="bottomright"/>
+                        <Segment stacked>
+                            <Form.Input fluid icon='user' iconPosition='left' placeholder='Username'
+                                        id="username" value={this.props.username} onChange={this.props.updateStateFieldEventHandler}/>
+
+                            <Form.Input fluid icon='lock' iconPosition='left' placeholder='Password'
+                                type='password' id='password' value={this.props.password}
+                                onChange={this.props.updateStateFieldEventHandler}/>
+
+                            <Button color='violet' fluid size='large' type="submit">
+                                Login
+                            </Button>
+                        </Segment>
+                    </Form>
+                    <Message>
+                        New to us? <a  href="/register">Sign Up</a>
+                    </Message>
+                </Grid.Column>
+            </Grid>
         )
     }
 }

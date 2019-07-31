@@ -2,7 +2,7 @@ import React from 'react';
 import './Restaurants.scss';
 import {connect} from 'react-redux';
 import RestaurantsActions from '../Restaurants/actions';
-import {Button, Form, Input} from 'semantic-ui-react'
+import {Button, Form, Label, Input, Segment, Grid, Header} from 'semantic-ui-react'
 import {DataView, DataViewLayoutOptions} from 'primereact/dataview';
 import {List, Map} from 'immutable'
 import AddReview from "../AddReview/AddReview";
@@ -60,11 +60,23 @@ class Restaurants extends React.Component {
                 >View {restaurant.name} Reviews</Button>
             </div>);
         return(
-            <div className="p-grid">
-                <h2 id="name">{restaurant.name}</h2>
-                <label htmlFor="location">Location: </label>
-                <p id="location">{restaurant.location.city}</p>
-                {hasReviews}
+            <div>
+            <Segment stacked>
+                <Grid textAlign='center' verticalAlign='middle'>
+                    <Grid.Column>
+                    {/*<Header id="name" as='h2' color='Grey' textAlign='left'>*/}
+                    {/*    {restaurant.name}*/}
+                    {/*</Header>*/}
+                        <Label as='a' id="name" color='grey' horizontal>
+                            {restaurant.name}
+                        </Label>
+                    <label htmlFor="location">Location: </label>
+                    <p id="location">{restaurant.location.city}</p>
+                     {hasReviews}
+                    </Grid.Column>
+                </Grid>
+            </Segment>
+
                 <hr/>
                 {header}
                 {showReviews}
@@ -209,7 +221,6 @@ class Restaurants extends React.Component {
 
             const header = reviewsCond? this.reviewHeader(restaurant): null;
             const showReviews = reviewsCond?
-                //TODO <Review review={review}/>
                 this.props.reviewsToShow.map((review) =>
                     <Review review={review} key={review.username+'_'+review.timeStamp+"comp"}/> )
                 : null;

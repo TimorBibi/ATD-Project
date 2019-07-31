@@ -2,10 +2,8 @@ import React from 'react';
 import './RegisterPage.scss';
 import {connect} from 'react-redux';
 import RegisterPageActions from '../RegisterPage/actions';
-import {Form} from 'semantic-ui-react';
+import {Button, Form, Grid, Header, Message, Segment} from 'semantic-ui-react';
 import {InputText} from 'primereact/inputtext';
-import {Message} from 'semantic-ui-react';
-import { Input } from 'semantic-ui-react'
 import {AutoComplete} from 'primereact/autocomplete';
 import {Password} from 'primereact/password';
 import {Growl} from "primereact/components/growl/Growl";
@@ -46,43 +44,47 @@ class RegisterPage extends React.Component {
     }
     render() {
         return (
-            <div className="registerPAge">
-            <Growl ref={(el) => this.growl = el} position="bottomright"/>
-              <Form className="register-form" onSubmit={() => {
-                  this.props.submitEventHandler(
-                      this.props.username,
-                      this.props.password,
-                      this.props.location,
-                      this.props.picture,
-                      this.props.locations,
-                      this.props.isValid);}}>
-                  <Form.Field width='9'>
-                    <span className="p-float-label">
-                        <InputText id="username" value={this.props.username} onChange={this.props.updateStateFieldEventHandler}
-                                   className="form-text form-input" onBlur={this.props.validateUsernameEventHandler} />
-                        <label htmlFor="username" className="form-text">Username</label>
-                    </span>
-                  </Form.Field>
-                  <Form.Field width='9'>
-                      <span className="p-float-label">
-                        <Password id='password' className="form-text form-input"
-                                  onChange={this.props.updateStateFieldEventHandler}/>
-                        <label htmlFor="password" className="form-text">Password</label>
-                      </span>
-                  </Form.Field>
-                  <Form.Field width='9'>
-                      <Input type="file" id="picture"  accept="image/*" onChange={this.downloadFile}/>
-                  </Form.Field>
-                  <Form.Field width='9'>
-                      <label htmlFor="location" className="form-text">Location:</label>
-                      <AutoComplete id='location' value={this.props.location}
-                                    onChange={this.props.updateStateFieldEventHandler}
-                                    suggestions={this.props.suggestions}
-                                    completeMethod={(e) => this.props.suggestLocationsEventHandler(this.props.locations, e)} />
-                  </Form.Field>
-                  <Form.Button content='Register' type="submit"/>
-              </Form>
-            </div>
+            <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+                <Grid.Column style={{ maxWidth: 450 }}>
+                    <Header as='h2' color='violet' textAlign='center'>
+                        {/*<Image src='/logo.png' /> */}
+                        Register
+                    </Header>
+                    <Form className="register-form"  size='large' onSubmit={() => {
+                        this.props.submitEventHandler(
+                                      this.props.username,
+                                      this.props.password,
+                                      this.props.location,
+                                      this.props.picture,
+                                      this.props.locations,
+                                      this.props.isValid);}}>
+                        <Segment stacked>
+                            <Growl ref={(el) => this.growl = el} position="bottomright"/>
+
+                            <Form.Input fluid icon='user' iconPosition='left' placeholder='Username'
+                                        id="username" value={this.props.username} onChange={this.props.updateStateFieldEventHandler}
+                                        onBlur={this.props.validateUsernameEventHandler} />
+
+                            <Form.Input fluid icon='lock' iconPosition='left' placeholder='Password'
+                                        type='password' id='password'
+                                onChange={this.props.updateStateFieldEventHandler}/>
+
+                            <Form.Input fluid type='file' id="picture"  accept="image/*" onChange={this.downloadFile}/>
+
+                            <Form.Field>
+                               <AutoComplete id='location' value={this.props.location} placeholder='Location'
+                                onChange={this.props.updateStateFieldEventHandler}
+                                suggestions={this.props.suggestions}
+                                completeMethod={(e) => this.props.suggestLocationsEventHandler(this.props.locations, e)} />
+                            </Form.Field>
+
+                            <Button color='violet' fluid size='large' type="submit">
+                                Register
+                            </Button>
+                        </Segment>
+                    </Form>
+                </Grid.Column>
+            </Grid>
         )
     }
 }
