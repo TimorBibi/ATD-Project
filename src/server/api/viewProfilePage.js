@@ -3,7 +3,6 @@ let UserModel = require('../model/user');
 let RestaurantModel = require('../model/restaurant');
 const secret =  require('../middleware').secret;
 const jwt = require('jsonwebtoken');
-require('mongoose').set('debug', true);
 
 let _handleError = function(err){
     if (err) return console.log(err);
@@ -56,8 +55,8 @@ module.exports = (app) => {
                                 doc.password = req.body.password;
                                 doc.location = {city: location.city, x: location.x, y: location.y};
                                 doc.picture = {
-                                    data: req.body.picture.data,
-                                    contentType: req.body.picture.contentType
+                                    data: req.body.picture.pictureData,
+                                    contentType: req.body.picture.pictureType
                                 };
                                 doc.reviews.map((review, index) => {
                                     let newRev = review;

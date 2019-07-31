@@ -3,7 +3,6 @@ import './Review.scss';
 import {connect} from 'react-redux';
 import ReviewActions from '../Review/actions';
 import {Button, Form, Input} from 'semantic-ui-react'
-import {List, Map} from 'immutable'
 import {Rating} from 'primereact/rating'
 import {InputTextarea} from 'primereact/inputtextarea';
 
@@ -22,13 +21,16 @@ class Review extends React.Component {
             picture, timeStamp, avgRate} = this.props.review;
 
         const editReview = false;
-
         this.state = {
             editReview, avgRate,
             username, name, location,
             bathroom, staff, clean,
             food, driveIn, delivery,
-            freeText, picture, timeStamp
+            freeText, timeStamp,
+            picture: {
+                pictureType: picture.contentType,
+                pictureData: picture.data
+            }
         };
     }
 
@@ -68,9 +70,9 @@ class Review extends React.Component {
         const hasFreeText = this.state.freeText ?
             (<label htmlFor="freeText">Description: {this.state.freeText}</label>)
             : null;
-        const reviewImg = !this.state.picture ? null:
+        const reviewImg = !(this.state.picture.pictureData) ? null:
             (<div className="imgPreview">
-                <img src={this.state.picture.data} width="200" height="100"/>
+                <img src={this.state.picture.pictureData} width="200" height="100"/>
             </div>);
 
 
@@ -78,7 +80,6 @@ class Review extends React.Component {
             (<div>
                 <Button id={this.state.username+"_"+this.state.timeStamp} type="button" className="ui button"
                         onClick={() => this.makeEditableAction()}>Edit</Button>
-                        {/*onClick={() => Review.makeEditableEventHandler(this.props.editReview, review)}>Edit</Button>*/}
                 <Button id={"delete_"+this.state.username+"_"+this.state.timeStamp}  type="button" className="ui button"
                         onClick={() => this.props.deleteReviewEventHandler(this.state)}>Delete</Button>
             </div>);
@@ -132,9 +133,9 @@ class Review extends React.Component {
 
     editReviewItem()
     {
-        const reviewImg = !this.state.picture.contentType ? null:
+        const reviewImg = !this.state.picture.pictureData ? null:
             (<div className="imgPreview">
-                <img src={this.state.picture.data} width="200" height="100"/>
+                <img src={this.state.picture.pictureData} width="200" height="100"/>
             </div>);
         return (
             <Form className="register-form" key={this.state.username+"_"+this.state.timeStamp}

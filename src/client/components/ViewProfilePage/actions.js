@@ -62,10 +62,10 @@ function validateEditUsernameAction(name, currName){
     }
 }
 
-function submitEditUserAction(username, password, location, picture, locations, isValid, currentUsername)
+function submitEditUserAction(username, password, location, picture, prevPicture, locations, isValid, currentUsername)
 {
-    console.log("HEREE11:",username, password, location, picture, isValid, currentUsername);
-    if(username.length > 0 && location && picture.contentType !== "" && picture.contentType!==null && password)
+    const newPicture = picture ? picture: prevPicture;
+    if(username.length > 0 && location && newPicture.contentType !== "" && newPicture.contentType!==null && password)
     {
         if(!isValid) {
             return {
@@ -84,7 +84,7 @@ function submitEditUserAction(username, password, location, picture, locations, 
                     username: username,
                     password: password,
                     location: location,
-                    picture: picture,
+                    picture: newPicture,
                 }
             };
         else
