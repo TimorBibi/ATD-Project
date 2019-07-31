@@ -27,6 +27,10 @@ function suggestLocationsAction(fullList, subString){
 function submitReviewAction(username, name, location, bathroom, staff, clean,
                             food, driveIn, delivery, picture, freeText, locations, toggle)
 {
+    console.log("???", username);
+    console.log("???", location);
+    console.log("???", name);
+
     if (username && name.length> 0 && location) {
         if(locations.find((elm) => elm === location)) {
             let time = new Date().toJSON();

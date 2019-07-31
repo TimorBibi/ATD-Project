@@ -4,14 +4,11 @@ import {connect} from 'react-redux';
 import {Button, Form} from 'semantic-ui-react';
 import {Dropdown} from "primereact/dropdown";
 import {DataView, DataViewLayoutOptions} from 'primereact/dataview';
-import {InputText} from 'primereact/inputtext';
 import {List, Map} from 'immutable';
-import {Menubar} from 'primereact/menubar';
 import {AutoComplete} from 'primereact/autocomplete';
 import {Rating} from 'primereact/rating';
 import UsersActions from '../Users/actions';
 import Review from "../Review/Review";
-import RegisterPageActions from "../RegisterPage/actions";
 
 class Users extends React.Component {
 

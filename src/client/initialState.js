@@ -84,7 +84,6 @@ export default {
     addReview :Map({
         restaurantName: '',
         restaurantLocation: '',
-        // reviewText: '',
         suggestions: [],
         submitMessage: {
             succeed: false,
@@ -119,9 +118,10 @@ export default {
     profileUsername:'',
     profilePassword:'',
     profileLocation:'',
-    profilePicture: {
-    pictureType: '',
+    profilePicture:
+    {
+        pictureType: '',
         pictureData: [],
-},
+    },
     suggestions: [],
 };
