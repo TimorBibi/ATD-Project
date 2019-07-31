@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="38eee9c1-e08d-47d5-9b60-dee31a50d5e8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/components/App/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/App/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/components/App/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/App/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/components/App/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/App/reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/components/TopBar/TopBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/TopBar/TopBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/components/TopBar/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/TopBar/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/components/TopBar/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/TopBar/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/components/TopBar/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/TopBar/reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/initialState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/initialState.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/Restaurants/Restaurants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/Restaurants/Restaurants.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,10 +16,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/client/components/App/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
+            <state relative-caret-position="417">
               <caret line="46" column="42" lean-forward="true" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
               <folding>
                 <element signature="e#42#68#0" expanded="true" />
@@ -44,10 +37,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/TopBar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="662">
+            <state relative-caret-position="684">
               <caret line="36" column="34" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="34" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -107,6 +100,24 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+      <find>/api/validate/username</find>
+      <find>immu</find>
+      <find>Map</find>
+      <find>RestaurantModel</find>
+      <find>submitEventHandler</find>
+      <find>autoco</find>
+      <find>suggest</find>
+      <find>hea</find>
+      <find>autocomplete</find>
+      <find>sugg</find>
+      <find>TYPE</find>
+      <find>SUGGEST_IN_USERS</find>
+      <find>AUTO</find>
+      <find>locations</find>
+      <find>updateSearchKeyEventHandler</find>
+      <find>auto</find>
+      <find>header</find>
+      <find>updateShowReviews</find>
       <find>sugges</find>
       <find>suggestLocationsEventHandler</find>
       <find>sugge</find>
@@ -119,24 +130,6 @@
       <find>UPDATE_REVIEW_AFTER_SUBMIT</find>
       <find>closer-b</find>
       <find>initViewProfileEventHandler</find>
-      <find>SHOW_EDIT_PROFILE</find>
-      <find>VALIDATE_EDIT_ACTION_FAILURE</find>
-      <find>showEditProfileEventHandler</find>
-      <find>VALIDATE_EDIT_USERNAME</find>
-      <find>validateEditUsernameEventHandler</find>
-      <find>INIT_VIEW_PROFILE_MESSAGE</find>
-      <find>MOVE_FROM_USERS</find>
-      <find>editProfileEventHandler</find>
-      <find>UPDATE_STATE_FIELD</find>
-      <find>EDIT_PROFILE</find>
-      <find>img</find>
-      <find>deb</find>
-      <find>active</find>
-      <find>submitEditReviewSucceedAction</find>
-      <find>editReviewFailureAction</find>
-      <find>SET_ACTIVE</find>
-      <find>NONE</find>
-      <find>debu</find>
     </findStrings>
     <replaceStrings>
       <replace>y</replace>
@@ -153,7 +146,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/client/components/App/App.scss" />
         <option value="$PROJECT_DIR$/src/client/components/TopBar/TopBar.scss" />
         <option value="$PROJECT_DIR$/src/client/components/AddReview/reducer.js" />
         <option value="$PROJECT_DIR$/src/client/components/ViewProfilePage/constants.js" />
@@ -175,6 +167,8 @@
         <option value="$PROJECT_DIR$/src/client/components/Users/constants.js" />
         <option value="$PROJECT_DIR$/src/client/components/Users/reducer.js" />
         <option value="$PROJECT_DIR$/src/client/components/Users/Users.js" />
+        <option value="$PROJECT_DIR$/src/client/initialState.js" />
+        <option value="$PROJECT_DIR$/src/client/components/TopBar/TopBar.js" />
         <option value="$PROJECT_DIR$/src/client/components/App/saga.js" />
         <option value="$PROJECT_DIR$/src/client/components/Users/constants.js" />
         <option value="$PROJECT_DIR$/src/client/components/Users/actions.js" />
@@ -184,26 +178,8 @@
         <option value="$PROJECT_DIR$/src/client/components/Restaurants/actions.js" />
         <option value="$PROJECT_DIR$/src/client/components/Restaurants/reducer.js" />
         <option value="$PROJECT_DIR$/src/client/components/Restaurants/Restaurants.js" />
-        <option value="$PROJECT_DIR$/src/client/components/Restaurants/Restaurants.js" />
-        <option value="$PROJECT_DIR$/src/client/components/ViewProfilePage/saga.js" />
-        <option value="$PROJECT_DIR$/src/client/components/ViewProfilePage/saga.js" />
-        <option value="$PROJECT_DIR$/src/client/components/ViewProfilePage/reducer.js" />
         <option value="$PROJECT_DIR$/src/client/components/ViewProfilePage/ViewProfilePage.js" />
-        <option value="$PROJECT_DIR$/src/client/components/ViewProfilePage/actions.js" />
-        <option value="$PROJECT_DIR$/src/server/api/viewProfilePage.js" />
-        <option value="$PROJECT_DIR$/src/client/components/Review/Review.js" />
-        <option value="$PROJECT_DIR$/src/client/initialState.js" />
-        <option value="$PROJECT_DIR$/src/client/initialState.js" />
-        <option value="$PROJECT_DIR$/src/client/components/App/actions.js" />
-        <option value="$PROJECT_DIR$/src/client/components/App/actions.js" />
-        <option value="$PROJECT_DIR$/src/client/components/App/reducer.js" />
-        <option value="$PROJECT_DIR$/src/client/components/App/constants.js" />
-        <option value="$PROJECT_DIR$/src/client/components/TopBar/constants.js" />
-        <option value="$PROJECT_DIR$/src/client/components/TopBar/reducer.js" />
-        <option value="$PROJECT_DIR$/src/client/components/App/App.js" />
-        <option value="$PROJECT_DIR$/src/client/components/App/App.js" />
-        <option value="$PROJECT_DIR$/src/client/components/TopBar/actions.js" />
-        <option value="$PROJECT_DIR$/src/client/components/TopBar/TopBar.js" />
+        <option value="$PROJECT_DIR$/src/client/components/Restaurants/Restaurants.js" />
       </list>
     </option>
   </component>
@@ -391,15 +367,21 @@
       <option name="project" value="LOCAL" />
       <updated>1564599312025</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fix router with navlink">
+      <created>1564603294497</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1564603294498</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="400149000" />
+    <option name="totallyTimeSpent" value="391649000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16877638" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -414,9 +396,9 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.19591837" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.19591837" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002644" side_tool="true" weight="0.3277592" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.1822376" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.21933086" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32959184" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -435,7 +417,8 @@
     <MESSAGE value="view profile backend done" />
     <MESSAGE value="Merge branch 'master' of https://github.com/TimorBibi/ATD-Project&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/client/components/Restaurants/Restaurants.js" />
     <MESSAGE value="edit profile fixed validated username and picture.&#10;review edit picture" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit profile fixed validated username and picture.&#10;review edit picture" />
+    <MESSAGE value="fix router with navlink" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix router with navlink" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -627,13 +610,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/AddReview/AddReview.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="62" column="3" lean-forward="true" selection-start-line="62" selection-start-column="3" selection-end-line="62" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/components/Restaurants/constants.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="500">
@@ -746,16 +722,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/ViewProfilePage/ViewProfilePage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="208" column="54" selection-start-line="208" selection-start-column="54" selection-end-line="208" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/server/model/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -817,24 +783,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/initialState.js">
+    <entry file="file://$PROJECT_DIR$/src/client/components/ViewProfilePage/ViewProfilePage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="12" lean-forward="true" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/components/App/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="46" column="42" lean-forward="true" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
+        <state relative-caret-position="161">
+          <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
           <folding>
             <element signature="e#42#68#0" expanded="true" />
           </folding>
@@ -843,7 +795,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/components/TopBar/TopBar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
+        <state relative-caret-position="684">
           <caret line="36" column="34" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="34" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />

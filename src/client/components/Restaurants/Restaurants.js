@@ -48,32 +48,35 @@ class Restaurants extends React.Component {
 
     viewRestaurantItem(restaurant, showReviews, header)
     {
-        const hasReviews = (!restaurant.avgRate && !restaurant.reviews.length)?
-            (<label htmlFor="avgRate">no reviews</label>):
-            (<div>
-                <label htmlFor="avgRate">Rate: </label>
-                <p id="avgRate">{Math.round(restaurant.avgRate * 100) / 100}</p>
-
-                <Button id={restaurant.name+"_"+restaurant.location.city}
-                        onClick={(e, data) =>
-                            this.props.showReviewsEventHandler(data, this.props.showReviews, restaurant.reviews)}
-                >View {restaurant.name} Reviews</Button>
-            </div>);
+        const hasReviews = (!restaurant.avgRate && !restaurant.reviews.length);
+        const reviewsIfExist = hasReviews?
+            <Header className= 'no_reviews' id="no_reviews" as='p' color='grey'>no reviews</Header>:
+            <Button id={restaurant.name+"_"+restaurant.location.city} className='restaurant_show_reviews' basic color='violet'
+                    onClick={(e, data) => this.props.showReviewsEventHandler(data, this.props.showReviews, restaurant.reviews)}
+             >Reviews</Button>;
+            const reviewRate = hasReviews?
+                null :
+                <Label id="avgRate" className= 'show_restaurant float_left' as='p' color='violet' ribbon>
+                    Rate: {Math.round(restaurant.avgRate * 100) / 100}
+                </Label>;
         return(
             <div>
             <Segment stacked>
-                <Grid textAlign='center' verticalAlign='middle'>
+                <Grid >
+                    <Grid.Row columns={2}>
                     <Grid.Column>
-                    {/*<Header id="name" as='h2' color='Grey' textAlign='left'>*/}
-                    {/*    {restaurant.name}*/}
-                    {/*</Header>*/}
-                        <Label as='a' id="name" color='grey' horizontal>
-                            {restaurant.name}
-                        </Label>
-                    <label htmlFor="location">Location: </label>
-                    <p id="location">{restaurant.location.city}</p>
-                     {hasReviews}
+                    <Header className= 'show_restaurant' id="name" as='h1' color='grey'>
+                        {restaurant.name}
+                    </Header>
+                    <Header className= 'show_restaurant' id="location" as='h5' color='grey'>
+                        {restaurant.location.city}
+                    </Header>
+                    {reviewRate}
                     </Grid.Column>
+                    <Grid.Column >
+                     {reviewsIfExist}
+                    </Grid.Column>
+                    </Grid.Row>
                 </Grid>
             </Segment>
 

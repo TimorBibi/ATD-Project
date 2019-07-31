@@ -1,27 +1,20 @@
-.reviewform-root {
+.show_restaurant.ui {
+  margin: 6px 2px 6px 2px;
   text-align: left;
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-bottom: 20px;
 }
-
-.p-float-label {
-  font-size: 20px;
-}
-
-.form-text {
-  font-size: 14px;
-}
-
-.form-input {
-  height: 10px;
-}
-
-.logIn-form span{
-  marginTop: '30px';
-  paddingLeft: '.5em';
-}
-
-body .p-button {
+.show_restaurant.ui.float_left {
   float: left;
+}
+
+.restaurant_show_reviews.ui{
+  height: 60%;
+  width: 50%;
+  margin: 20px 0 0 130px;
+}
+
+.no_reviews.ui{
+  margin-left: 150px;
+  margin-right: 20px;
+  padding-top: 20px;
+  font-weight:normal
 }
