@@ -20,7 +20,7 @@ class ViewProfilePage extends React.Component {
         // getUserProp
         if(this.props.movetoViewProfilePage)
         {
-            this.initViewProfileEventHandler();
+            this.props.initViewProfileEventHandler();
         }
     }
 
