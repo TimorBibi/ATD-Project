@@ -40,22 +40,23 @@ class TopBar extends React.Component {
         };
 
         return (
-            <div className="ui tabular menu">
-            <Menu>
+            <div>
+            <Menu className="top fixed menu ui">
+                <Menu.Item icon="utensils"/>
                 <NavLink to="/" name='restaurants'
                           onClick={() => this.props.setActiveEventHandler("restaurants")}>
-                    <Menu.Item  className="item" active={active === 'restaurants'}>
+                    <Menu.Item  className="item hoverItem" active={active === 'restaurants'}>
                         Restaurants
                     </Menu.Item>
                 </NavLink>
                 <NavLink to="/users" name='users'
                          onClick={() => this.props.setActiveEventHandler("users")}>
-                    <Menu.Item  className="item" active={active === 'users'}>
+                    <Menu.Item  className="item hoverItem" active={active === 'users'}>
                         Users
                     </Menu.Item>
                 </NavLink>
                 <Menu.Menu position='right'>
-                    <Menu.Item className="item" name='user'>
+                    <Menu.Item className="item hoverItem" name='user'>
                     <Dropdown text='User'>
                         {dropDownMenu()}
                     </Dropdown>

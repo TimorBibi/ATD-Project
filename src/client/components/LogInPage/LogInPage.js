@@ -21,7 +21,7 @@ class LogInPage extends React.Component {
     render() {
 
         return (
-            <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+            <Grid textAlign='center' className='logIn-container' verticalAlign='middle'>
                 <Grid.Column style={{ maxWidth: 450 }}>
                     <Header as='h2' color='violet' textAlign='center'>
                         {/*<Image src='/logo.png' /> */}

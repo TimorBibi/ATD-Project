@@ -3,10 +3,9 @@ import './RegisterPage.scss';
 import {connect} from 'react-redux';
 import RegisterPageActions from '../RegisterPage/actions';
 import {Button, Form, Grid, Header, Message, Segment} from 'semantic-ui-react';
-import {InputText} from 'primereact/inputtext';
 import {AutoComplete} from 'primereact/autocomplete';
-import {Password} from 'primereact/password';
 import {Growl} from "primereact/components/growl/Growl";
+
 
 
 class RegisterPage extends React.Component {
@@ -26,7 +25,7 @@ class RegisterPage extends React.Component {
         }
 
         if (this.props.isConnected)
-            this.props.history.push('/'); //reload the root page
+            this.props.history.push('/');
     }
 
     downloadFile(e) {
@@ -44,10 +43,9 @@ class RegisterPage extends React.Component {
     }
     render() {
         return (
-            <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+            <Grid textAlign='center' className="register-container" verticalAlign='middle'>
                 <Grid.Column style={{ maxWidth: 450 }}>
                     <Header as='h2' color='violet' textAlign='center'>
-                        {/*<Image src='/logo.png' /> */}
                         Register
                     </Header>
                     <Form className="register-form"  size='large' onSubmit={() => {
@@ -72,7 +70,8 @@ class RegisterPage extends React.Component {
                             <Form.Input fluid type='file' id="picture"  accept="image/*" onChange={this.downloadFile}/>
 
                             <Form.Field>
-                               <AutoComplete id='location' value={this.props.location} placeholder='Location'
+                                <AutoComplete className="location-input" id='location'
+                                value={this.props.location} placeholder='Location'
                                 onChange={this.props.updateStateFieldEventHandler}
                                 suggestions={this.props.suggestions}
                                 completeMethod={(e) => this.props.suggestLocationsEventHandler(this.props.locations, e)} />

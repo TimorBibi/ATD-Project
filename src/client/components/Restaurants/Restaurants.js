@@ -10,6 +10,7 @@ import {Slider} from "primereact/components/slider/Slider";
 import {Dropdown} from "primereact/dropdown";
 import Review from "../Review/Review";
 import {AutoComplete} from "primereact/components/autocomplete/AutoComplete";
+import { Icon } from 'semantic-ui-react'
 
 class Restaurants extends React.Component {
 
@@ -286,60 +287,70 @@ class Restaurants extends React.Component {
     }
 
     restaurantHeader() {
-        const showCloserBetter = this.props.isConnected?
-            (<div>
-                <h4>Closer-Better</h4>
-                <Slider  id="closer-betterValues" value={this.props.closerBetterValues} min={0} max={4} animate={true}
-                         onChange={(e)=>{
-                             this.props.updateSliderCloserBetterEventHandler(e);
-                             (this.props.updateShowRestaurantsEventHandler(this.culcCloserBetter(this.searchBy())))}
-                         } style={{width: '14em'}}  />
-            </div>): null;
-        return (
-            <div className="p-grid">
-                <div className="p-col-6" style={{textAlign: 'left'}}>
-                    <label htmlFor="search">Search Restaurant By </label>
-                    <label htmlFor="searchName">Name: </label>
 
-                    <AutoComplete id="searchNameValue" value={this.props.searchNameValue} onChange={this.props.updateStateFieldEventHandler}
+        const allowAddReview = !this.props.isConnected ? null :
+            <Button label="Add Review" icon="plus"
+                    onClick={() => this.props.toggleRestaurantFormEventHandler(this.props.showRestForm)}/>;
+
+        const showCloserBetter = this.props.isConnected?
+            (<Grid centered>
+                <Grid.Row centered id="closer-label-row">
+                    <label className="search-label closer-better">Closer-Better</label>
+                </Grid.Row>
+                <Grid.Row centered>
+                    <Slider  id="closer-betterValues"
+                             value={this.props.closerBetterValues} min={0} max={4}
+                             onChange={(e)=>{
+                                 this.props.updateSliderCloserBetterEventHandler(e);
+                                 (this.props.updateShowRestaurantsEventHandler(this.culcCloserBetter(this.searchBy())))}
+                             } />
+                </Grid.Row>
+            </Grid>): null;
+        return (
+            <Grid centered>
+                <Grid.Row centered>
+                    <label className="search-label" htmlFor="search"><Icon name="search"/>Search Restaurant: </label>
+                    <AutoComplete id="searchNameValue" placeholder="Name" className="search"
+                                  value={this.props.searchNameValue}
+                                  onChange={this.props.updateStateFieldEventHandler}
                                   suggestions={this.props.suggestions}
                                   completeMethod={(e) => this.props.suggestionsEventHandler((this.props.restaurants.map((rest)=> rest.name)), e)}/>
 
-                    <label htmlFor="searchLocation">Location: </label>
-
-                    <AutoComplete id="searchLocationValue" value={this.props.searchLocationValue} onChange={this.props.updateStateFieldEventHandler}
+                    <AutoComplete id="searchLocationValue" placeholder="Location" className="search"
+                                  value={this.props.searchLocationValue}
+                                  onChange={this.props.updateStateFieldEventHandler}
                                   suggestions={this.props.suggestions}
                                   completeMethod={(e) => this.props.suggestionsEventHandler(this.props.locations, e)}/>
 
-                    <h4>Rating Range: {this.props.ratingRangeValues[0]},{this.props.ratingRangeValues[1]}</h4>
-                    <Slider id="ratingRangeValues" value={this.props.ratingRangeValues} min={1} max={5} animate={true}
-                            onChange={this.props.updateSliderFieldEventHandler} range={true} style={{width: '14em'}} />
+                    <label className="search-label search">
+                        Rating Range: {this.props.ratingRangeValues[0]},{this.props.ratingRangeValues[1]}
+                    </label>
+                    <Slider id="ratingRangeValues" className="search slider"
+                            value={this.props.ratingRangeValues} min={1} max={5} animate={true}
+                            onChange={this.props.updateSliderFieldEventHandler} range={true} />
+                </Grid.Row>
                     {showCloserBetter}
-                    <Button id="searchButton"  className="ui button"
+                <Grid.Row centered className="row-margin">
+                    <Button id="searchButton"  className="ui button header-button"
                             onClick={() => (this.props.updateShowRestaurantsEventHandler(this.culcCloserBetter(this.searchBy())))}
                     >Search</Button>
 
-                    <Button id="showAllButton"  className="ui button"
+                    <Button id="showAllButton"  className="ui button header-button"
                             onClick={() => (this.resetSearchField())}
                     >Show All Restaurants</Button>
-                </div>
-                <div className="p-col-6" style={{textAlign: 'right'}}>
-                </div>
-            </div>
+                    {allowAddReview}
+                </Grid.Row>
+            </Grid>
         );
     }
 
-    //TODO: validate filled props
     render() {
         const header = this.restaurantHeader();
-        const allowAddReview = !this.props.isConnected ? null :
-            <Button label="Add Review" icon="plus" onClick={() => this.props.toggleRestaurantFormEventHandler(this.props.showRestForm)}/>;
 
         const addReview = this.props.showRestForm? <AddReview/>: null;
         return (
             <div className='restaurants'>
                 {header}
-                {allowAddReview}
                 {addReview}
                 <DataView value={this.props.restaurantsToShow} layout="list"
                           itemTemplate={this.itemTemplate}
