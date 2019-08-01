@@ -26,9 +26,6 @@ const AppReducer = (state = initialState.app, action) => {
         case AppActionsConstants.UPDATE_USER_AFTER_SUBMIT:
             return state.set('addedUser', true);
 
-        case AppActionsConstants.SET_ACTIVE:
-            return state.set('activeItem', action.payload.name);
-
         case AppActionsConstants.SUBMIT_EDIT_REVIEW_SUCCEED:
             return state.set('addedReview', true);
 

@@ -2,7 +2,6 @@ import React from 'react';
 import './ViewProfilePage.scss';
 import {connect} from 'react-redux';
 import UsersActions from "../Users/actions";
-import AddReview from "../AddReview/AddReview";
 import {Button, Form, Input} from "semantic-ui-react";
 import {DataView} from "primereact/components/dataview/DataView";
 import ViewProfilePageActions from "./actions";
@@ -17,7 +16,6 @@ import Review from "../Review/Review";
 class ViewProfilePage extends React.Component {
 
     componentDidMount() {
-        // getUserProp
         if(this.props.movetoViewProfilePage)
         {
             this.props.initViewProfileEventHandler();
@@ -48,10 +46,10 @@ class ViewProfilePage extends React.Component {
         fs.onloadend = () => {
             let pictureData = fs.result;
             let value = {
-                pictureType: file.type,
-                pictureData: pictureData,
+                contentType: file.type,
+                data: pictureData,
             };
-            this.props.updateStateFieldEventHandler(e, {id:'picture' ,value: value});
+            this.props.updateStateFieldEventHandler(e, {id:'profilePicture' ,value: value});
         };
         fs.readAsDataURL(file);
     }
@@ -74,24 +72,21 @@ class ViewProfilePage extends React.Component {
                        this.props.profilePassword,
                        this.props.profileLocation,
                        this.props.profilePicture,
+                       this.props.prevPicture,
                        this.props.locations,
                         this.props.isValid,
-                        this.props.username);
-                       this.props.showEditProfileEventHandler(this.props.editProfile);
+                        this.props.username,
+                   );
                }}>
                    <Form.Field width='9'>
-                    {/*<span className="p-float-label">*/}
                        <label htmlFor="profileUsername" className="form-text">Username:</label>
                        <InputText id="profileUsername" value={this.props.profileUsername} onChange={this.props.updateStateFieldEventHandler}
-                                    onBlur={(e)=>this.props.validateEditUsernameEventHandler(e, this.props.profileUsername)} />
-                    {/*</span>*/}
+                                    onBlur={(e)=>this.props.validateEditUsernameEventHandler(e, this.props.username)} />
                    </Form.Field>
                    <Form.Field width='9'>
-                      {/*<span className="p-float-label">*/}
                        <label htmlFor="profilePassword" className="form-text">Password:</label>
                        <Password id='profilePassword'
                                    onChange={this.props.updateStateFieldEventHandler}/>
-                      {/*</span>*/}
                    </Form.Field>
                    <Form.Field width='9'>
                        <Input type="file" id="profilePicture"  accept="image/*" onChange={this.downloadFile}/>
@@ -170,9 +165,9 @@ const mapStateToProps = (state) => {
         profileLocation: state['viewProfilePage'].get('profileLocation'),
         locations: state['app'].get('locations'),
         profilePicture: state['viewProfilePage'].get('profilePicture'),
+        prevPicture: state['viewProfilePage'].get('prevPicture'),
         isValid: state['viewProfilePage'].get('isValid'),
         suggestions: state['viewProfilePage'].get('suggestions'),
-
         users: (List) (state['app'].get('users')).toArray(),
         isConnected: state['app'].get('isConnected'),
         movetoViewProfilePage: state['users'].get('movetoViewProfilePage'),
@@ -209,8 +204,8 @@ const mapDispatchToProps = (dispatch) => {
         suggestLocationsEventHandler: (locations, e) => {
             dispatch(ViewProfilePageActions.suggestLocationsAction(locations ,e.query));
         },
-        submitEventHandler: (username, password, location, picture, locations, isValid, currentUsername) => {
-            dispatch(ViewProfilePageActions.submitEditUserAction(username, password, location, picture, locations, isValid, currentUsername));
+        submitEventHandler: (username, password, location, picture, prevPicture, locations, isValid, currentUsername) => {
+            dispatch(ViewProfilePageActions.submitEditUserAction(username, password, location, picture, prevPicture, locations, isValid, currentUsername));
         },
         initViewProfileMessageEventHandler:() => {
             dispatch(ViewProfilePageActions.initViewProfileMessageAction());

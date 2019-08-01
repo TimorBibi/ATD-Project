@@ -3,7 +3,6 @@ let UserModel = require('../model/user');
 let RestaurantModel = require('../model/restaurant');
 const secret =  require('../middleware').secret;
 const jwt = require('jsonwebtoken');
-require('mongoose').set('debug', true);
 
 let _handleError = function(err){
     if (err) return console.log(err);

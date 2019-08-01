@@ -1,7 +1,7 @@
 import React from 'react';
 import './Users.scss';
 import {connect} from 'react-redux';
-import {Button, Form} from 'semantic-ui-react';
+import {Button, Form, Label, Input, Segment, Grid, Header, Image} from 'semantic-ui-react'
 import {Dropdown} from "primereact/dropdown";
 import {DataView, DataViewLayoutOptions} from 'primereact/dataview';
 import {List, Map} from 'immutable';
@@ -45,18 +45,47 @@ class Users extends React.Component {
                 >View {showName} Reviews</Button>
             </div>);
         return(
-            <div className="view-user" key={user.username}>
-                <h2 id="userName">{user.username}</h2>
-                <label htmlFor="location">Location: </label>
-                <p id="location">{user.location.city}</p>
-                <div className="imgPreview">
-                    <img src={imgsrc} width="200" height="100"/>
-                </div>
-                {myProfile}
-                {hasReviews}
-                <hr/>
+            <div className='user_item'>
+                <Segment stacked>
+                    <Grid>
+                        <Grid.Row columns={3}>
+                            <Grid.Column>
+                                <Grid columns={2}>
+                                    <Grid.Column>
+                                        <Image src={imgsrc} size='small' spaced='left'/>
+                                    </Grid.Column>
+                                    <Grid.Column>
+                                    <Header className= 'show_user' id="userName" as='h1' color='grey'>
+                                        {user.username}
+                                    </Header>
+                                    <Header className= 'show_user' id="location" as='h5' color='grey'>
+                                        {user.location.city}
+                                    </Header>
+                                    </Grid.Column>
+                                </Grid>
+                            </Grid.Column>
+                            <Grid.Column>
+                                {myProfile}
+                                {hasReviews}
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Segment>
                 {showReviews}
             </div>
+
+            // <div className="view-user" key={user.username}>
+            //     <h2 id="userName">{user.username}</h2>
+            //     <label htmlFor="location">Location: </label>
+            //     <p id="location">{user.location.city}</p>
+            //     <div className="imgPreview">
+            //         <img src={imgsrc} width="200" height="100"/>
+            //     </div>
+            //     {myProfile}
+            //     {hasReviews}
+            //     <hr/>
+            //     {showReviews}
+            // </div>
         );
     }
 

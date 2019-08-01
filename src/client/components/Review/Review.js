@@ -2,10 +2,11 @@ import React from 'react';
 import './Review.scss';
 import {connect} from 'react-redux';
 import ReviewActions from '../Review/actions';
-import {Button, Form, Input} from 'semantic-ui-react'
-import {List, Map} from 'immutable'
+import {Button, Form, Grid, Header, Image, Segment} from 'semantic-ui-react'
 import {Rating} from 'primereact/rating'
 import {InputTextarea} from 'primereact/inputtextarea';
+import {Growl} from "primereact/components/growl/Growl";
+import {AutoComplete} from "primereact/components/autocomplete/AutoComplete";
 
 class Review extends React.Component {
 
@@ -22,13 +23,16 @@ class Review extends React.Component {
             picture, timeStamp, avgRate} = this.props.review;
 
         const editReview = false;
-
         this.state = {
             editReview, avgRate,
             username, name, location,
             bathroom, staff, clean,
             food, driveIn, delivery,
-            freeText, picture, timeStamp
+            freeText, timeStamp,
+            picture: {
+                pictureType: picture.contentType,
+                pictureData: picture.data
+            }
         };
     }
 
@@ -63,155 +67,237 @@ class Review extends React.Component {
         });
     }
 
-    viewReviewItem()
-    {
-        const hasFreeText = this.state.freeText ?
-            (<label htmlFor="freeText">Description: {this.state.freeText}</label>)
-            : null;
-        const reviewImg = !this.state.picture ? null:
-            (<div className="imgPreview">
-                <img src={this.state.picture.data} width="200" height="100"/>
-            </div>);
+viewReviewItem()
+{
+    const hasFreeText = this.state.freeText ?
+        (<Header className= 'rating_title' as='h4'>
+                Description: this.state.freeText
+        </Header>)
+        : null;
+    const reviewImg = !(this.state.picture.pictureData) ? null:
+        (<div>
+            <Image src={this.state.picture.pictureData} size='small' spaced='left'/>
+        </div>);
 
 
-        const editable = this.state.username !== this.props.username ? null:
-            (<div>
-                <Button id={this.state.username+"_"+this.state.timeStamp} type="button" className="ui button"
-                        onClick={() => this.makeEditableAction()}>Edit</Button>
-                        {/*onClick={() => Review.makeEditableEventHandler(this.props.editReview, review)}>Edit</Button>*/}
-                <Button id={"delete_"+this.state.username+"_"+this.state.timeStamp}  type="button" className="ui button"
-                        onClick={() => this.props.deleteReviewEventHandler(this.state)}>Delete</Button>
-            </div>);
+    const editable = this.state.username !== this.props.username;
+    const edit_button = editable? null:
+        <Button color='violet' fluid size='large' id={this.state.username+"_"+this.state.timeStamp} type="button" className="ui button"
+                                                   onClick={() => this.makeEditableAction()}>Edit</Button>;
+    const delete_button = editable? null:
+            <Button color='violet' size='large' fluid id={"delete_"+this.state.username+"_"+this.state.timeStamp}  type="button" className="ui button"
+                    onClick={() => this.props.deleteReviewEventHandler(this.state)}>Delete</Button>;
 
-        return(
-            <Form className="register-form" key={this.state.username+"_"+this.state.timeStamp}>
-                <Form.Field width='9'>
-                    <h2 id="name">{this.state.name}</h2>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <label htmlFor="writer">Writer: </label>
-                    <p id="writer">{this.state.username}</p>
-                </Form.Field>
-                <Form.Field width='9'>
+    return(
+        <Form size='large' key={this.state.username+"_"+this.state.timeStamp}>
+        <Segment stacked className= 'review_form'>
+        <Grid textAlign='center' relaxed verticalAlign='middle'>
+            <Grid.Row columns={3}>
+                <Grid.Column>
                     {reviewImg}
-                </Form.Field>
+                    <Header className= 'review' id="view_review_name" as='h1' color='grey'>
+                        {this.state.name}
+                    </Header>
+                    <Header className= 'review' id="view_review_location" as='h5' color='grey'>
+                        {this.state.location.city}
+                    </Header>
+                    <Header className= 'review' id="view_review_writer" as='h5' color='grey'>
+                        {this.state.username}
+                    </Header>
 
-                <Form.Field width='9'>
-                    <label htmlFor="bathroomRate" className="form-text">Bathroom Quality:</label>
-                    <Rating id='bathroomRate' value={this.state.bathroom} cancel={false} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <label htmlFor="staffRate">Staff Kindness:</label>
-                    <Rating id='staffRate' value={this.state.staff}  stars={5} cancel={false} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <label htmlFor="cleanRate">Cleanliness:</label>
-                    <Rating id='cleanRate' value={this.state.clean}  stars={5} cancel={false} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <label htmlFor="foodRate">Food Quality:</label>
-                    <Rating id='foodRate' value={this.state.food} stars={5} cancel={false} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <label htmlFor="driveInRate">Drive-thru Quality:</label>
-                    <Rating id='driveInRate' value={this.state.driveIn}  stars={5} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <label htmlFor="deliveryRate">Delivery Speed:</label>
-                    <Rating id='deliveryRate' value={this.state.delivery} stars={5} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
+                </Grid.Column>
+                <Grid.Column>
+                    <Form.Field>
+                        <Header className= 'rating_title' as='h4'>
+                            Bathroom Quality
+                        </Header>
+                        <Rating id='bathroom' value={this.state.bathroom} cancel={false} readonly={true}
+                                onChange={(e) => this.updateStateField(e)}/>
+                    </Form.Field>
+                    <Form.Field>
+                        <Header className= 'rating_title' as='h4'>
+                            Staff Kindness
+                        </Header>
+                        <Rating id='staff' value={this.state.staff}  stars={5} cancel={false} readonly={true}
+                                onChange={(e) => this.updateStateField(e)}/>
+                    </Form.Field>
+                    <Form.Field>
+                        <Header className= 'rating_title' as='h4'>
+                            Cleanliness
+                        </Header>
+                        <Rating id='clean' value={this.state.clean}  stars={5} cancel={false} readonly={true}
+                                onChange={(e) => this.updateStateField(e)}/>
+                    </Form.Field>
+                </Grid.Column>
+                <Grid.Column>
+                    <Form.Field>
+                        <Header className= 'rating_title' as='h4'>
+                            Food Quality
+                        </Header>
+                        <Rating id='food' value={this.state.food} stars={5} cancel={false} readonly={true}
+                                onChange={(e) => this.updateStateField(e)}/>
+                    </Form.Field>
+                    <Form.Field>
+                        <Header className= 'rating_title' as='h4'>
+                            Drive-thru Quality
+                        </Header>
+                        <Rating id='driveIn' value={this.state.driveIn}  stars={5} readonly={true}
+                                onChange={(e) => this.updateStateField(e)}/>
+                    </Form.Field>
+                    <Form.Field>
+                        <Header className= 'rating_title' as='h4'>
+                            Delivery Speed
+                        </Header>
+                        <Rating id='delivery' value={this.state.delivery} stars={5} readonly={true}
+                                onChange={(e) => this.updateStateField(e)}/>
+                    </Form.Field>
+                </Grid.Column>
+            </Grid.Row>
+
+            <Grid.Row columns={1}>
+                <Grid.Column >
                     {hasFreeText}
-                </Form.Field>
-                <br/>
-                {editable}
-                <hr/>
-            </Form>)
-    }
+                </Grid.Column>
+            </Grid.Row>
+            <Grid.Row columns={2}>
+                <Grid.Column >
+                   {edit_button}
+                </Grid.Column>
+                <Grid.Column >
+                    {delete_button}
+                </Grid.Column>
+            </Grid.Row>
+        </Grid>
+        </Segment>
+        </Form>
+    )
+}
 
 
     editReviewItem()
     {
-        const reviewImg = !this.state.picture.contentType ? null:
-            (<div className="imgPreview">
-                <img src={this.state.picture.data} width="200" height="100"/>
+        const reviewImg = !this.state.picture.pictureData ? null:
+            (<div>
+                <Image src={this.state.picture.pictureData} size='small' spaced='left'/>
             </div>);
         return (
-            <Form className="register-form" key={this.state.username+"_"+this.state.timeStamp}
+            <Form size='large'
+                  key={this.state.username+"_"+this.state.timeStamp}
                   onSubmit={() => {
-                      this.props.submitEditEventHandler(
-                          this.state.username,
-                          this.state.name,
-                          this.state.location,
-                          this.state.timeStamp,
-                          this.state.bathroom,
-                          this.state.staff,
-                          this.state.clean,
-                          this.state.food,
-                          this.state.driveIn,
-                          this.state.delivery,
-                          this.state.picture,
-                          this.state.freeText,
-                          this.state.avgRate,
-                      );
-                      this.makeEditableAction();
-                  }}>
-            <Form.Field width='9'>
-                <h2 id="name">{this.state.name}</h2>
-            </Form.Field>
-            <Form.Field width='9'>
-                <label htmlFor="writer">Writer: </label>
-                <p id="writer">{this.state.username}</p>
-            </Form.Field>
-            <Form.Field width='9'>
-                <Input type="file" id="picture"  accept="image/*" onChange={this.downloadFile}/>
-                {reviewImg}
-            </Form.Field>
+                          this.props.submitEditEventHandler(
+                              this.state.username,
+                              this.state.name,
+                              this.state.location,
+                              this.state.timeStamp,
+                             this.state.bathroom,
+                              this.state.staff,
+                              this.state.clean,
+                              this.state.food,
+                              this.state.driveIn,
+                             this.state.delivery,
+                              this.state.picture,
+                              this.state.freeText,
+                              this.state.avgRate,
+                          );
+                          this.makeEditableAction();
+                      }}>
+                <Growl ref={(el) => this.growl = el} position="bottomright"/>
+                <Segment stacked className= 'review_form'>
+                    <Grid textAlign='center' relaxed verticalAlign='middle'>
+                        <Grid.Row columns={1} style={{paddingBottom: '0px'}}>
+                            <Header className='edit_review_title' as='h2' >
+                                Edit Review
+                            </Header>
+                        </Grid.Row>
+                        <Grid.Row columns={3} style={{paddingTop: '0px'}}>
+                            <Grid.Column>
+                                {reviewImg}
+                                <Header className= 'review' id="edit_review_name" as='h1' color='grey'>
+                                    {this.state.name}
+                                </Header>
+                                <Header className= 'review' id="edit_review_location" as='h5' color='grey'>
+                                    {this.state.location.city}
+                                </Header>
+                                <Header className= 'review' id="edit_review_writer" as='h5' color='grey'>
+                                    {this.state.username}
+                                </Header>
 
-            <Form.Field width='9'>
-                <label htmlFor="bathroom" className="form-text">Bathroom Quality:</label>
-                <Rating id='bathroom' value={this.state.bathroom} cancel={false}
-                        onChange={(e) => this.updateStateField(e)}/>
-            </Form.Field>
-            <Form.Field width='9'>
-                <label htmlFor="staff">Staff Kindness:</label>
-                <Rating id='staff' value={this.state.staff}  stars={5} cancel={false}
-                        onChange={(e) => this.updateStateField(e)}/>
-            </Form.Field>
-            <Form.Field width='9'>
-                <label htmlFor="clean">Cleanliness:</label>
-                <Rating id='clean' value={this.state.clean}  stars={5} cancel={false}
-                        onChange={(e) => this.updateStateField(e)}/>
-            </Form.Field>
-            <Form.Field width='9'>
-                <label htmlFor="food">Food Quality:</label>
-                <Rating id='food' value={this.state.food} stars={5} cancel={false}
-                        onChange={(e) => this.updateStateField(e)}/>
-            </Form.Field>
-            <Form.Field width='9'>
-                <label htmlFor="driveIn">Drive-thru Quality:</label>
-                <Rating id='driveIn' value={this.state.driveIn}  stars={5}
-                        onChange={(e) => this.updateStateField(e)}/>
-            </Form.Field>
-            <Form.Field width='9'>
-                <label htmlFor="delivery">Delivery Speed:</label>
-                <Rating id='delivery' value={this.state.delivery} stars={5}
-                        onChange={(e) => this.updateStateField(e)}/>
-            </Form.Field>
-            <Form.Field width='9'>
-                <label htmlFor="freeText">Description: </label>
-                <InputTextarea id="freeText" value={this.state.freeText}
-                               onChange={(e) => this.updateStateField(e)}/>
-            </Form.Field>
-                <br/>
-                <Form.Button id={"edit_" + this.state.username+"_"+this.state.timeStamp}
-                             content='Submit Review' type="submit"/>
-                <Button id={"cancel_" + this.state.username+"_"+this.state.timeStamp} type="button"
-                             content="Cancel"
-                             onClick={() => this.makeEditableAction()}/>
-                <hr/>
-            </Form>
-        );
+                                <Form.Input fluid type='file' id="picture"  accept="image/*"
+                                            onChange={this.downloadFile}/>
+                            </Grid.Column>
+                            <Grid.Column>
+                                <Form.Field>
+                                    <Header className= 'rating_title' as='h4'>
+                                        Bathroom Quality
+                                    </Header>
+                                    <Rating id='bathroom' value={this.state.bathroom} cancel={false}
+                                            onChange={(e) => this.updateStateField(e)}/>
+                                </Form.Field>
+                                <Form.Field>
+                                    <Header className= 'rating_title' as='h4'>
+                                        Staff Kindness
+                                    </Header>
+                                    <Rating id='staff' value={this.state.staff}  stars={5} cancel={false}
+                                            onChange={(e) => this.updateStateField(e)}/>
+                                </Form.Field>
+                                <Form.Field>
+                                    <Header className= 'rating_title' as='h4'>
+                                        Cleanliness
+                                    </Header>
+                                    <Rating id='clean' value={this.state.clean}  stars={5} cancel={false}
+                                            onChange={(e) => this.updateStateField(e)}/>
+                                </Form.Field>
+                            </Grid.Column>
+                            <Grid.Column>
+                                <Form.Field>
+                                    <Header className= 'rating_title' as='h4'>
+                                        Food Quality
+                                    </Header>
+                                    <Rating id='food' value={this.state.food} stars={5} cancel={false}
+                                            onChange={(e) => this.updateStateField(e)}/>
+                                </Form.Field>
+                                <Form.Field>
+                                    <Header className= 'rating_title' as='h4'>
+                                        Drive-thru Quality
+                                    </Header>
+                                    <Rating id='driveIn' value={this.state.driveIn}  stars={5}
+                                            onChange={(e) => this.updateStateField(e)}/>
+                                </Form.Field>
+                                <Form.Field>
+                                    <Header className= 'rating_title' as='h4'>
+                                        Delivery Speed
+                                    </Header>
+                                    <Rating id='delivery' value={this.state.delivery} stars={5}
+                                            onChange={(e) => this.updateStateField(e)}/>
+                                </Form.Field>
+                            </Grid.Column>
+                        </Grid.Row>
+
+                        <Grid.Row columns={1}>
+                            <Grid.Column >
+                            <Header className= 'rating_title' as='h4'>
+                                Description
+                            </Header>
+                            <Form.TextArea id='freeText' value={this.props.freeText}
+                                           onChange={(e) => this.updateStateField(e)}/>
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row columns={2}>
+                            <Grid.Column >
+                                <Button color='violet' id={"edit_" + this.state.username+"_"+this.state.timeStamp} fluid size='large' type="submit">
+                                    Submit
+                                </Button>
+                            </Grid.Column>
+                            <Grid.Column >
+                                <Button color='violet' id={"cancel_" + this.state.username+"_"+this.state.timeStamp} fluid size='large' type="button"
+                                        onClick={() => this.makeEditableAction()}>
+                                    Cancel
+                                </Button>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Segment>
+            </Form>);
     }
 
     render() {

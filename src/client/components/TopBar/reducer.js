@@ -6,6 +6,9 @@ const TopBarReducer = (state = initialState.topbar, action) => {
     console.log('RECEIVED ACTION:', action);
     switch (action.type){
 
+        case TopBarActionsConstants.SET_ACTIVE:
+            return state.set('activeItem', action.payload.activeItem);
+
         default: //otherwise state is lost!
             return state;
     }

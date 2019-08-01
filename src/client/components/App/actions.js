@@ -1,5 +1,4 @@
 import { AppActionsConstants} from './constants.js';
-import {RestaurantsActionsConstants} from "../Restaurants/constants";
 
 function connectUserAction({succeed, username}){
     return {
@@ -97,15 +96,6 @@ function updateUserAfterSubmit(){
     }
 }
 
-function setActiveAction(name) {
-    return {
-        type: AppActionsConstants.SET_ACTIVE,
-        payload: {
-            name
-        }
-    };
-}
-
 function submitEditReviewSucceedAction({succeed, message, restaurants, users}){
     if (!succeed) {
         console.log(message);
@@ -125,14 +115,6 @@ function submitEditReviewSucceedAction({succeed, message, restaurants, users}){
         };
 }
 
-function editReviewFailureAction(error){
-    return {
-        type: AppActionsConstants.RESTAURANTS_FAILURE,
-        payload: {
-            error: error
-        }
-    };
-}
 
 
 let AppActions  = {
@@ -148,7 +130,6 @@ let AppActions  = {
     loadRestaurantsSuccessAction,
     updateReviewAfterSubmit,
     updateUserAfterSubmit,
-    setActiveAction,
     submitEditReviewSucceedAction,
 
 };

@@ -10,10 +10,9 @@ export default {
         locations: [],
         addedUser: false,
         addedReview: false,
-        activeItem: 'restaurants'
-
     }),
     topbar: Map({
+        activeItem: 'restaurants'
     }),
     registerPage: Map({
         username: '',
@@ -119,10 +118,13 @@ export default {
     profileUsername:'',
     profilePassword:'',
     profileLocation:'',
-    profilePicture:
-    {
-        pictureType: '',
-        pictureData: [],
-    },
+    profilePicture: {
+        contentType: '',
+        data: [],
+        },
+    prevPicture: {
+        contentType: '',
+        data: [],
+        },
     suggestions: [],
 };

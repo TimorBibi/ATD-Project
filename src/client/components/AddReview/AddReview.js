@@ -42,7 +42,7 @@ class AddReview extends React.Component {
 
 render() {
     return (
-        <Form className="register-form"  size='large' onSubmit={() => {
+        <Form className="add-review-form"  size='large' onSubmit={() => {
             this.props.submitEventHandler(
                 this.props.username,
                 this.props.restaurantName,
@@ -87,34 +87,45 @@ render() {
                 </Grid.Column>
                 <Grid.Column>
                     <Form.Field>
-                        <label htmlFor="bathroomRate" className="form-text">Bathroom Quality:</label>
-                        <Rating id='bathroomRate' value={this.props.bathroomRate} cancel={false}
+                        <Header className= 'rating_title' as='h4'>
+                            Bathroom Quality
+                        </Header>                        <Rating id='bathroomRate' value={this.props.bathroomRate} cancel={false}
                                 onChange={this.props.updateStateFieldEventHandler} />
                     </Form.Field>
                     <Form.Field>
-                        <label htmlFor="staffRate" className="form-text">Staff Kindness:</label>
+                        <Header className= 'rating_title' as='h4'>
+                            Staff Kindness
+                        </Header>
                         <Rating id='staffRate' value={this.props.staffRate} cancel={false}
                                 onChange={this.props.updateStateFieldEventHandler} />
                     </Form.Field>
                     <Form.Field>
-                        <label htmlFor="cleanRate" className="form-text">Cleanliness:</label>
+                        <Header className= 'rating_title' as='h4'>
+                            Cleanliness
+                        </Header>
                         <Rating id='cleanRate' value={this.props.cleanRate} cancel={false}
                                 onChange={this.props.updateStateFieldEventHandler} />
                     </Form.Field>
                 </Grid.Column>
                 <Grid.Column >
                     <Form.Field>
-                        <label htmlFor="foodRate" className="form-text">Food Quality:</label>
+                        <Header className= 'rating_title' as='h4'>
+                            Food Quality
+                        </Header>
                         <Rating id='foodRate' value={this.props.foodRate} cancel={false}
                                 onChange={this.props.updateStateFieldEventHandler} />
                     </Form.Field>
                     <Form.Field>
-                        <label htmlFor="driveInRate" className="form-text">Drive-thru Quality:</label>
+                        <Header className= 'rating_title' as='h4'>
+                            Drive-thru Quality
+                        </Header>
                         <Rating id='driveInRate' value={this.props.driveInRate}
                                 onChange={this.props.updateStateFieldEventHandler} />
                     </Form.Field>
                     <Form.Field>
-                        <label htmlFor="deliveryRate" className="form-text">Delivery Speed:</label>
+                        <Header className= 'rating_title' as='h4'>
+                            Delivery Speed
+                        </Header>
                         <Rating id='deliveryRate' value={this.props.deliveryRate}
                                 onChange={this.props.updateStateFieldEventHandler} />
                     </Form.Field>
@@ -122,8 +133,11 @@ render() {
         </Grid.Row>
 
         <Grid.Row columns={1}>
-            <Grid.Column >
-            <Form.TextArea id='freeText' label='Description' value={this.props.freeText}
+            <Grid.Column>
+            <Header className= 'rating_title' as='h4'>
+                Description
+            </Header>
+            <Form.TextArea id='freeText' value={this.props.freeText}
                            onChange={this.props.updateStateFieldEventHandler}/>
             </Grid.Column>
         </Grid.Row>

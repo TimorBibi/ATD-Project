@@ -1,27 +1,28 @@
-.reviewform-root {
-  text-align: left;
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-bottom: 20px;
+.review.ui{
+  margin: 6px 2px 6px 2px;
+  padding-left: 10px;
+  text-align: center;
 }
 
-.p-float-label {
-  font-size: 20px;
-}
-
-.form-text {
+.rating_title{
+  margin: 4px !important;
+  color: #565656 !important;
   font-size: 14px;
+  font-family: Lato Helvetica Neue Helvetica sans-serif;
 }
 
-.form-input {
-  height: 10px;
+.p-rating .p-rating-icon{
+  color: #363636 !important;
+  font-size: 22px!important;
 }
 
-.logIn-form span{
-  marginTop: '30px';
-  paddingLeft: '.5em';
+.review_form.ui{
+  padding: 2% 2% 2% 2%;
+  margin: 2% 10% 10% 10%;
 }
 
-body .p-button {
-  float: left;
+.edit_review_title.ui{
+  //padding-bottom: 10%;
+  color: #6435c9;
+  text-align: center;
 }

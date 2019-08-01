@@ -60,8 +60,8 @@ class Restaurants extends React.Component {
                     Rate: {Math.round(restaurant.avgRate * 100) / 100}
                 </Label>;
         return(
-            <div>
-            <Segment stacked>
+            <div className='restaurant_item'>
+            <Segment stacked  >
                 <Grid >
                     <Grid.Row columns={2}>
                     <Grid.Column>
@@ -79,8 +79,6 @@ class Restaurants extends React.Component {
                     </Grid.Row>
                 </Grid>
             </Segment>
-
-                <hr/>
                 {header}
                 {showReviews}
             </div>
