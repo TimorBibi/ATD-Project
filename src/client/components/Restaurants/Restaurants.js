@@ -62,8 +62,8 @@ class Restaurants extends React.Component {
                 </Label>;
         return(
             <div className='restaurant_item'>
-            <Segment stacked  >
-                <Grid >
+            <Segment stacked>
+                <Grid verticalAlign='middle'>
                     <Grid.Row columns={2}>
                     <Grid.Column>
                     <Header className= 'show_restaurant' id="name" as='h1' color='grey'>
@@ -74,7 +74,7 @@ class Restaurants extends React.Component {
                     </Header>
                     {reviewRate}
                     </Grid.Column>
-                    <Grid.Column >
+                    <Grid.Column>
                      {reviewsIfExist}
                     </Grid.Column>
                     </Grid.Row>
@@ -305,7 +305,7 @@ class Restaurants extends React.Component {
                 </Grid.Row>
             </Grid>): null;
         return (
-            <Grid centered>
+            <Grid centered className='rest_search'>
                 <Grid.Row centered>
                     <label className="search-label" htmlFor="search"><Icon name="search"/>Search Restaurant: </label>
                     <AutoComplete id="searchNameValue" placeholder="Name" className="search"

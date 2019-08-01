@@ -76,6 +76,7 @@ render() {
 
                     <Form.Field>
                         <AutoComplete id='restaurantLocation' value={this.props.restaurantLocation} placeholder='Location'
+                                      className= 'location_field'
                                       onChange={this.props.updateStateFieldEventHandler}
                                       suggestions={this.props.suggestions}
                                       completeMethod={(e) => this.props.suggestLocationsEventHandler(this.props.locations, e)} />
@@ -143,18 +144,18 @@ render() {
         </Grid.Row>
         <Grid.Row columns={3}>
             <Grid.Column >
-            <Button color='violet' id="submit" fluid size='large' type="submit">
-                Submit
-            </Button>
-            </Grid.Column>
-            <Grid.Column >
-                <Button color='violet' id="cancel" fluid size='large' type="button"
+                <Button color='violet' id="cancel" fluid size='large' type="button" className='add_review_btn_left'
                         onClick={() => this.props.toggleAddReviewEventHandler(this.props.showRestForm)}>
                     Cancel
                 </Button>
             </Grid.Column>
             <Grid.Column >
-                <Button color='violet' id="clearFields" fluid size='large' type="button"
+                <Button color='violet' id="submit" fluid size='large' type="submit" className='add_review_btn'>
+                    Submit
+                </Button>
+            </Grid.Column>
+            <Grid.Column >
+                <Button color='violet' id="clearFields" fluid size='large' type="button" className='add_review_btn_right'
                         onClick={() => this.props.clearFieldsEventHandler()}>
                         Clear Fields
                 </Button>

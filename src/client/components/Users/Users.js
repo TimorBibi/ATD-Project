@@ -29,32 +29,31 @@ class Users extends React.Component {
     viewUserItem(user, showReviews)
     {
         const imgsrc = user.picture.data;
-        const showName = user.username !== this.props.username ? user.username: "My";
         const myProfile = user.username !== this.props.username ? null:
             (<div>
-                <Button id={"profile_"+user.username}  className="ui button"
-                    onClick={(e) => this.props.moveToUserProfileEventHandler()}
-                >Move to My Profile</Button>
+                <Button id={"profile_"+user.username} className='users_show_reviews' basic color='violet'
+                    onClick={() => this.props.moveToUserProfileEventHandler()}
+                >My Profile</Button>
             </div>);
         const hasReviews = (!user.reviews.length)?
-            (<label htmlFor="reviews">no reviews</label>):
+            (<Header className= 'no_reviews' id="no_reviews" as='p' color='grey'>no reviews</Header>):
             (<div>
-                <Button id={user.username} className="ui button"
+                <Button id={user.username} className='users_show_reviews' basic color='violet'
                         onClick={(e, data) =>
                             this.props.showUserReviewsEventHandler(data, this.props.showReviews)}
-                >View {showName} Reviews</Button>
+                >Reviews</Button>
             </div>);
         return(
             <div className='user_item'>
                 <Segment stacked>
-                    <Grid>
-                        <Grid.Row columns={3}>
+                    <Grid  verticalAlign='middle'>
+                        <Grid.Row columns={2}>
                             <Grid.Column>
                                 <Grid columns={2}>
                                     <Grid.Column>
                                         <Image src={imgsrc} size='small' spaced='left'/>
                                     </Grid.Column>
-                                    <Grid.Column>
+                                    <Grid.Column verticalAlign='middle'>
                                     <Header className= 'show_user' id="userName" as='h1' color='grey'>
                                         {user.username}
                                     </Header>

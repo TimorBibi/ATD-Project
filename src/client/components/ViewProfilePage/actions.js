@@ -23,6 +23,7 @@ function updateStateFieldAction(field, value) {
 
 
 function editProfileAction(prevValue, user) {
+    console.log("?????????????????");
     return {
         type: ViewProfilePageActionsConstants.EDIT_PROFILE,
         uri: '/api/get/password',
