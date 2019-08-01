@@ -119,12 +119,12 @@ export default {
     profilePassword:'',
     profileLocation:'',
     profilePicture: {
-        pictureType: '',
-        pictureData: [],
+        contentType: '',
+        data: [],
         },
     prevPicture: {
-            pictureType: '',
-            pictureData: [],
+        contentType: '',
+        data: [],
         },
     suggestions: [],
 };

@@ -55,8 +55,8 @@ module.exports = (app) => {
                                 doc.password = req.body.password;
                                 doc.location = {city: location.city, x: location.x, y: location.y};
                                 doc.picture = {
-                                    data: req.body.picture.pictureData,
-                                    contentType: req.body.picture.pictureType
+                                    data: req.body.picture.data,
+                                    contentType: req.body.picture.contentType
                                 };
                                 doc.reviews.map((review, index) => {
                                     let newRev = review;

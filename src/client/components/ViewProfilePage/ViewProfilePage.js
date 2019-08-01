@@ -46,8 +46,8 @@ class ViewProfilePage extends React.Component {
         fs.onloadend = () => {
             let pictureData = fs.result;
             let value = {
-                pictureType: file.type,
-                pictureData: pictureData,
+                contentType: file.type,
+                data: pictureData,
             };
             this.props.updateStateFieldEventHandler(e, {id:'profilePicture' ,value: value});
         };
@@ -63,8 +63,7 @@ class ViewProfilePage extends React.Component {
 
     editProfile()
     {
-        const imgsrc = Map(this.props.profilePicture).get('pictureData');
-        console.log("HERE!!!:", imgsrc);
+        const imgsrc = Map(this.props.profilePicture).get('data');
         return (
            <div className="editProfile">
                <Form className="editProfile-form" onSubmit={() => {
