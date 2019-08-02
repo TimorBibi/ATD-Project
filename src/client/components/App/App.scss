@@ -7,13 +7,12 @@ body, html {
 }
 
 .app-header {
-  background-image: url("/src/img/logo.jpg");
+  background-image: url("/src/img/better_logo.jpg");
   background-repeat: repeat-x;
   background-position: center;
   height: 184px;
   width: 100%;
   padding: 10px;
-
 }
 
 .app-header-title
@@ -27,4 +26,19 @@ body, html {
   color: #565656 !important;
   font-size: 14px;
   font-family: Lato Helvetica Neue Helvetica sans-serif;
+}
+
+body {
+  background-image:url("/src/img/food_background _faded.png");
+  background-repeat: repeat;
+}
+
+.p-dataview .p-dataview-content{
+  background-color: transparent !important;
+}
+
+.ui.button{
+  background-color: #807595;
+  color: white;
+  font-weight: normal;
 }

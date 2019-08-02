@@ -1,3 +1,4 @@
+import {Image} from "semantic-ui-react";
 const {Map, List} = require('immutable');
 import React from 'react';
 import './App.scss';
@@ -5,7 +6,7 @@ import TopBar from '../TopBar';
 import { connect } from 'react-redux';
 import AppActions from './actions';
 import RegisterPage from "../RegisterPage/RegisterPage";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Header } from "react-router-dom";
 import LogInPage from '../LogInPage/LogInPage';
 import Restaurants from '../Restaurants/Restaurants';
 import ViewProfilePage from '../ViewProfilePage/ViewProfilePage';
@@ -41,7 +42,9 @@ class App extends React.Component {
                 <div className="app-root">
                     <TopBar/>
                     <div className="app-header">
-                        <h2 className="app-header-title"/>
+                            {/*<h2 id="name">*/}
+                            {/*    Restaurateur*/}
+                            {/*</h2>*/}
                     </div>
                     <div className="app-body">
                         <Route exact path="/" component={Restaurants} />

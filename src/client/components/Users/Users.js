@@ -1,7 +1,7 @@
 import React from 'react';
 import './Users.scss';
 import {connect} from 'react-redux';
-import {Button, Form, Label, Input, Segment, Grid, Header, Image} from 'semantic-ui-react'
+import {Button, Form, Label, Input, Segment, Grid, Header, Image, Icon} from 'semantic-ui-react'
 import {Dropdown} from "primereact/dropdown";
 import {DataView, DataViewLayoutOptions} from 'primereact/dataview';
 import {List, Map} from 'immutable';
@@ -9,6 +9,7 @@ import {AutoComplete} from 'primereact/autocomplete';
 import {Rating} from 'primereact/rating';
 import UsersActions from '../Users/actions';
 import Review from "../Review/Review";
+import {Slider} from "primereact/components/slider/Slider";
 
 class Users extends React.Component {
 
@@ -16,7 +17,6 @@ class Users extends React.Component {
         super();
         this.itemTemplate = this.itemTemplate.bind(this);
         this.viewUserItem = this.viewUserItem.bind(this);
-        this.viewReviewItem = this.viewReviewItem.bind(this);
         this.searchBy = this.searchBy.bind(this);
         this.resetSearchField = this.resetSearchField.bind(this);
     }
@@ -29,32 +29,31 @@ class Users extends React.Component {
     viewUserItem(user, showReviews)
     {
         const imgsrc = user.picture.data;
-        const showName = user.username !== this.props.username ? user.username: "My";
         const myProfile = user.username !== this.props.username ? null:
             (<div>
-                <Button id={"profile_"+user.username}  className="ui button"
-                    onClick={(e) => this.props.moveToUserProfileEventHandler()}
-                >Move to My Profile</Button>
+                <Button id={"profile_"+user.username} className='users_show_reviews'
+                    onClick={() => this.props.moveToUserProfileEventHandler()}
+                >My Profile</Button>
             </div>);
         const hasReviews = (!user.reviews.length)?
-            (<label htmlFor="reviews">no reviews</label>):
+            (<Header className= 'no_reviews' id="no_reviews" as='p' color='grey'>no reviews</Header>):
             (<div>
-                <Button id={user.username} className="ui button"
+                <Button id={user.username} className='users_show_reviews'
                         onClick={(e, data) =>
                             this.props.showUserReviewsEventHandler(data, this.props.showReviews)}
-                >View {showName} Reviews</Button>
+                >Reviews</Button>
             </div>);
         return(
             <div className='user_item'>
                 <Segment stacked>
-                    <Grid>
-                        <Grid.Row columns={3}>
+                    <Grid  verticalAlign='middle'>
+                        <Grid.Row columns={2}>
                             <Grid.Column>
                                 <Grid columns={2}>
                                     <Grid.Column>
                                         <Image src={imgsrc} size='small' spaced='left'/>
                                     </Grid.Column>
-                                    <Grid.Column>
+                                    <Grid.Column verticalAlign='middle'>
                                     <Header className= 'show_user' id="userName" as='h1' color='grey'>
                                         {user.username}
                                     </Header>
@@ -73,76 +72,9 @@ class Users extends React.Component {
                 </Segment>
                 {showReviews}
             </div>
-
-            // <div className="view-user" key={user.username}>
-            //     <h2 id="userName">{user.username}</h2>
-            //     <label htmlFor="location">Location: </label>
-            //     <p id="location">{user.location.city}</p>
-            //     <div className="imgPreview">
-            //         <img src={imgsrc} width="200" height="100"/>
-            //     </div>
-            //     {myProfile}
-            //     {hasReviews}
-            //     <hr/>
-            //     {showReviews}
-            // </div>
         );
     }
 
-
-    viewReviewItem(review)
-    {
-        const hasFreeText = review.freeText?
-            (<label htmlFor="freeText">Description: {review.freeText}</label>)
-            : null;
-        const reviewImg = review.picture.contentType !== "" && review.picture.contentType!==null?
-            (<div className="imgPreview">
-                <img src={review.picture.data} width="200" height="100"/>
-            </div>):
-            null;
-
-        return(
-            <Form className="register-form" key={review.username+"_"+review.timeStamp}>
-                <Form.Field width='9'>
-                    {reviewImg}
-                </Form.Field>
-                <Form.Field width='9'>
-                    <p id="restaurant">{review.name}</p>
-                </Form.Field>
-                <Form.Field width='9'>
-                <label htmlFor="location" className="form-text">Location: </label>
-                    <p id="location">{review.location.city}</p>
-                </Form.Field >
-                <Form.Field width='9'>
-                    <label htmlFor="bathroomRate" className="form-text">Bathroom Quality:</label>
-                    <Rating id='bathroomRate' value={review.bathroom} cancel={false} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <label htmlFor="staffRate">Staff Kindness:</label>
-                    <Rating id='staffRate' value={review.staff}  stars={5} cancel={false} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <label htmlFor="cleanRate">Cleanliness:</label>
-                    <Rating id='cleanRate' value={review.clean}  stars={5} cancel={false} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <label htmlFor="foodRate">Food Quality:</label>
-                    <Rating id='foodRate' value={review.food} stars={5} cancel={false} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <label htmlFor="driveInRate">Drive-thru Quality:</label>
-                    <Rating id='driveInRate' value={review.driveIn}  stars={5} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <label htmlFor="deliveryRate">Delivery Speed:</label>
-                    <Rating id='deliveryRate' value={review.delivery} stars={5} readonly={true}/>
-                </Form.Field>
-                <Form.Field width='9'>
-                    {hasFreeText}
-                </Form.Field>
-                <hr/>
-            </Form>)
-    }
 
     itemTemplate(user, layout) {
         if (layout === 'list') {
@@ -188,28 +120,50 @@ class Users extends React.Component {
         ];
 
         return (
-            <div className="p-grid">
-                <div className="p-col-6" style={{textAlign: 'left'}}>
-                    <Dropdown options={searchOptions} value={this.props.searchKey} placeholder="Search By"
-                              onChange={(e) =>
-                    (this.props.updateSearchKeyEventHandler(e.value, this.props.locations,
-                        this.props.users, this.props.restaurants))} />
+            <Grid centered className='user_search'>
+                <Grid.Row centered>
+                    <label className="search-label" htmlFor="search"><Icon name="search"/>Search User: </label>
+                    <Dropdown options={searchOptions} value={this.props.searchKey} className="search"
+                         onChange={(e) => (this.props.updateSearchKeyEventHandler(e.value, this.props.locations,
+                         this.props.users, this.props.restaurants))} />
 
-                    <AutoComplete id="searchValue" onChange={this.props.updateStateFieldEventHandler}
-                                  suggestions={this.props.suggestions}
-                                  value = {this.props.searchValue}
-                                  completeMethod={(e) => this.props.suggestionsEventHandler(this.props.selectedSuggestionsOption, e)}/>
+                    <AutoComplete id="searchValue" onChange={this.props.updateStateFieldEventHandler} className="search"
+                          suggestions={this.props.suggestions}
+                          value = {this.props.searchValue}
+                          completeMethod={(e) => this.props.suggestionsEventHandler(this.props.selectedSuggestionsOption, e)}/>
 
-                    <Button id="searchButton"  className="ui button"
-                            onClick={() => (this.props.updateShowUsersEventHandler(this.searchBy()))}
-                    >Search</Button>
-                    <Button id="showAllButton"  className="ui button"
-                            onClick={() => (this.resetSearchField())}
-                    >Show All Users</Button>
-                </div>
-                <div className="p-col-6" style={{textAlign: 'right'}}>
-                </div>
-            </div>
+                </Grid.Row>
+                <Grid.Row centered className="row-margin">
+                             <Button id="searchButton"  className="ui button header-button"
+                                     onClick={() => (this.props.updateShowUsersEventHandler(this.searchBy()))}
+                             >Search</Button>
+                             <Button id="showAllButton"  className="ui button header-button"
+                                     onClick={() => (this.resetSearchField())}
+                             >Show All Users</Button>
+                </Grid.Row>
+            </Grid>
+            // <div className="p-grid">
+            //     <div className="p-col-6" style={{textAlign: 'left'}}>
+            //         <Dropdown options={searchOptions} value={this.props.searchKey} placeholder="Search By"
+            //                   onChange={(e) =>
+            //         (this.props.updateSearchKeyEventHandler(e.value, this.props.locations,
+            //             this.props.users, this.props.restaurants))} />
+            //
+            //         <AutoComplete id="searchValue" onChange={this.props.updateStateFieldEventHandler}
+            //                       suggestions={this.props.suggestions}
+            //                       value = {this.props.searchValue}
+            //                       completeMethod={(e) => this.props.suggestionsEventHandler(this.props.selectedSuggestionsOption, e)}/>
+            //
+            //         <Button id="searchButton"  className="ui button"
+            //                 onClick={() => (this.props.updateShowUsersEventHandler(this.searchBy()))}
+            //         >Search</Button>
+            //         <Button id="showAllButton"  className="ui button"
+            //                 onClick={() => (this.resetSearchField())}
+            //         >Show All Users</Button>
+            //     </div>
+            //     <div className="p-col-6" style={{textAlign: 'right'}}>
+            //     </div>
+            // </div>
         );
     }
 

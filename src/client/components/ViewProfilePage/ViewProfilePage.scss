@@ -1,27 +1,43 @@
-.reviewform-root {
+.edit_profile_form.ui{
+  padding: 2% 2% 2% 2%;
+  margin: 2% 8% 8% 8%;
+}
+
+.viewProfile_form.ui{
+  padding: 2%;
+  margin: 8% 30% 8% 30%;
+}
+
+.location_field{
+  width: 100% !important;
+}
+
+.profile_picture{
+  padding: 2%;
+}
+
+.show_profile.ui {
+  margin: 6px 2px 6px 2px;
   text-align: left;
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-bottom: 20px;
 }
 
-.p-float-label {
-  font-size: 20px;
-}
-
-.form-text {
-  font-size: 14px;
-}
-
-.form-input {
-  height: 10px;
-}
-
-.logIn-form span{
-  marginTop: '30px';
-  paddingLeft: '.5em';
-}
-
-body .p-button {
+.show_profile.ui.float_left {
   float: left;
+}
+
+.ui.fluid.button.left_profile_btn {
+  height: 20%;
+  width: 50% !important;
+  margin: 10% 0 0 50%;
+}
+
+.ui.fluid.button.right_profile_btn {
+  height: 20%;
+  width: 50% !important;
+  margin: 10% 50% 0 0;
+}
+
+.ui.fluid.button.profile_btn {
+  width: 30% !important;
+  margin: 0 0 0 70%;
 }

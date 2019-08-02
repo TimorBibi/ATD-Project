@@ -2,13 +2,14 @@
   margin: 6px 2px 6px 2px;
   text-align: left;
 }
+
 .show_restaurant.ui.float_left {
   float: left;
 }
 
 .restaurant_show_reviews.ui{
   height: 60%;
-  width: 50%;
+  width: 30%;
   margin: 20px 0 0 130px;
 }
 
@@ -16,17 +17,24 @@
   margin-left: 150px;
   margin-right: 20px;
   padding-top: 20px;
-  font-weight:normal
+  font-weight: normal
 }
 
 .restaurant_item
 {
-  margin-top: 20px;
+  padding-right: 2%;
+  margin: 1%;
 }
 
-
 .search{
-  margin-left: 20px;
+  margin-left: 1%;
+}
+
+.ui.centered.grid.rest_search{
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  margin: 1% !important;
+  height: 10%;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .search-label{
@@ -46,7 +54,7 @@
 
 #closer-label-row{
   margin-top: 3px;
-  padding: 0px;
+  padding: 0;
 }
 
 .row-margin{
@@ -58,5 +66,39 @@
   width: 15em;
   margin-right: 3px;
   margin-left: 3px;
-
 }
+
+.p-col-6.sort{
+  margin-right: 3px !important;
+  margin-left: 3px !important;
+  padding-left: 10px;
+}
+
+.sort_title{
+  //margin-right: 0;
+  margin-left: 30px !important;
+  padding-left: 30px !important;
+  padding-right: 10px !important;
+}
+
+.ui.centered.grid.review_sort{
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  margin: 1% !important;
+  height: 10%;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.second_row{
+  padding-top: 0!important;
+}
+
+.first_row{
+  //padding-left: 30px;
+}
+
+.criteria_slider{
+  margin-bottom: 20px;
+  margin-left: 10px;
+  width: 14em;
+}
+

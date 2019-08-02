@@ -2,12 +2,10 @@ import React from 'react';
 import './ViewProfilePage.scss';
 import {connect} from 'react-redux';
 import UsersActions from "../Users/actions";
-import {Button, Form, Input} from "semantic-ui-react";
+import {Button, Form, Grid, Header, Image, Input, Segment} from "semantic-ui-react";
 import {DataView} from "primereact/components/dataview/DataView";
 import ViewProfilePageActions from "./actions";
 import {Growl} from "primereact/components/growl/Growl";
-import {InputText} from "primereact/components/inputtext/InputText";
-import {Password} from "primereact/components/password/Password";
 import {AutoComplete} from "primereact/components/autocomplete/AutoComplete";
 const {Map, List} = require('immutable');
 import Review from "../Review/Review";
@@ -65,74 +63,122 @@ class ViewProfilePage extends React.Component {
     {
         const imgsrc = Map(this.props.profilePicture).get('data');
         return (
-           <div className="editProfile">
-               <Form className="editProfile-form" onSubmit={() => {
-                   this.props.submitEventHandler(
-                       this.props.profileUsername,
-                       this.props.profilePassword,
-                       this.props.profileLocation,
-                       this.props.profilePicture,
-                       this.props.prevPicture,
-                       this.props.locations,
-                        this.props.isValid,
-                        this.props.username,
-                   );
-               }}>
-                   <Form.Field width='9'>
-                       <label htmlFor="profileUsername" className="form-text">Username:</label>
-                       <InputText id="profileUsername" value={this.props.profileUsername} onChange={this.props.updateStateFieldEventHandler}
-                                    onBlur={(e)=>this.props.validateEditUsernameEventHandler(e, this.props.username)} />
-                   </Form.Field>
-                   <Form.Field width='9'>
-                       <label htmlFor="profilePassword" className="form-text">Password:</label>
-                       <Password id='profilePassword'
-                                   onChange={this.props.updateStateFieldEventHandler}/>
-                   </Form.Field>
-                   <Form.Field width='9'>
-                       <Input type="file" id="profilePicture"  accept="image/*" onChange={this.downloadFile}/>
-                       <div className="imgPreview" id='profilePicture'>
-                           <img src={imgsrc} width="200" height="100"/>
-                       </div>
-                   </Form.Field>
-                   <Form.Field width='9'>
-                       <label htmlFor="profileLocation" className="form-text">Location:</label>
-                       <AutoComplete id='profileLocation' value={this.props.profileLocation}
-                                     onChange={this.props.updateStateFieldEventHandler}
-                                     suggestions={this.props.suggestions}
-                                     completeMethod={(e) => this.props.suggestLocationsEventHandler(this.props.locations, e)} />
-                   </Form.Field>
-                   <Form.Button content='Save' type="submit"/>
-                   <button className="ui button" type="button"
-                                onClick={() => this.props.showEditProfileEventHandler(this.props.editProfile)} >Cancel</button>
-           </Form>
-           </div>
+            <Form className='edit_profile_form' onSubmit={() =>{
+                        this.props.submitEventHandler(
+                            this.props.profileUsername,
+                            this.props.profilePassword,
+                            this.props.profileLocation,
+                            this.props.profilePicture,
+                            this.props.prevPicture,
+                            this.props.locations,
+                            this.props.isValid,
+                             this.props.username,
+                        );}}>
+
+                <Growl ref={(el) => this.growl = el} position="bottomright"/>
+                <Header as='h2' color='violet' textAlign='center'>
+                    {/*<Image src='/logo.png' /> */}
+                    Edit Profile
+                </Header>
+                <Segment stacked className= 'edit_profile_form'>
+                    <Grid textAlign='center' verticalAlign='middle'>
+                        <Grid.Row columns={2}>
+                            <Grid.Column >
+                                <Form.Input fluid icon='user' iconPosition='left' placeholder='Username'
+                                            id='profileUsername' value={this.props.profileUsername}
+                                            onChange={this.props.updateStateFieldEventHandler}
+                                            onBlur={(e)=>this.props.validateEditUsernameEventHandler(e, this.props.username)} />
+                                <Form.Input fluid icon='lock' iconPosition='left' placeholder='Password'
+                                            type='password' id='profilePassword'
+                                            onChange={this.props.updateStateFieldEventHandler}/>
+                                <Form.Field>
+                                    <AutoComplete className="location_field" id='profileLocation'
+                                                  value={this.props.profileLocation}
+                                                  onChange={this.props.updateStateFieldEventHandler}
+                                                  suggestions={this.props.suggestions}
+                                                  completeMethod={(e) => this.props.suggestLocationsEventHandler(this.props.locations, e)} />
+                                </Form.Field>
+                            </Grid.Column>
+                            <Grid.Column>
+                                <Image src={imgsrc} size='small' verticalAlign='middle' className= 'profile_picture'/>
+
+                                <Form.Input fluid type='file' id="profilePicture"  accept="image/*"
+                                            onChange={this.downloadFile}/>
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row columns={2}>
+                            <Grid.Column >
+                                <Button className='left_profile_btn' id="submit" color='violet'  size='small' fluid type="submit">
+                                    Save
+                                </Button>
+                            </Grid.Column>
+                            <Grid.Column >
+                                <Button className='right_profile_btn' color='violet'  size='small' fluid type="button"
+                                        onClick={() => this.props.showEditProfileEventHandler(this.props.editProfile)}>
+                                    Cancel
+                                </Button>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Segment>
+            </Form>
        );
     }
 
     viewProfile(user, imgsrc)
     {
-        return (<div className="viewProfile">
-            <Form className="viewProfile-form" key={user.get('username')}>
-                <Form.Field width='9'>
-                    <h2 id="userName">{user.get('username')}</h2>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <div className="imgPreview">
-                        <img src={imgsrc} width="200" height="100"/>
-                    </div>
-                </Form.Field>
-                <Form.Field width='9'>
-                    <label htmlFor="location">Location:</label>
-                    <p id="location">{Map(user.get('location')).get('city')} </p>
-                </Form.Field>
-            </Form>
-            <Button id={"edit_"+user.get('userName')}  className="ui button" type="button"
-                    onClick={() => {
-                        this.props.editProfileEventHandler(this.props.editProfile, user);
-                    }}
-            >Edit Profile</Button>
-        </div>);
-    }
+        return (
+            <div className='viewProfile_form'>
+                <Segment stacked className= 'viewProfile_form'>
+                    <Grid  verticalAlign='middle'>
+                        <Grid.Row columns={2}>
+                            <Grid.Column>
+                                <Grid columns={2}>
+                                    <Grid.Column>
+                                        <Image src={imgsrc} size='small' spaced='left'/>
+                                    </Grid.Column>
+                                    <Grid.Column verticalAlign='middle'>
+                                        <Header className= 'show_user' id="userName" as='h1' color='grey'>
+                                            {user.get('username')}
+                                        </Header>
+                                        <Header className= 'show_user' id="location" as='h5' color='grey'>
+                                            {Map(user.get('location')).get('city')}
+                                        </Header>
+                                    </Grid.Column>
+                                </Grid>
+                            </Grid.Column>
+                            <Grid.Column>
+                                <Button id={"edit_"+user.get('username')} className='ui button' type="button"
+                                              onClick={() => {this.props.editProfileEventHandler(this.props.editProfile, user);}}>Edit Profile</Button>
+                                </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Segment>
+                {/*{showReviews}*/}
+            </div>
+
+                // <Segment stacked className= 'viewProfile_form'>
+                //     <Grid columns={3} textAlign='center' verticalAlign='middle'>
+                //         {/*<Grid.Row>*/}
+                //             <Grid.Column >
+                //                 <Image src={imgsrc} size='small' verticalAlign='middle' className= 'profile_picture'/>
+                //             </Grid.Column>
+                //             <Grid.Column>
+                //                 <Header className= 'show_profile' id="username" as='h1' color='grey'>
+                //                     {user.get('username')}
+                //                 </Header>
+                //                 <Header className= 'show_profile' id="location" as='h5' color='grey'>
+                //                     {Map(user.get('location')).get('city')}
+                //                 </Header>
+                //             </Grid.Column>
+                //             <Grid.Column>
+                //              <Button id={"edit_"+user.get('username')}  fluid size='large' type="button"
+                //               onClick={() => {this.props.editProfileEventHandler(this.props.editProfile, user);}}>Edit Profile</Button>
+                //             </Grid.Column>
+                //         {/*</Grid.Row>*/}
+                //     </Grid>
+                // </Segment>
+        )}
 
     render() {
         const user = Map(this.props.users.find((usr)=> usr['username'] === this.props.username));

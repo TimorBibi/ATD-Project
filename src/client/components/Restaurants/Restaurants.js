@@ -52,7 +52,7 @@ class Restaurants extends React.Component {
         const hasReviews = (!restaurant.avgRate && !restaurant.reviews.length);
         const reviewsIfExist = hasReviews?
             <Header className= 'no_reviews' id="no_reviews" as='p' color='grey'>no reviews</Header>:
-            <Button id={restaurant.name+"_"+restaurant.location.city} className='restaurant_show_reviews' basic color='violet'
+            <Button id={restaurant.name+"_"+restaurant.location.city} className='restaurant_show_reviews'
                     onClick={(e, data) => this.props.showReviewsEventHandler(data, this.props.showReviews, restaurant.reviews)}
              >Reviews</Button>;
             const reviewRate = hasReviews?
@@ -62,8 +62,8 @@ class Restaurants extends React.Component {
                 </Label>;
         return(
             <div className='restaurant_item'>
-            <Segment stacked  >
-                <Grid >
+            <Segment stacked>
+                <Grid verticalAlign='middle'>
                     <Grid.Row columns={2}>
                     <Grid.Column>
                     <Header className= 'show_restaurant' id="name" as='h1' color='grey'>
@@ -74,7 +74,7 @@ class Restaurants extends React.Component {
                     </Header>
                     {reviewRate}
                     </Grid.Column>
-                    <Grid.Column >
+                    <Grid.Column>
                      {reviewsIfExist}
                     </Grid.Column>
                     </Grid.Row>
@@ -173,35 +173,35 @@ class Restaurants extends React.Component {
         ];
 
         const criteriaSlider = this.props.criteriaReviewValue ==='criteriaReviewValue:'? null:
-            <div>
+            <div className="criteria_slider">
             <h4>Rating Range: {this.props.ratingRangeReviewValues[0]},{this.props.ratingRangeReviewValues[1]}</h4>
             <Slider id="ratingRangeReviewValues" value={this.props.ratingRangeReviewValues} min={1} max={5} animate={true}
                         onChange={this.props.updateReviewSliderFieldEventHandler} range={true} style={{width: '14em'}} />
              </div>;
         return (
-            <div className="p-grid">
-                <div className="p-col-6" style={{textAlign: 'left'}}>
-                    <label htmlFor="sortReview">Sort Reviews By </label>
-                    <div className="p-col-6" style={{textAlign: 'left'}}>
+            <Grid centered className="p-grid review_sort" textAlign="left">
+                <Grid.Row centered className='first_row'>
+                    <label htmlFor="sortReview" className="sort_title">Sort Reviews By</label>
+                    <label htmlFor="showOnlyReview" className="sort_title">Show reviews since</label>
+                    <label htmlFor="criteriaReview" className="sort_title">Criteria </label>
+                </Grid.Row>
+                <Grid.Row centered className='second_row'>
+                <label className="search-label" htmlFor="sort"><Icon name="sort"/>Sort Reviews:  </label>
+                    <div className="p-col-6 sort" style={{textAlign: 'left'}}>
                         <Dropdown key = "sortReviewValue" options={sortOptions} value={this.props.sortReviewValue} placeholder="Newest First"
                                   onChange={(e) => (this.props.updateSearchReviewEventHandler(e.value))} />
                     </div>
-
-                    <label htmlFor="showOnlyReview">Show reviews since: </label>
-                    <div className="p-col-6" >
+                    <div className="p-col-6 sort">
                         <Dropdown  key = "showOnlyReviewValue" options={showOnlyOptions} value={this.props.showOnlyReviewValue} placeholder="All Times"
                                   onChange={(e) => (this.props.updateSearchReviewEventHandler(e.value))} />
                     </div>
-
-                    <label htmlFor="criteriaReview">Criteria: </label>
-                    <div className="p-col-6" >
+                    <div className="p-col-6 sort">
                         <Dropdown  key = "criteriaReviewValue" options={criteriaOptions} value={this.props.criteriaReviewValue} placeholder=""
                                   onChange={(e) => (this.props.updateSearchReviewEventHandler(e.value))} />
                     </div>
 
-
-                    {criteriaSlider}
-
+                </Grid.Row>
+                <Grid.Row centered>
                     <Button id="searchReviewButton"  className="ui button"
                             onClick={() => (this.props.updateShowReviewsEventHandler(this.sortReviewBy(restaurant.reviews)))}
                     >Search</Button>
@@ -209,10 +209,9 @@ class Restaurants extends React.Component {
                     <Button id="showAllReviewsButton"  className="ui button"
                             onClick={() => (this.resetSearchReviewField(restaurant))}
                     >Show All Reviews</Button>
-                </div>
-                <div className="p-col-6" style={{textAlign: 'right'}}>
-                </div>
-            </div>
+                    {criteriaSlider}
+                </Grid.Row>
+            </Grid>
         );
     }
 
@@ -305,7 +304,7 @@ class Restaurants extends React.Component {
                 </Grid.Row>
             </Grid>): null;
         return (
-            <Grid centered>
+            <Grid centered className='rest_search'>
                 <Grid.Row centered>
                     <label className="search-label" htmlFor="search"><Icon name="search"/>Search Restaurant: </label>
                     <AutoComplete id="searchNameValue" placeholder="Name" className="search"

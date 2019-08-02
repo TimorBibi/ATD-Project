@@ -71,7 +71,7 @@ viewReviewItem()
 {
     const hasFreeText = this.state.freeText ?
         (<Header className= 'rating_title' as='h4'>
-                Description: this.state.freeText
+                Description: {this.state.freeText}
         </Header>)
         : null;
     const reviewImg = !(this.state.picture.pictureData) ? null:
@@ -82,10 +82,11 @@ viewReviewItem()
 
     const editable = this.state.username !== this.props.username;
     const edit_button = editable? null:
-        <Button color='violet' fluid size='large' id={this.state.username+"_"+this.state.timeStamp} type="button" className="ui button"
+        <Button className='left_review_btn' basic color='violet' fluid size='small' id={this.state.username+"_"+this.state.timeStamp} type="button"
                                                    onClick={() => this.makeEditableAction()}>Edit</Button>;
     const delete_button = editable? null:
-            <Button color='violet' size='large' fluid id={"delete_"+this.state.username+"_"+this.state.timeStamp}  type="button" className="ui button"
+            <Button className='right_review_btn' basic color='violet'  size='small' fluid
+                    id={"delete_"+this.state.username+"_"+this.state.timeStamp}  type="button"
                     onClick={() => this.props.deleteReviewEventHandler(this.state)}>Delete</Button>;
 
     return(
@@ -160,10 +161,10 @@ viewReviewItem()
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row columns={2}>
-                <Grid.Column >
+                <Grid.Column verticalAlign='middle'>
                    {edit_button}
                 </Grid.Column>
-                <Grid.Column >
+                <Grid.Column verticalAlign='middle'>
                     {delete_button}
                 </Grid.Column>
             </Grid.Row>
@@ -282,14 +283,16 @@ viewReviewItem()
                                            onChange={(e) => this.updateStateField(e)}/>
                             </Grid.Column>
                         </Grid.Row>
-                        <Grid.Row columns={2}>
+                        <Grid.Row columns={2} >
                             <Grid.Column >
-                                <Button color='violet' id={"edit_" + this.state.username+"_"+this.state.timeStamp} fluid size='large' type="submit">
+                                <Button className='left_review_btn' basic color='violet'
+                                        id={"edit_" + this.state.username+"_"+this.state.timeStamp} fluid size='small' type="submit">
                                     Submit
                                 </Button>
-                            </Grid.Column>
+                            </Grid.Column >
                             <Grid.Column >
-                                <Button color='violet' id={"cancel_" + this.state.username+"_"+this.state.timeStamp} fluid size='large' type="button"
+                                <Button className='right_review_btn' basic color='violet'
+                                        id={"cancel_" + this.state.username+"_"+this.state.timeStamp} fluid size='small' type="button"
                                         onClick={() => this.makeEditableAction()}>
                                     Cancel
                                 </Button>
