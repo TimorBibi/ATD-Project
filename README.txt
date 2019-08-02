@@ -145,6 +145,11 @@ Mongoose Models:
                       timeStamp: String,
                       avgRate: Number,
 
+To start the server:
+    start mongodb using mongod
+    node src\server\server.js # backend
+    npm run dev # frontend
+
 Extra libraries:
     Semantic-ui React.
     PrimeReact.
