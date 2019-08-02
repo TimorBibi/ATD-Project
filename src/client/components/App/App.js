@@ -1,12 +1,11 @@
-import {Image} from "semantic-ui-react";
-const {Map, List} = require('immutable');
+const {List} = require('immutable');
 import React from 'react';
 import './App.scss';
 import TopBar from '../TopBar';
 import { connect } from 'react-redux';
 import AppActions from './actions';
 import RegisterPage from "../RegisterPage/RegisterPage";
-import { BrowserRouter as Router, Route, Header } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import LogInPage from '../LogInPage/LogInPage';
 import Restaurants from '../Restaurants/Restaurants';
 import ViewProfilePage from '../ViewProfilePage/ViewProfilePage';

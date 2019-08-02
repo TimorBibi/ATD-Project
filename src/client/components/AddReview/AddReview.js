@@ -1,7 +1,7 @@
 import React from 'react';
 import './AddReview.scss';
 import {connect} from 'react-redux';
-import {Form, Input, Button, Grid, Header, Segment} from "semantic-ui-react";
+import {Form, Button, Grid, Header, Segment} from "semantic-ui-react";
 import {AutoComplete} from "primereact/components/autocomplete/AutoComplete";
 import AddReviewActions from "../AddReview/actions";
 import {Rating} from "primereact/components/rating/Rating";

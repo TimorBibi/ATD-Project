@@ -4,9 +4,7 @@ import {connect} from 'react-redux';
 import ReviewActions from '../Review/actions';
 import {Button, Form, Grid, Header, Image, Segment} from 'semantic-ui-react'
 import {Rating} from 'primereact/rating'
-import {InputTextarea} from 'primereact/inputtextarea';
 import {Growl} from "primereact/components/growl/Growl";
-import {AutoComplete} from "primereact/components/autocomplete/AutoComplete";
 
 class Review extends React.Component {
 
