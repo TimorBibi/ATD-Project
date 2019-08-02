@@ -11,7 +11,7 @@
 
 .users_show_reviews.ui{
     height: 60%;
-    width: 50%;
+    width: 30%;
     margin: 10px 0 0 130px;
 }
 
@@ -20,4 +20,32 @@
   margin-right: 20px;
   padding-top: 10px;
   font-weight:normal
+}
+
+.ui.centered.grid.user_search{
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  margin: 1% !important;
+  height: 10%;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.search-label{
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.search{
+  margin-left: 1%;
+}
+
+.row-margin{
+  margin-top: 3px;
+  margin-bottom: 10px;
+}
+
+.header-button{
+  width: 15em;
+  margin-right: 3px;
+  margin-left: 3px;
 }

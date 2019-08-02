@@ -148,7 +148,7 @@ class ViewProfilePage extends React.Component {
                                 </Grid>
                             </Grid.Column>
                             <Grid.Column>
-                                <Button id={"edit_"+user.get('username')} className='profile_btn' color='violet'  size='small' fluid type="button"
+                                <Button id={"edit_"+user.get('username')} className='ui button' type="button"
                                               onClick={() => {this.props.editProfileEventHandler(this.props.editProfile, user);}}>Edit Profile</Button>
                                 </Grid.Column>
                         </Grid.Row>
