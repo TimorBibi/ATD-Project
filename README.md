@@ -1,7 +1,7 @@
 # ATD-Project
 
-Timor Bibi : 2045949596
-Hagar Livneh: 206012528
+Hagar Livneh
+Timor Bibi
 
 
 Design:
